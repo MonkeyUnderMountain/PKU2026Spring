@@ -1,0 +1,71 @@
+\section{March 03, 2026: Introduction}
+
+\paragraph{References}
+\begin{enumerate}[label=(\arabic*)]
+    \item Da Silva, ``Lectures on Symplectic Geometry'';
+    \item McDuff-Salamon, ``Introduction to Symplectic Topology'';
+    \item McDuff-Salamon, ``J-Holomorphic Curves and Symplectic Topology''.
+\end{enumerate}
+
+\subsection{Introduction}
+
+    \paragraph{Comparison with (Pseudo) Riemannian Geometry}
+        \begin{center}
+            \begin{tabular}{p{0.45\textwidth}|p{0.45\textwidth}}
+                \textbf{(Pseudo) Riemannian Geometry} & \textbf{Symplectic Geometry} \\
+                \hline
+                Metric \(g\) on tangent bundle \(TM\) & Non-degenerate closed 2-form \(\omega\) on \(M\) \\[1em]
+                \(\forall p \in M, g_p: T_pM \times T_pM \to \bbR\) \textbf{symmetric} bilinear non-degenerate & \(\forall p \in M, \omega_p: T_pM \times T_pM \to \bbR\) \textbf{skew-symmetric} bilinear non-degenerate \\[1.5em]
+                \(g\) is a symmetric non-degenerate \(2\)-tensor & \(\omega\) is a \textbf{closed} skew-symmetric non-degenerate \(2\)-form \\[1em]
+                \(g\) always exists on any smooth manifold \(M\) & \(\omega\) may not exist on \(M\) \\[1em]
+                \(\dim M\) can be any positive integer & \(\dim M\) must be even    \\[1em]
+                Have small symmetry group (isometry group) & If \(\dim M > 0\), the symmetry group is infinite-dimensional \\[1em]
+                Have local invariants (curvature) & No local invariants \\[1em]
+                In general, no almost complex structure & Always admit an almost complex structure \\[1em]
+                Applications in physics: general relativity & Applications in physics: classical mechanics, string theory, etc.
+            \end{tabular}
+        \end{center}
+
+    \begin{definition}
+        Let \(V \cong \bbR^n\) be a \(n\)-dimensional real vector space. 
+        A \emph{symplectic form} on \(V\) is a skew-symmetric bilinear non-degenerate form \(B: V \times V \to \bbR\).
+        The pair \((V, B)\) is called a \emph{symplectic vector space}.
+    \end{definition}
+
+    \begin{lemma}
+        Let \(V\) be a finite-dimensional real vector space and \(B: V \times V \to \bbR\) be a skew-symmetric bilinear form.
+        TFAE:
+        \begin{enumerate}[label=(\arabic*)]
+            \item the linear map \(V \to V^*, v \mapsto B(v, \cdot)\) is an isomorphism;
+            \item choose a basis \(\{e_1, \dots, e_n\}\) of \(V\), then the matrix \(B_{ij} := B(e_i, e_j)\) is invertible;
+            \item \(n=2m\), and there exists a basis \(\{e_1, \dots, e_{2m}\}\) of \(V\) such that \(B = e_1^* \wedge e_2^* + \cdots + e_{2m-1}^* \wedge e_{2m}^*\);
+            \item \(n=2m\), regard \(B \in V^* \wedge V^*\), then \(B^m = B \wedge \cdots \wedge B \in \bigwedge^{n} V^* \cong \bbR\) is nonzero.
+        \end{enumerate}
+        If any of the above conditions holds, we say \(B\) is non-degenerate.
+    \end{lemma}
+    \begin{proof}
+        Homework.
+    \end{proof}
+    \begin{corollary}
+        Any two symplectic vector spaces of the same dimension are isomorphic.
+    \end{corollary}
+
+    \begin{definition}
+        A \emph{symplectic form} on a smooth manifold \(M\) is a closed non-degenerate \(2\)-form \(\omega \in \Omega^2(M)\).
+        Here, \(\omega\) is non-degenerate means that for any \(p \in M\), the bilinear form \(\omega_p: T_pM \times T_pM \to \bbR\) is non-degenerate.
+        The pair \((M, \omega)\) is called a \emph{symplectic manifold}.
+    \end{definition}
+
+    \begin{corollary}
+        Let \((M, \omega)\) be a symplectic manifold. 
+        Then 
+        \begin{enumerate}
+            \item we have an isomorphism \(TM \cong T^*M\) of vector bundles given by \(v \mapsto \omega(v, \cdot)\);
+            \item \(\dim M = 2m\) is even, and \(\omega^m \coloneqq \omega \wedge \cdots \wedge \omega \in \Omega^{2m}(M)\) is nowhere vanishing, hence defines a volume form on \(M\). 
+                In particular, \(M\) is orientable.
+        \end{enumerate}
+    \end{corollary}
+
+    Recall the \emph{de Rham} cohomology 
+    \[ H^k_{\dR}(M) \coloneqq \frac{\ker(d: \Omega^k(M) \to \Omega^{k+1}(M))}{\mathrm{im}(d: \Omega^{k-1}(M) \to \Omega^k(M))}. \]
+    The symplectic form \(\omega\) defines a cohomology class \([\omega] \in H^2_{\dR}(M)\).
