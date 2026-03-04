@@ -1,0 +1,65 @@
+\section{March 03:}
+
+    % \begin{tikzpicture}
+    %     \begin{scope}
+    %         \draw[fill=gray!10, opacity=0.3] (0,0) rectangle (3,3);
+    %     \end{scope}
+    %     \begin{scope}
+    %         \draw[fill=gray!10, opacity=0.3] (0,0) rectangle (3,3);
+    %     \end{scope}
+    %     \begin{scope}
+    %         \draw[fill=gray!10, opacity=0.3] (0,0) rectangle (3,3);
+    %     \end{scope}
+    %     % Axes
+    %     \draw[thick,->] (0,0) -- (3,0) node[right] {$x$};
+    %     \draw[thick,->] (0,0) -- (0,3) node[above] {$y$};
+        
+    %     % Grid
+    %     \foreach \i in {1,2} {
+    %         \draw[gray!30] (\i,0) -- (\i,3);
+    %         \draw[gray!30] (0,\i) -- (3,\i);
+    %     }
+    % \end{tikzpicture}
+
+
+    Diophantine(3rd Century)
+    Arithmetic: \(F(x,y) = 0\) where \(F\) is a polynomial with integer coefficients. 
+    For example, \(x^2 + y^2 = z^2\).
+    Euclidean gives all solution:
+    \[ (a^2 - b^2)^2 + (2ab)^2 = (a^2 + b^2)^2 \]
+    where \(a,b\) are integers.
+
+    Fermat Last Theorem: \(x^n + y^n = z^n\) has no non-trivial integer solutions for \(n > 2\).
+    It was conjectured by Fermat in 1637 and proved by Andrew Wiles in 1994.
+
+    A more general question: the equation
+    \[ AX^n + BY^n = CZ^n, \quad A,B,C \in \bbZ. \]
+    It is more complicated.
+    \begin{itemize}
+        \item [\(n=1\)] linear equation;
+        \item [\(n=2\)] many cases, for example, \(x^2 + y^2 = -z^2\) has no non-trivial solution;
+    \end{itemize}
+
+\subsection[n=2]{\(n=2\).}
+
+    (Diophantine) conic \(\cap\) line has \(2\)-points.
+    Fix a point \(P\) on the conic, then we can get all points by intersecting the conic with lines through \(P\).
+    This gives a rational parametrization of the conic:
+    \[ (x,y) \mapsto k=\frac{y}{x+1}. \]
+
+
+    How to check if the equation \(AX^2 + BY^2 = CZ^2\) has a (non-trivial) solution?
+    
+    \textbf{Local-global principle} (Minkowski 19th): the equation has a solution if and only if it has a solution in \(\bbR\) and in \(\bbQ_p\) for all \(p\).
+    
+    More generally, we can classify all conics over \(\bbQ\).
+    Let \(C\) be a conic. 
+    If it is over a complete field \(\bbQ_p\) or \(\bbR\), then there are only two isomorphic classes: either \(C\) has infinite points or no points at all.
+
+    Over \(\bbQ\), there are infinite conics indexed by the finite subset of \(M_\bbQ = \{\infty, 2,3,5,7,\ldots\}\) of even cardinality.
+
+\subsection[n=3]{\(n=3\)}
+
+    Euler: How to parametrize?
+    If \(n=2\), one can use the triangle integral to parametrize the solutions.
+    If \(n=3\), we have the elliptic integral, 
