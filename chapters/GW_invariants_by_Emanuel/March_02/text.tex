@@ -1,0 +1,27 @@
+\section{March 02: Introduction}
+
+G-W invariants are basic enumerative invariants of a variety \(X\).
+
+Let \(\Gamma_1,\cdots,\Gamma_n\) be a collection of algebraic cycles on \(X\). 
+We can ask the following enumerative question.
+\begin{itemize}
+    \item How many curves of fixed genus \(g\) and degree \(d\) pass through \(\Gamma_1,\cdots,\Gamma_n\)?
+    \item How do we count correctly?
+    \item Depend on the equation of \(X\)?
+\end{itemize}
+
+\subsection{2875 and all that}
+
+    \begin{example}
+        Let \(Z=Z(5)\) be a degree \(5\) hypersurface in \(\bbP^4\).
+        
+        \textbf{Q:} How many rational curves of degree \(d\) in \(Z\)?
+
+        First consider the case \(d=1\).
+        For any \(d\), we denote by \(\calH_d\) the Hilbert scheme of rational curves (and their degenerations) of degree \(d\) in \(\bbP^4\).
+        Set \(\calL \subset \bbP^4 \times \calH_d\) the universal curve.
+        We have the exact sequence
+        \[ 0 \to \calI_{\calL} \to \calO_{\bbP^4 \times \calH_d} \to \calO_{\calL} \to 0. \]
+        It induces the exact sequence
+        \[ 0 \to \pi_*\calI_{\calL}(5) \to \pi_*\calO_{\bbP^4 \times \calH_d}(5) \to \pi_*\calO_{\calL}(5) \to R^1\pi_*\calI_{\calL}(5) \to 0. \]
+    \end{example}
