@@ -1,0 +1,219 @@
+\section{March 06}
+
+\subsection{Frobenius element (continue)}
+
+    \begin{proposition}
+        We have a tower of fields \(M/L/K\).
+        Suppose that \(M/K\) is Galois.
+        Let \(D \in \calO_M\) a prime ideal and \(\frakP = D \cap \calO_L\) and \(\frakp = D \cap \calO_K\).
+        Then 
+        \begin{enumerate}[label=(\arabic*)]
+            \item 
+            \item 
+            \item assume that \(L/K\) is Galois, then \(\Frob_{(D, M/K)}|_L = \Frob_{(\frakP, L/K)}\).
+        \end{enumerate}
+
+    \end{proposition}
+
+    \begin{corollary}\label{cor:split_completely_and_frobenius}
+        Let \(L/K\) be a Galois extension and \(\frakp\) a prime of \(K\) unramified in \(L\).
+        Then 
+        \(\frakp\) is split completely in \(L\) if and only if \(\Frob_{(\frakP, L/K)} = 1\) for one (or equivalently, any) prime \(\frakP\) of \(L\) above \(\frakp\).
+    \end{corollary}
+
+    \begin{proposition}\label{prop:frobenius_in_compositum}
+        Let \(L_1, L_2\) be Galois extensions of \(K\) and \(M=L_1L_2\).
+        Then \(M/K\) is Galois and there is a natural embedding \(j:\Gal(M/K) \hookrightarrow \Gal(L_1/K) \times \Gal(L_2/K)\).
+        \begin{enumerate}[label=(\arabic*)]
+            \item under the embedding \(j\), we have \(j(\Frob_{(D, M/K)}) = (\Frob_{(\frakP, L_1/K)}, \Frob_{(\frakP, L_2/K)})\).
+        \end{enumerate}
+    \end{proposition}
+
+        Note that 
+        
+        Hence in the situation of \cref{prop:frobenius_in_compositum}, \(\frakp\) is split completely in \(M\) if and only if \(\frakp\) is split completely in both \(L_1\) and \(L_2\).
+
+    \begin{example}
+        Let \(K = \bbQ[\xi_n]\) with \(\xi_n = e^{2\pi i/n}\) and \(p\) an odd prime.
+        If \(p \mid n\), then \(p\) is ramified in \(K\).
+        The Frobenius element \(\Frob_{(p, K/\bbQ)}\) is not defined.
+        Suppose that \(p \nmid n\).
+        Then \(\sigma = \Frob_{(p, K/\bbQ)}\) is the unique element in \(\Gal(K/\bbQ) \cong (\bbZ/n\bbZ)^\times\) 
+        such that \(\sigma(\alpha) = \alpha^p \pmod{\frakp}\) for all \(\alpha \in \calO_K\) and all prime \(\frakp\) of \(K\) above \(p\).
+        We claim that \(\sigma\) is given by \(\sigma(\xi_n) = \xi_n^p\).
+        Fix a prime \(\frakp\) of \(K\) above \(p\).
+        We have 
+        \[ \sigma(\sum a_i \xi_n^i) = \sum a_i \sigma(\xi_n)^i = \sum a_i \xi_n^{pi} \equiv \sum a_i^p \xi_n^{pi} \equiv \left(\sum a_i \xi_n^i\right)^p \pmod{\frakp}. \]
+        Note that \(\sigma = \Frob_{(p, K/\bbQ)}\) has order \(f\) where \(f\) is the smallest positive integer such that \(p^f \equiv 1 \pmod{n}\).
+    \end{example}
+
+    \begin{example}
+        Let \(K = \bbQ[\sqrt{d}]\) where \(d\) is a square-free integer.
+        Let \(p\) be a prime unramified in \(K\).
+        Identify \(\Gal(K/\bbQ)\) with \(\{\pm 1\}\) where \(-1\) acts on \(K\) by sending \(\sqrt{d}\) to \(-\sqrt{d}\).
+        Then by \cref{cor:split_completely_and_frobenius} we have
+        \[ \Frob_{(p, K/\bbQ)} = \begin{cases}
+            1 & \text{if } d \text{ is a quadratic residue modulo } p, \\
+            -1 & \text{if } d \text{ is not a quadratic residue modulo } p.
+        \end{cases} \]
+    \end{example}
+
+    \paragraph{The quadratic reciprocity law by Frobenius elements}
+    Let \(K = \bbQ[\xi]\) with \(\xi = \exp({2\pi i/p})\) where \(p\) is an odd prime.
+    Then \(\Gal(K/\bbQ) \cong (\bbZ/p\bbZ)^\times\) is cyclic of order \(p-1\).
+    There is a unique subgroup of \(\Gal(K/\bbQ)\) of index \(2\), 
+    consisting of the squares in \((\bbZ/p\bbZ)^\times\),
+    which corresponds to a unique quadratic extension \(F\) of \(\bbQ\) contained in \(K\).
+
+    We check the ramification in \(K\) and \(F\).
+    The only prime ramified in \(K\) is \(p\).
+    Hence the only prime ramified in \(F\) is \(p\).
+    If \(p \equiv 1 \pmod{4}\), then \(p\) is the only prime ramified in \(\bbQ(\sqrt{p})\).
+    And \(\bbQ(\sqrt{p})\) is the unique quadratic extension of \(\bbQ\) ramified only at \(p\).
+    Hence \(F = \bbQ(\sqrt{p})\).
+    Similarly, if \(p \equiv 3 \pmod{4}\), then \(F = \bbQ(\sqrt{-p})\).
+    Denote by \(d = (-1)^{\frac{p-1}{2}}p\), then \(F = \bbQ(\sqrt{d})\).
+
+    Let \(q\) be an odd prime different from \(p\).
+    Then \(q\) is unramified in \(F\).
+    Consider the Frobenius element \(\Frob_{(q, K/\bbQ)}: \xi \mapsto \xi^q\).
+    We have 
+    \begin{align*}
+            & q \text{ is a quadratic residue modulo } p \\
+        \iff & \Frob_{(q, K/\bbQ)} \in \Gal(K/\bbQ) \text{is a square} \\
+        \iff & \Frob_{(q, F/\bbQ)} = \Frob_{(q, K/\bbQ)}|_F \in \Gal(F/\bbQ) \text{is the identity} \\
+        \iff & \text{the prime } q \text{ is split completely in } F \\
+        \iff & d \text{ is a quadratic residue modulo } q
+    \end{align*}
+    Hence \Yang{}
+    \[ \left(\frac{d}{q}\right) = \left(\frac{(-1)^{\frac{p-1}{2}}p}{q}\right) = \left(\frac{q}{p}\right). \]
+    This gives a proof of the part of the quadratic reciprocity law for odd primes.
+
+    Let \(\xi\) be a primitive \(8\)-th root of unity in \(\overline{\bbF_p}\).
+    Set \(a = \xi + \xi^{-1}\).
+    From \(\xi^4 = -1\) we deduce that
+    \[ X^4+1 = (X^2 - \xi^2)(X^2 - \xi^{-2}) \in \overline{\bbF_p}[X]. \]
+    This implies that \(\xi^2 + \xi^{-2} = 0\) and hence \(a^2 = 2\).
+    When \(p \equiv \pm 1 \pmod{8}\), we have
+    \[ \xi^p + \xi^{-p} = \xi + \xi^{-1}, \]
+    i.e., \(a^p = a\).
+    This implies that \
+    \[ \left(\frac{2}{p}\right) = 1\]
+    \Yang{...}
+
+\subsection{The Chebotarev density theorem}
+
+    \begin{definition}
+        Let \(K\) be a number field and \(P= \mSpec \calO_K\) the set of finite places of \(K\).
+        For every \(S \subset P\), we say that \(S\) has \emph{natrual density} \(\delta\) if
+        \[ \lim_{N \to \infty} \frac{\#\{\frakp \in S: \Nm(\frakp) \leq N\}}{\#\{\frakp \in P: \Nm(\frakp) \leq N\}} = \delta. \]
+    \end{definition}
+
+    \begin{theorem}[Chebotarev density theorem]\label{thm:Chebotarev_density_theorem}
+        Let \(L/K\) be a Galois extension of number fields with Galois group \(G = \Gal(L/K)\).
+        Let \(C\) be a conjugacy class in \(G\).
+        Then the set of primes \(\frakp\) of \(K\) such that \(\Frob_{(\frakp, L/K)} = C\) has natural density \(\frac{|C|}{|G|}\).
+    \end{theorem}
+    Proof later.
+
+    \begin{corollary}
+        Let \(L/K\) be a Galois extension of number fields.
+        The set of primes of \(K\) that split completely in \(L\) has natural density \(\frac{1}{[L:K]}\).
+    \end{corollary}
+
+    \begin{remark}
+        There exists a bound for the error in terms of discriminant of the polynomial, 
+        but it is large.
+        Given a polynomial \(f \in \bbZ[X]\), there exists a bound \(B\) 
+        such that if a given cycles type does not appear as the Frobenius element \Yang{}
+    \end{remark}
+
+    \begin{example}
+        Let \(K = \bbQ[\xi_n]\), \(\Gal(K/\bbQ) \cong (\bbZ/n\bbZ)^\times\).
+        We know that \(\Frob_{(p, K/\bbQ)}\) corresponds to \(p \in (\bbZ/n\bbZ)^\times\) for any prime \(p\) unramified in \(K\).
+        The Chebotarev density theorem implies that 
+        the set of primes \(p\) such that \(p \equiv a \pmod{n}\) are equi-distributed of density \(\frac{1}{\varphi(n)}\) for each \(a \in (\bbZ/n\bbZ)^\times\).
+        This implies the Dirichlet's theorem on arithmetic progressions.
+    \end{example}
+
+    \paragraph{Application}
+
+    Let \(L/K\) be a Galois extension of number fields with Galois group \(G\).
+    Denote by 
+    \[ \upoperatorname{Spl}(L/K) = \{\frakp \in \mSpec O_K: \frakp \text{ is split completely in } L\} \]
+    the set of primes of \(K\) that split completely in \(L\).
+    
+    \begin{theorem}\label{thm:extension_and_splitting_primes}
+        If \(L/K\) and \(M/K\) is Galois extensions of number fields.
+        Then \(L \subset M\) if and only if \(\upoperatorname{Spl}(M/K) \subset \upoperatorname{Spl}(L/K)\).
+    \end{theorem}
+    \begin{proof}
+        (\(\Rightarrow\)) obvious.
+
+        (\(\Leftarrow\)) We have 
+        \[ \upoperatorname{Spl}(LM/K) = \upoperatorname{Spl}(L/K) \cap \upoperatorname{Spl}(M/K) = \upoperatorname{Spl}(M/K) \]
+        by \cref{prop:frobenius_in_compositum}.
+        By the Chebotarev density theorem, we know that 
+        \[ \frac{1}{[LM:K]} = \text{ density of } \upoperatorname{Spl}(LM/K) = \text{ density of } \upoperatorname{Spl}(M/K) = \frac{1}{[M:K]}. \]
+        % density of \(\upoperatorname{Spl}(LM/K)\) is \([LM:M]\) times the density of \(\upoperatorname{Spl}(M/K)\).\Yang{}
+        Hence \(LM = M\) and then \(L \subset M\).
+    \end{proof}
+
+    \begin{corollary}
+        Same as \cref{thm:extension_and_splitting_primes}.
+        Then 
+        \[ L = M \iff \upoperatorname{Spl}(L/K) = \upoperatorname{Spl}(M/K). \]
+    \end{corollary}
+
+    \begin{slogan}
+        We can use the information on base field (e.g. the splitting of primes) to determine the extension field.
+    \end{slogan}
+
+    \begin{theorem}
+        For any number field \(K\), integer \(N\) and finite set \(S\) of primes of \(K\), 
+        there are only finite many fields extensions \(L/K\) of degree \(N\) unramified outside \(S\).
+    \end{theorem}
+    \begin{slogan}
+        Given a compact Riemann surface \(S\) and \(P_1, \dots, P_n\) points on \(S\), 
+        there are only finite many \'etale cover of \(S\setminus\{P_1, \dots, P_n\}\) of degree \(N\).
+    \end{slogan}
+    \begin{proof}
+        Recall for all prime \(v\) and integer \(N\), there are only finite many extensions of \(K_v\) of degree dividing \(N\).
+        \Yang{}
+
+        Next \(\disc(L/K) = \prod_{w|v} \disc(L_w/K_v) \in \calO_{K_v}\).
+        Let \(L\) be an extension of \(K\) of degree \(N\) unramified outside \(S\).
+        Then \(\disc(L/K)\) is bounded.
+        The result follows from the Hermite's theorem below (\cref{thm:hermite_fix_discriminant})
+    \end{proof}
+
+
+    \begin{theorem}[Hermite]\label{thm:hermite_fix_discriminant}
+        Let \(K\) be a number field. 
+        There are only finite many extensions of \(K\) with given discriminant.
+    \end{theorem}
+    \begin{proof}
+        Recall \(\forall K/\bbQ\) of degree \(n\), there exist a set of \Yang{Mincowski's theorem}
+
+        We have 
+        \[ |\disc_{K/\bbQ}| > \left(\frac{\pi}{4}\right)^{n/2} \frac{n^n}{n!}. \]
+        Assume \(\disc_{K/\bbQ} = d\), we may fix \(n\) such that \(|D| = d\),
+        \(\sigma_1, \dots, \sigma_r \in M_{K,\infty}\) the infinite places of \(K\) with completion \(\bbR\) and 
+        \(\sigma_{r+1}, \dots, \sigma_{r+s}\) the infinite places of \(K\) with completion \(\bbC\).
+
+        Consider \(\Sigma: K \to \bbR^r \times \bbC^s\) given by \(x \mapsto (\sigma_1(x), \dots, \sigma_{r+s}(x))\).
+
+        In case \(r \neq 0\), define 
+        \[ X = \{ (x_1, \dots, x_{r+s}) : |x_1| < \sqrt{D+1}, \quad |x_i| < 1, i = 2, \dots, r+s \}. \]
+        In case \(r = 0\), define
+        \[ Y = \{ (x_1, \dots, x_s) : |\Re x_1|<1,|\Image x_1|<\sqrt{D+1},\quad |x_i| < 1, i = 2, \dots, s \}. \]
+        We can compute the volume of \(X\) and \(Y\):
+        \[ \vol(X) = 2^r \pi^s \sqrt{D+1}, \quad \vol(Y) = 2 \pi^{s-1} \sqrt{D+1}. \]
+        By the Minkowski's theorem, there exists a nonzero element \(\alpha \in \calO_K\) such that \(\Sigma(\alpha) \in X\) (or \(Y\)).
+        Conjugation of \(\alpha\) are absolutely bounded by a constant depending only on \(D\).
+        Hence there are only finite many possibilities of such \(\alpha\).
+
+        By the construction of \(X\) and \(Y\), we have \(K = \bbQ(\alpha)\).
+
+    \end{proof}
+
