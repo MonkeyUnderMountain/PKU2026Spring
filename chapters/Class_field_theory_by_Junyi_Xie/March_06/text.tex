@@ -6,13 +6,7 @@
         We have a tower of fields \(M/L/K\).
         Suppose that \(M/K\) is Galois.
         Let \(D \in \calO_M\) a prime ideal and \(\frakP = D \cap \calO_L\) and \(\frakp = D \cap \calO_K\).
-        Then 
-        \begin{enumerate}[label=(\arabic*)]
-            \item 
-            \item 
-            \item assume that \(L/K\) is Galois, then \(\Frob_{(D, M/K)}|_L = \Frob_{(\frakP, L/K)}\).
-        \end{enumerate}
-
+        Assume that \(L/K\) is Galois, then \(\Frob_{(D, M/K)}|_L = \Frob_{(\frakP, L/K)}\).
     \end{proposition}
 
     \begin{corollary}\label{cor:split_completely_and_frobenius}
@@ -24,14 +18,10 @@
     \begin{proposition}\label{prop:frobenius_in_compositum}
         Let \(L_1, L_2\) be Galois extensions of \(K\) and \(M=L_1L_2\).
         Then \(M/K\) is Galois and there is a natural embedding \(j:\Gal(M/K) \hookrightarrow \Gal(L_1/K) \times \Gal(L_2/K)\).
-        \begin{enumerate}[label=(\arabic*)]
-            \item under the embedding \(j\), we have \(j(\Frob_{(D, M/K)}) = (\Frob_{(\frakP, L_1/K)}, \Frob_{(\frakP, L_2/K)})\).
-        \end{enumerate}
+        Under the embedding \(j\), we have \(j(\Frob_{(D, M/K)}) = (\Frob_{(\frakP, L_1/K)}, \Frob_{(\frakP, L_2/K)})\).
     \end{proposition}
 
-        Note that 
-        
-        Hence in the situation of \cref{prop:frobenius_in_compositum}, \(\frakp\) is split completely in \(M\) if and only if \(\frakp\) is split completely in both \(L_1\) and \(L_2\).
+    Hence in the situation of \cref{prop:frobenius_in_compositum}, \(\frakp\) is split completely in \(M\) if and only if \(\frakp\) is split completely in both \(L_1\) and \(L_2\).
 
     \begin{example}
         Let \(K = \bbQ[\xi_n]\) with \(\xi_n = e^{2\pi i/n}\) and \(p\) an odd prime.
@@ -85,21 +75,42 @@
         \iff & \text{the prime } q \text{ is split completely in } F \\
         \iff & d \text{ is a quadratic residue modulo } q
     \end{align*}
-    Hence \Yang{}
-    \[ \left(\frac{d}{q}\right) = \left(\frac{(-1)^{\frac{p-1}{2}}p}{q}\right) = \left(\frac{q}{p}\right). \]
+    Hence
+    \[ \left(\frac{d}{q}\right) = \left(\frac{(-1)^{\frac{p-1}{2}}p}{q}\right) = \left(\frac{-1}{q}\right)^{\frac{p-1}{2}} \left(\frac{p}{q}\right) = \left(\frac{q}{p}\right). \]
     This gives a proof of the part of the quadratic reciprocity law for odd primes.
 
-    Let \(\xi\) be a primitive \(8\)-th root of unity in \(\overline{\bbF_p}\).
-    Set \(a = \xi + \xi^{-1}\).
-    From \(\xi^4 = -1\) we deduce that
-    \[ X^4+1 = (X^2 - \xi^2)(X^2 - \xi^{-2}) \in \overline{\bbF_p}[X]. \]
-    This implies that \(\xi^2 + \xi^{-2} = 0\) and hence \(a^2 = 2\).
-    When \(p \equiv \pm 1 \pmod{8}\), we have
-    \[ \xi^p + \xi^{-p} = \xi + \xi^{-1}, \]
-    i.e., \(a^p = a\).
-    This implies that \
-    \[ \left(\frac{2}{p}\right) = 1\]
-    \Yang{...}
+    \begin{theorem}[Quadratic reciprocity law]\label{thm:quadratic_reciprocity_law}
+        Let \(p\) and \(q\) be two distinct odd primes.
+        Then we have the following relations.
+        \begin{enumerate}
+            \item \(\left(\frac{p}{q}\right) \left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}\).
+                In other words, 
+                \[\left(\frac{p}{q}\right) = \begin{cases}
+                    \left(\frac{q}{p}\right) & \text{if } p \equiv 1 \text{ or } q \equiv 1 \pmod{4}, \\
+                    -\left(\frac{q}{p}\right) & \text{if } p \equiv q \equiv 3 \pmod{4}.
+                \end{cases} \]
+            \item \(\left(\frac{-1}{p}\right) = (-1)^{\frac{p-1}{2}}\).
+            \item \(\left(\frac{2}{p}\right) = (-1)^{\frac{p^2-1}{8}}\).
+        \end{enumerate}
+    \end{theorem}
+    We finish the proof of quadratic reciprocity law here.
+    \begin{proof}
+        The part (b) follows from the Fermat's theorem on sums of two squares.
+        Then the part (a) follows from the discussion above.
+
+        For the part (c), let \(\xi\) be a primitive \(8\)-th root of unity in \(\overline{\bbF_p}\).
+        Set \(a = \xi + \xi^{-1}\).
+        From \(\xi^4 = -1\) we deduce that
+        \[ X^4+1 = (X^2 - \xi^2)(X^2 - \xi^{-2}) \in \overline{\bbF_p}[X]. \]
+        This implies that \(\xi^2 + \xi^{-2} = 0\) and hence \(a^2 = 2\).
+        Note that the equality
+        \[ \xi^p + \xi^{-p} = \xi + \xi^{-1} \]
+        holds if and only if \(p \equiv \pm 1 \pmod{8}\).
+        Since \(\xi^p + \xi^{-p} = a^p\), we have 
+        \[ a^p = a \iff p \equiv \pm 1 \pmod{8} \iff a \in \bbF_p. \]
+        We are done.
+    \end{proof}
+
 
 \subsection{The Chebotarev density theorem}
 
@@ -114,7 +125,8 @@
         Let \(C\) be a conjugacy class in \(G\).
         Then the set of primes \(\frakp\) of \(K\) such that \(\Frob_{(\frakp, L/K)} = C\) has natural density \(\frac{|C|}{|G|}\).
     \end{theorem}
-    Proof later.
+
+    Proof of \cref{thm:Chebotarev_density_theorem} will be given later.
 
     \begin{corollary}
         Let \(L/K\) be a Galois extension of number fields.
@@ -125,7 +137,10 @@
         There exists a bound for the error in terms of discriminant of the polynomial, 
         but it is large.
         Given a polynomial \(f \in \bbZ[X]\), there exists a bound \(B\) 
-        such that if a given cycles type does not appear as the Frobenius element \Yang{}
+        such that if a given cycles type does not appear as the Frobenius element for any prime \(p \leq B\), 
+        then it does not appear as the Frobenius element for any prime \(p\).
+
+        Here, by ``cycle type'' we mean the cycle type of the Frobenius element as a permutation of the roots of \(f \pmod{p}\).
     \end{remark}
 
     \begin{example}
@@ -173,13 +188,22 @@
         For any number field \(K\), integer \(N\) and finite set \(S\) of primes of \(K\), 
         there are only finite many fields extensions \(L/K\) of degree \(N\) unramified outside \(S\).
     \end{theorem}
-    \begin{slogan}
-        Given a compact Riemann surface \(S\) and \(P_1, \dots, P_n\) points on \(S\), 
-        there are only finite many \'etale cover of \(S\setminus\{P_1, \dots, P_n\}\) of degree \(N\).
-    \end{slogan}
+    \begin{remark}
+        Given a compact Riemann surface \(X\) and \(P_1, \dots, P_n\) points on \(X\), 
+        there are only finite many \'etale cover of \(X\setminus\{P_1, \dots, P_n\}\) of degree \(N\).
+        This is since \(\pi_1(X\setminus\{P_1, \dots, P_n\})\) is finitely generated.
+
+        For a finitely generated group \(G\) and integer \(N\), there are only finite many subgroups of \(G\) of index \(N\).
+        This is since the subgroups of \(G\) of index \(N\) corresponds a homomorphism \(G \to S_N\) by \(G \acts G/H\) and there are only finite many homomorphisms \(G \to S_N\).
+    \end{remark}
     \begin{proof}
         Recall for all prime \(v\) and integer \(N\), there are only finite many extensions of \(K_v\) of degree dividing \(N\).
-        \Yang{}
+        This since every extension of \(K_v\) can be decomposed into an unramified extension and a totally ramified extension.
+        For the unramified extension, there are only finite many of them since they are determined by the residue field extension.
+        For the totally ramified extension, they are determined by the Eisenstein polynomials.
+        And there exists \(M\) depending only on \(N\) such that for two Eisenstein polynomials $f, g$ of degree \(N\) with coefficients in \(\calO_{K_v}\),
+        \[ f \equiv g \pmod{\frakm_v^M} \implies f \text{ and } g \text{ define the same extension of } K_v. \]
+        Hence the assertion follows from the finiteness of \(\calO_{K_v}/\frakm_v^M\).
 
         Next \(\disc(L/K) = \prod_{w|v} \disc(L_w/K_v) \in \calO_{K_v}\).
         Let \(L\) be an extension of \(K\) of degree \(N\) unramified outside \(S\).
@@ -193,27 +217,34 @@
         There are only finite many extensions of \(K\) with given discriminant.
     \end{theorem}
     \begin{proof}
-        Recall \(\forall K/\bbQ\) of degree \(n\), there exist a set of \Yang{Mincowski's theorem}
+        For any extension \(L/K\), we have \(\disc(L/K) = \Nm_{K/\bbQ}(\disc(L/K)) \cdot \disc_K^{[L:K]}\).
+        Hence we can assume that \(K = \bbQ\) and we want to show that there are only finite many extensions \(L\) of \(\bbQ\) with given discriminant \(d\).
+        By Minkowski's theorem, we have 
+        \[ |d| > \left(\frac{\pi}{4}\right)^{n/2} \frac{n^n}{n!}. \]
+        Hence we may fix \(n = [L:\bbQ]\).
+        Set \(D = |d|\).
 
-        We have 
-        \[ |\disc_{K/\bbQ}| > \left(\frac{\pi}{4}\right)^{n/2} \frac{n^n}{n!}. \]
-        Assume \(\disc_{K/\bbQ} = d\), we may fix \(n\) such that \(|D| = d\),
-        \(\sigma_1, \dots, \sigma_r \in M_{K,\infty}\) the infinite places of \(K\) with completion \(\bbR\) and 
-        \(\sigma_{r+1}, \dots, \sigma_{r+s}\) the infinite places of \(K\) with completion \(\bbC\).
+        Let \(\sigma_1, \dots, \sigma_r \in M_{L,\infty}\) be the infinite places of \(L\) with completion \(\bbR\) and 
+        \(\sigma_{r+1}, \dots, \sigma_{r+s}\) be the infinite places of \(L\) with completion \(\bbC\).
+        Consider \(\Sigma: L \to \bbR^r \times \bbC^s\) given by \(x \mapsto (\sigma_1(x), \dots, \sigma_{r+s}(x))\).
+        Define 
+        \[ X \coloneqq \begin{cases}
+            \{ (x_1, \dots, x_{r+s}) : |x_1| < \sqrt{D+1}, \quad |x_i| < 1, i = 2, \dots, r+s \} & \text{if } r \neq 0, \\
+            \{ (x_1, \dots, x_s) : |\Real x_1|<1,|\Image x_1|<\sqrt{D+1},\quad |x_i| < 1, i = 2, \dots, s \} & \text{if } r = 0.
+        \end{cases} \]
+        We can compute the volume of \(X\):
+        \[ \vol(X) = \begin{cases}
+            2^r \pi^s \sqrt{D+1} & \text{if } r \neq 0, \\
+            2 \pi^{s-1} \sqrt{D+1} & \text{if } r = 0.
+        \end{cases} \]
+        In either case, we have \(\vol(X) > 2^r \sqrt{D}\).
+        By the Minkowski's theorem on the lattice \(\calO_L\) and the convex body \(X\), 
+        there exists a nonzero element \(\alpha \in \calO_L\) such that \(\Sigma(\alpha) \in X\).
+        All conjugates of \(\alpha\) are absolutely bounded by a constant depending only on \(D\).
+        Hence there are only finite many possibilities of such \(\alpha \in \calO_{\overline{\bbQ}}\).
 
-        Consider \(\Sigma: K \to \bbR^r \times \bbC^s\) given by \(x \mapsto (\sigma_1(x), \dots, \sigma_{r+s}(x))\).
-
-        In case \(r \neq 0\), define 
-        \[ X = \{ (x_1, \dots, x_{r+s}) : |x_1| < \sqrt{D+1}, \quad |x_i| < 1, i = 2, \dots, r+s \}. \]
-        In case \(r = 0\), define
-        \[ Y = \{ (x_1, \dots, x_s) : |\Re x_1|<1,|\Image x_1|<\sqrt{D+1},\quad |x_i| < 1, i = 2, \dots, s \}. \]
-        We can compute the volume of \(X\) and \(Y\):
-        \[ \vol(X) = 2^r \pi^s \sqrt{D+1}, \quad \vol(Y) = 2 \pi^{s-1} \sqrt{D+1}. \]
-        By the Minkowski's theorem, there exists a nonzero element \(\alpha \in \calO_K\) such that \(\Sigma(\alpha) \in X\) (or \(Y\)).
-        Conjugation of \(\alpha\) are absolutely bounded by a constant depending only on \(D\).
-        Hence there are only finite many possibilities of such \(\alpha\).
-
-        By the construction of \(X\) and \(Y\), we have \(K = \bbQ(\alpha)\).
-
+        By the construction of \(X\), if \(\sigma(\alpha) = \alpha\) for some \(\sigma \in \Gal(L/\bbQ)\), 
+        then \(\sigma\) must be the identity on \(L\). 
+        Hence \(L = \bbQ(\alpha)\).
     \end{proof}
 
