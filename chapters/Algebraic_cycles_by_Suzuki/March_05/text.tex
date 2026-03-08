@@ -33,7 +33,7 @@
         \[ \call_A(A/rA) = \sum_{\frakm \in \mSpec B} \call_{B_\frakm}(B_\frakm/rB_\frakm)[B/\frakm : A/\frakm_A]. \]
     \end{lemma}
 
-    Apply Lemma \ref{lem:length_of_extension} to \(A = \calO_{X,V}\), where \(X\) is a variety and \(V\) is a subvariety of codimension \(1\).
+    Apply \cref{lem:length_of_extension} to \(A = \calO_{X,V}\), where \(X\) is a variety and \(V\) is a subvariety of codimension \(1\).
     Then for all \(r = a/b \in \fkk(X)^\times\) with \(a,b \in \calO_{X,V}\), we have
     \[ \ord_V(r) = \call_{\calO_{X,V}}(\calO_{X,V}/(a)) - \call_{\calO_{X,V}}(\calO_{X,V}/(b)). \]
 
@@ -55,6 +55,8 @@
         The length \(\call(\calO_{X,X_j})\) is called the \emph{generic multiplicity} of \(X_j\) in \(X\).
     \end{definition}
 
+    Here \(\calO_{X,X_j}\) is an Artinian local ring, so \(\call(\calO_{X,X_j}) < \infty\).
+
     \begin{example}
         Let \(X = \{x^3y^2(x^2+y^2-1) = 0\} \subset \bbA^2\).
         Then \(X\) has three irreducible components \(X_1 = \{x=0\}, X_2 = \{y=0\}, X_3 = \{x^2+y^2-1=0\}\).
@@ -66,10 +68,10 @@
                 \draw[thick] (-1.5,0) -- (1.5,0);
                 % y-axis
                 \draw[thick] (0,-1.5) -- (0,1.5);
-                % Labels: X_1 for circle, X_2 for x-axis (y=0), X_3 for y-axis (x=0)
-                \node at (0.85,0.85) {$X_1$};
+                % Labels: 
+                \node at (0.85,0.85) {$X_3$};
                 \node at (1.5,-0.3) {$X_2$};
-                \node at (-0.3,1.5) {$X_3$};
+                \node at (-0.3,1.5) {$X_1$};
             \end{tikzpicture}
         \end{center}
         We have:
@@ -105,7 +107,7 @@
 \subsection{Flat pullbacks}
     
     Let \(f : X \to Y\) be a flat morphism of schemes of relative dimension \(n\).
-    In this class, by a \emph{flat morphism}, we always mean a flat morphism of constants relative dimension.
+    In this note, by a \emph{flat morphism}, we always mean a flat morphism of constants relative dimension.
     Here are examples that we should keep in mind:
     \begin{itemize}
         \item an open embedding (\(n=0\));
@@ -128,14 +130,14 @@
     \end{lemma}
     \begin{proof}
         Let \(V \subset Y\) be an irreducible component of \(Z\), \(W\) be an irreducible component of \(f^{-1}(V)\).
-        The coefficient of \([V]\) in \([Z]\) is \(\call(\calO_{Z,V})\), 
-        and the coefficient of \([W]\) in \(f^*[Z]\) is \(\call(\calO_{Z,V})\cdot\call(\calO_{f^{-1}(Z),W})\).
-        On the other hand, the coefficient of \([W]\) in \([f^{-1}(Z)]\) is \(\call(\calO_{f^{-1}(Z),W})\).
-        The formula follows from \Yang{}
-        \begin{align*}
-            \call(\calO_{f^{-1}(Z),W}) & = \call(\calO_{Z,V} \otimes_{\calO_{Y,V}} \calO_{X,W}) \\
-                & = \call(\calO_{Z,V})\cdot\call(\calO_{X,W}).
-        \end{align*}
+        The coefficient of \([V]\) in \([Z]\) (resp. $[W]$ in $[f^{-1}(V)]$) is \(\call(\calO_{Z,V})\) (resp. $\call(\calO_{f^{-1}(V),W})$).
+        Hence the coefficient of \([W]\) in \(f^*[Z]\) is $\call(\calO_{Z,V}) \cdot \call(\calO_{f^{-1}(V),W})$.
+        Note that 
+        \[ \calO_{f^{-1}(V),W} = \calO_{f^{-1}(Z),W}/(\frakm_{Z,V}\calO_{f^{-1}(Z),W}). \]
+        On the other hand, the coefficient of \([W]\) is \([f^{-1}(Z)]\) is $\call(\calO_{f^{-1}(Z),W})$.
+        Hence the proof reduced to show 
+        \[ \call(\calO_{Z,V}) \cdot \call(\calO_{f^{-1}(Z),W}/(\frakm_{Z,V}\calO_{f^{-1}(Z),W})) = \call(\calO_{f^{-1}(Z),W}). \]
+        Here $\calO_{Z,V} \to \calO_{f^{-1}(Z),W}$ is a flat local homomorphism of Artinian local rings, so the above formula follows from \cite[A.4.1]{Fulton13Intersection}.
     \end{proof}
 
     By the above lemma, if \(f: X \to Y\), \(g: Y \to Z\) are flat morphisms of constants relative dimension, 
@@ -151,9 +153,8 @@
             Y' \arrow[r, "g"] & Y
         \end{tikzcd} \]
         be a Cartesian square of schemes, where \(f\) is proper and \(g\) is flat of constants relative dimension.
-        % Then \(f' : X' \to Y'\) is proper and \(g' : X' \to X\) is flat of constants relative dimension.
-        Then for every \(\alpha \in Z_*(X)\), we have
-        \[ g^*f_*\alpha = f'_*g'^*\alpha \in Z_*(Y'). \]
+        Then for every \(\alpha \in Z_\bullet(X)\), we have
+        \[ g^*f_*\alpha = f'_*g'^*\alpha \in Z_\bullet(Y'). \]
     \end{proposition}
     \begin{proof}
         \hspace{1em}
@@ -195,8 +196,6 @@
 
         It follows from the above two cases by diagram chasing.
 
-
-
     \end{proof}
 
 
@@ -208,17 +207,32 @@
         i.e., \(\CH_*\) is contravariant functorial with respect to flat morphisms.
     \end{theorem}
     \begin{proof}
-        By \cref{prop1}, may assume \(\alpha = [f_0^{-1}(0)] - [f_0^{-1}(\infty)]\) for \(V\) an \(i+1\)-dimensional subvariety of \(g:\bbP^1 \times Y\) such that the projection \(g: V \to \bbP^1\) is dominant.
+        By \cref{prop1}, may assume \(\alpha = [g^{-1}(0)] - [g^{-1}(\infty)]\) for \(V\) an \(i+1\)-dimensional subvariety of \(\bbP^1 \times Y\) such that the projection \(g: V \to \bbP^1\) is dominant.
         In particular, \(g\) is flat.
         We have a diagram:
-        % \[ \begin{tikzcd}
-        %     W \arrow[r, "g'"] \arrow[d, "f'"'] & \bbP^1\times Y \arrow[r, "\id\times f"] \arrow[d, "f_V"] & X \arrow[d, "f"] \\
-        %     V \arrow[r,hook] & \bbP^1 \times Y \arrow[r, "p"] & Y
-        % \end{tikzcd} \]
-        \Yang{}
+        \[ \begin{tikzcd}
+            W \arrow[r, hook] \arrow[d] \arrow[ddr,bend right=90,"h"'] & \bbP^1\times X \arrow[d, "\id\times f"] \arrow[r, "q"] & X \arrow[d, "f"] \\
+                        V \arrow[r,hook] \arrow[dr,"g"]  & \bbP^1 \times Y \arrow[d] \arrow[r, "p"] & Y \\
+                            & \bbP^1 &
+        \end{tikzcd} \]
+        Then 
+        \begin{align*}
+            f^*\alpha & = f^*p_*([g^{-1}(0)] - [g^{-1}(\infty)]) \\
+            & = q_*(\id \times f)^*([g^{-1}(0)] - [g^{-1}(\infty)]) \\
+            & = q_*([h^{-1}(0)] - [h^{-1}(\infty)]).
+        \end{align*}
+        Let \(W_1, \ldots, W_t\) be the irreducible components of \(W\), \(h_j = h|_{W_j}\).
+        Suppose that \([W] = \sum_{j=1}^t m_j [W_j]\).
+        By \cref{lem:restriction_of_cartier_divisor_to_irreducible_components}, we have \([h^{-1}(0)] = \sum_{j=1}^t m_j [h_j^{-1}(0)]\) and \([h^{-1}(\infty)] = \sum_{j=1}^t m_j [h_j^{-1}(\infty)]\).
+        Hence
+        \begin{align*}
+            f^*\alpha =  m_j q_*\left(\sum_{j=1}^t[h_j^{-1}(0)] - [h_j^{-1}(\infty)]\right) = \sum_{j=1}^t m_j q_*([h_j^{-1}(0)] - [h_j^{-1}(\infty)]) \sim 0.
+        \end{align*}
+        We are done.
+        % \Yang{}
     \end{proof}
 
-    \begin{lemma}
+    \begin{lemma}\label{lem:restriction_of_cartier_divisor_to_irreducible_components}
         Let \(X\) be a purely \(n\)-dimensional scheme, \(X_1, \ldots, X_t\) be the irreducible components of \(X\).
         Write \([X] = \sum_{j=1}^t m_j [X_j]\) with \(m_j = \call(\calO_{X,X_j})\).
         Let \(D\) be a Cartier divisor on \(X\).
@@ -256,5 +270,20 @@
         is exact.
         (For \(V \subset U\) subvariety of dimension \(i\), its closure \(\overline{V}\) in \(X\) is a subvariety of dimension \(i\) and \(j_U^*[\overline{V}] = [V]\).)
 
-        Show this is compatible with rational equivalence.
+        Passing to the quotient, we get a complex
+        \[ \CH_i(Y) \xrightarrow{i_{Y*}} \CH_i(X) \xrightarrow{j_U^*} \CH_i(U) \to 0. \]
+        We only need to show that if \(\alpha \in Z_i(X)\) and \(j_U^*\alpha \sim 0\) on \(U\), then \(\alpha \in i_{Y*}Z_i(Y) + \sim\) on \(X\).
+        We can assume that \(j_U^*\alpha = \divisor(f)\) for some \(f \in \fkk(V)^\times\) with \(V \subset U\) a subvariety of dimension \(i+1\).
+        Consider \(f\) as a rational function on \(\overline{V}\).
+        Then \(\alpha - \divisor(f) = i_{Y*}\beta \in Z_i(X)\) for some \(\beta \in Z_i(Y)\) by the exact sequence on the level of cycles.
+        Hence \(\alpha \sim i_{Y*}\beta\) on \(X\) and we are done.
     \end{proof}
+
+    \begin{example}
+        Let \(L_i \subset \bbP^n\) be a linear subspace of dimension \(i\) for \(i = 0, \ldots, n\).
+        Then $\CH_i(\bbP^n)$ is generated by \([L_i]\) for \(i = 0, \ldots, n\).
+        Indeed, we have an exact sequence
+        \[ \CH_i(L_{n-1}) \xrightarrow{\iota_*} \CH_i(\bbP^n) \xrightarrow{j^*} \CH_i(\bbA^n) \to 0. \]
+        The assertion follows from \(\CH_i(\bbA^n) = 0\) for \(i < n\) and \(\CH_n(L_{n-1}) = 0\) for \(i=n\).
+        We will see later that \(\CH_i(\bbP^n) = \bbZ\cdot [L_i]\).
+    \end{example}
