@@ -2,6 +2,8 @@
 
 \subsection{Introduction(continue)}
 
+    \Yang{This subsection has many typos and errors. I will try to fix them when I have time and understand the content better.}
+
     Recall: Let \(Z = Z(s) \subset \bbP^4, s \in H^0(\calO_{\bbP^4}(5))\) be a generic nember.
     Let \(n_1 = \#\{\text{lines in } Z\}\).
 
@@ -30,7 +32,6 @@
     where \(\calE = (\pi^* \Sym^5 \calS^\vee)/ (\calU \ten \pi^*\Sym^3 \calS^\vee)\).
 
     It can be computed by Maple.
-
 
     Let 
     \[ Z_0 = \{x_0^5 + x_1^5 + x_2^5 + x_3^5 + x_4^5 = 0\} \subset \bbP^4. \]
@@ -110,51 +111,98 @@
     \end{itemize}
 
 
-
-
 \subsection{Review of moduli of curves}
 
-    A (complex) curve is a variety $C \to \Spec \bbC$ of dimension $1$, i.e. a reduced, separated scheme of finite type over $\Spec \bbC$ such that oll irreducible components have dimension $1$.
-    If $C$ is projecctive, its arithmetic genus of $C$ is $p_a(C) = 1- \chi(C,\calO_C)$.
+    A (complex) curve is a variety $C \to \Spec \bbC$ of dimension $1$, i.e. a reduced, separated scheme of finite type over $\Spec \bbC$ such that all irreducible components have dimension $1$.
+    If $C$ is projective, its arithmetic genus of $C$ is $p_a(C) = 1- \chi(C,\calO_C)$.
 
-    A closed point $q \in C$ is a node if either 
-    \begin{itemize}
-        \item there exists a neighborhood of $q \in C(\bbC)^\an$ which is complex-analytically isomorphic to a neighborhood of $0$ in $\{(x,y) \in \bbC^n | xy = 0\}$;
-        \item or the completion of $\calO_{C,q}$ at $\frakm_q$ satisfies $\hat{\calO}_{C,q} \cong \bbC[[x,y]]/(xy)$.
-        \item or the normal cone $N_q C$ is a union of two reduced lines.
-    \end{itemize}
-    $C$ is noded if every closed points $q \in C$ is either smooth points or a node.
+    \begin{definition} 
+        A closed point $q \in C$ is a node if the following equivalent conditions hold:
+        \begin{itemize}
+            \item there exists a neighborhood of $q \in C(\bbC)^\an$ which is complex-analytically isomorphic to a neighborhood of $0$ in $\{(x,y) \in \bbC^n | xy = 0\}$;
+            \item or the completion of $\calO_{C,q}$ at $\frakm_q$ satisfies $\hat{\calO}_{C,q} \cong \bbC[[x,y]]/(xy)$.
+            \item or the normal cone $N_q C$ is a union of two reduced lines.
+        \end{itemize}
+        The curve $C$ is \emph{nodal} if every closed points $q \in C$ is either smooth points or a node.
+    \end{definition}
+   
+    \begin{definition}
+        A nodal curve $C$ together with an ordered collection of $n$-points $p_1,\cdots,p_n \in C$ is called an \emph{$n$-pointed curve}, $p_i$ is called \emph{marked points}.
+    \end{definition}
 
-    A nodal curve $C$ together with an ordered collection of $n$-points $p_1,\cdots,p_n \in C$ is called an $n$-pointed curve, $p_i$ is called \emph{marked points}.
-
-    A connected, nodal, projective curve $C$ is \emph{stable} if $\Aut(C)$ is finite.
-    $(C,p_1,\cdots,p_n)$ is stable if $\Aut(C,p_1,\cdots,p_n)$ is finite.
+    \begin{definition}
+        A connected, nodal, projective curve $C$ is \emph{stable} if $\Aut(C)$ is finite.
+        A connected nodal projective $n$-pointed curve $(C,p_1,\cdots,p_n)$ is \emph{stable} if $\Aut(C,p_1,\cdots,p_n) = \{f \in \Aut(C) \mid f(p_i) = p_i \text{ for all } i\}$ is finite.
+    \end{definition}
     
     \begin{proposition}
-        $(C,p_)$
+        Let $(C,p_1,\cdots,p_n)$ be an $n$-pointed nodal projective connected curve, and $\tilde{C} = \sqcup \tilde{C}_i$ be the normalization of $C$.
+        Then $(C,p_1,\cdots,p_n)$ is stable if and only if for each $i$, one of the following holds:
+        \begin{enumerate}
+            \item $g(\tilde{C}_i) = 0$ and $\tilde{C}_i$ has at least $3$ special points (i.e. marked points or preimages of nodes);
+            \item $g(\tilde{C}_i) = 1$ and $\tilde{C}_i$ has at least $1$ special point;
+            \item $g(\tilde{C}_i) \ge 2$.
+        \end{enumerate}
     \end{proposition}
 
-    An $n$-pointed family of smooth/stable curves over a scheme $S$ is a tupe $(\phi:\calC \to S, \sigma_1,\cdots,\sigma_n:S \to \calC)$ where
-    \begin{enumerate}
-        \item $\phi$ is a smooth/flat proper surjective finitely presented morphism of schemes s.t. every geometric fiber is a smooth/stable $n$-pointed projective connected curve of arithmetic genus $g$.
-        If $C_s$ is only nodal, we call $\phi:\calC \to S$ prestable.
-        \item $\sigma_i$ are pairwise disjoint sections of $\phi$ with image in the smooth locus of $\phi$.
-    \end{enumerate}
+    \begin{definition}
+        An $n$-pointed family of smooth (resp. stable) curves over a scheme $S$ is a tuple $(\phi:\calC \to S, \sigma_1,\cdots,\sigma_n:S \to \calC)$ where
+        \begin{enumerate}
+            \item $\phi$ is a smooth (resp. flat) proper surjective finitely presented morphism of schemes s.t. every geometric fiber is a smooth (resp. stable) $n$-pointed projective connected curve of arithmetic genus $g$.
+            (If $C_s$ is only nodal, we call $\phi:\calC \to S$ prestable.)
+            \item $\sigma_i$ are pairwise disjoint sections of $\phi$ with image in the smooth locus of $\phi$.
+        \end{enumerate}
+    \end{definition}
 
     Let $\alpha:T \to S$ be a morphism of schemes, $(\calC/T, \sigma_{1,T}, \cdots, \sigma_{n,T})$ be the pullback of $(\calC/S, \sigma_1,\cdots,\sigma_n)$ along $\alpha$.
-   
-    Two $(\calC,\sigma_1,\cdots,\sigma_n)/S$ and $(\calC',\sigma_1',\cdots,\sigma_n')/S$ are isomorphic if there exists an $S$-isomorphism $\calC \cong \calC'$ sending $\sigma_i$ to $\sigma_i'$ for all $i$.
 
-    Define the category $\overline{\calM}_{g,n}$ over $\Sch$ as follows:
-    \begin{itemize}
-        \item \(\Obj(\overline{\calM}_{g,n}) = \{(S, (\calC/S, \sigma_1,\cdots,\sigma_n))\}\) where $S$ is a scheme and $(\calC/S, \sigma_1,\cdots,\sigma_n)$ is an $n$-pointed family of genus $g$ stable curves over $S$.
-        \item \(\Hom_{\overline{\calM}_{g,n}}((S, (\calC/S, \sigma_1,\cdots,\sigma_n)), (S', (\calC'/S', \sigma_1',\cdots,\sigma_n')))\) is the set of morphisms $(f,\alpha)$ with diagram 
-    \end{itemize}
-    \Yang{}
+    \begin{definition}
+        Two $(\calC,\sigma_1,\cdots,\sigma_n)/S$ and $(\calC',\sigma_1',\cdots,\sigma_n')/S$ are isomorphic if there exists an $S$-isomorphism $\calC \cong \calC'$ sending $\sigma_i$ to $\sigma_i'$ for all $i$, i.e. there exists an isomorphism $\calC \cong \calC'$ such that the following diagram commutes:
+        \[\begin{tikzcd}
+            \calC \ar[rr, "\cong"] \ar[dr, "\phi"] & & \calC' \ar[dl, "\phi'"'] \\
+            & S \ar[ur, "\sigma_i'"', bend right] \ar[ul, "\sigma_i", bend left] &
+        \end{tikzcd}\]
+    \end{definition}
+    
+    \begin{definition}
+        Define the category $\overline{\calM}_{g,n}$ over $\Sch$ as follows:
+        \begin{itemize}
+            \item \(\Obj(\overline{\calM}_{g,n}) = \{(S, (\calC/S, \sigma_1,\cdots,\sigma_n))\}\), where $S$ is a scheme and $(\calC/S, \sigma_1,\cdots,\sigma_n)$ is an $n$-pointed family of genus $g$ stable curves over $S$.
+            \item \(\Hom_{\overline{\calM}_{g,n}}((S, (\calC/S, \sigma_1,\cdots,\sigma_n)), (S', (\calC'/S', \sigma_1',\cdots,\sigma_n')))\) is the set of morphisms $(f,\alpha)$ with diagram 
+            \[\begin{tikzcd}
+                \calC \ar[r, "f"] \ar[d, "\phi"']  & \calC' \ar[d, "\phi'"] \\
+                S \ar[r, "\alpha"] & S'
+            \end{tikzcd}\]
+            being Cartesian, and $f \circ \sigma_i = \sigma_i' \circ \alpha$ for all $i$.
+            \Yang{In the blackboard, the arrows are from $(S',\calC')$ to $(S,\calC)$, one need to be careful about the direction.}
+        \end{itemize}
+        Similarly, we can define $\calM_{g,n}$ (resp. $\calm_{g,n}$) of smooth (resp. prestable) curves.
+    \end{definition}
 
-    Let $\calC$ be a site, $\calF \in \Hom(\calC^\op, \Grpd)$ be a stack if for any covering $U_i \to U$ of any $U \in p(\calF)$, 
-    Given $x_i \in \calF(U_i), \phi_{ij}:x_i|_{U_ij} \to x_j|_{U_{ij}}$ such that $\phi_{ij}|_{U_{ijk}} \circ \phi_{jk}|_{U_{ijk}} = \phi_{ik}|_{U_{ijk}}$,
-    there exist $x \in \calF(U)$ and an isomorphism $\phi_i:x|_{U_i} \cong x_i$ such that $\phi_{ji} \circ \phi_i|_{U_{ij}} = \phi_j|_{U_ij}, \forall i,j \in I$.
-    For all $x,x' \in \calF(U), Isom_U(X)$
+    \begin{definition}
+        Let $\calC$ be a site.
+        We say that $\calF \in \Hom(\calC^\op, \Grpd)$ is a \emph{stack} if for any covering $U_i \to U$ of any $U \in p(\calF)$, 
+        \begin{enumerate}
+            \item given $x_i \in \calF(U_i)$, $\phi_{ij}:x_i|_{U_ij} \to x_j|_{U_{ij}}$ such that $\phi_{ij}|_{U_{ijk}} \circ \phi_{jk}|_{U_{ijk}} = \phi_{ik}|_{U_{ijk}}$,
+                there exist $x \in \calF(U)$ and isomorphisms $\phi_i:x|_{U_i} \cong x_i$ such that $\phi_{ji} \circ \phi_i|_{U_{ij}} = \phi_j|_{U_ij}, \forall i,j \in I$;
+            \item for all $x,x' \in \calF(U)$, the presheaf 
+                \[ Isom_{U}(x,x'): (U_i \to U) \mapsto \{ \text{isomorphisms } x|_{U_i} \to x'|_{U_i} \} \]
+                is a sheaf on $\calC/U$,
+                or equivalently, 
+                \begin{enumerate}
+                    \item $\forall x,x' \in \calF(U), \phi_i: x|_{U_i} \cong x'|_{U_i}$ such that $\phi_i|_{U_{ij}} = \phi_j|_{U_{ij}}$, there exists a unique $\phi:x \cong x'$ such that $\phi|_{U_i} = \phi_i$ for all $i$;
+                    \item given $x,x' \in \calF(U), \phi:x \to x', \psi:x \to x'$ such that $\phi|_{U_i} = \psi|_{U_i}$, then $\phi = \psi$.
+                \end{enumerate}
+        \end{enumerate}
+    \end{definition}
+
+    Let 
+    \[ \begin{tikzcd}
+        & \calF_1 \ar[d] \\
+        \calF_2 \ar[r] & \calF_3
+    \end{tikzcd} \]
+    be a diagram of stacks over $\calC$.
+    The fiber product $\calF_1 \times_{\calF_3} \calF_2$ is also a stack over $\calC$.
+
 
 
