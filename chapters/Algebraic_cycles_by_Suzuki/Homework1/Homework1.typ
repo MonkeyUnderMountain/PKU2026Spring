@@ -78,8 +78,8 @@ In the following, we work over a field $kk$.
   By Riemann-Roch, we have $h^0 (alpha) gt.eq.slant 1$.
   Hence there exists a $kk$-point $P$ on $X$.
   In particular, if $X$ has no $kk$-point, then the image of $deg$ is not $ZZ$.
-  Consider the intersection of $X$ with a line $L$ in $PP^2$.
-  The intersection $X inter L$ consists of at most two points counting multiplicity.
+  Consider the interinterion of $X$ with a line $L$ in $PP^2$.
+  The interinterion $X inter L$ consists of at most two points counting multiplicity.
   If $X inter L$ consists of two distinct points or one point with multiplicity $2$, then $X$ has $kk$-points, a contradiction.
   Hence $X inter L$ consists of a single point $P$ whose residue field is a quadratic extension of $kk$.
   Then $deg P = 2$ and hence the image of $deg$ is $2ZZ$.
@@ -91,6 +91,13 @@ In the following, we work over a field $kk$.
 #exercise[
   Work out Fulton, Example 2.4.5. Namely, with the notation of the example, show $[D] = 2[l]$ and $D dot [l'] = [P]$ and deduce that $[l]$ is not linear equivalent to any Cartier divisor on $X$.
 ]
+#example("Fulton, Example 2.4.5")[
+   Let $(x:y:z:t)$ be homogeneous on $PP^3$, and let $X$ be the singular cone defined by the equation $z^2 = x y$. 
+   Let $D$ be the Cartier divisor on $X$ defined by the equation $x = 0$. 
+   Let $l$ be the line $x = z = 0$, $l'$ the line $y = z = 0$, $P$ the point $(0:0:0:1)$. 
+   Then $[D] = 2[l]$ and $D dot [l'] = [P]$. 
+   It follows from Theorem 2.4 that there cannot be a Cartier divisor $D'$ on $X$ with $[D'] = [l']$, either as cycles or as classes in $A_1(X)$.
+]
 #proof[
 
 ]
@@ -99,6 +106,20 @@ In the following, we work over a field $kk$.
   Work out Fulton, Example 2.5.2. Namely, show (b), (c), (d).
   (Hint: Use the additivity of Hilbert polynomials. For (b), use Hartshorne, 1.7.4. For (d), use Fulton, A.2.7.)
 ]
-#proof[
+#example("Fulton, Example 2.5.2")[ Let $X$ be a closed subscheme of $PP^n$ of dimension $<= k$, and let $Gamma (X)$ be the homogeneous coordinate ring of $X$.
 
+- (a) For $t$ sufficiently large, the dimension of the $t^("th")$ graded piece $Gamma (X)_t$ is a polynomial in $t$ of degree $<= k$ called the Hilbert polynomial (cf. Hartshorne (5) I.7.5). Define $d_k (X)$ to be the coefficient of $t^k / k!$ in this polynomial.
+
+- (b) If $X_1, ..., X_r$ are the irreducible components of $X$, $m_i$ the multiplicity of $X_i$ in $X$, then $d_k (X) = sum m_i d_k (X_i)$.
+
+- (c) If $X$ is an irreducible variety, and $H$ is a hypersurface of degree $m$ not containing $X$, then $d_(k-1) (X inter H) = m d_k (X)$. (Here $X inter H$ is the scheme-theoretic intersection, so there are exact sequences
+$ 0 -> Gamma(X)_(t-m) -> Gamma(X)_t -> Gamma(X inter H)_t -> 0 quad "for" t >> 0. $
+
+- (d) For any purely $k$-dimensional subscheme $X$ of $PP^n$,
+$ d_k (X) = deg[X] = integral_(PP^n) c_1 (O(1))^k inter [X]. $
+
+(For $X$ a subvariety, $c_1 (O(1)) inter [X] = [X inter H]$, where $H$ is a hyperplane not containing $X$.)
+]
+#proof[
+  $cal(I) cal(J)$
 ]
