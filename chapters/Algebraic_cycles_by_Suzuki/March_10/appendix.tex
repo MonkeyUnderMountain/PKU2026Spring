@@ -1,1 +1,17 @@
 \section{Appendix}
+
+    \begin{lemma}\label{lem:restriction_of_cartier_divisor_to_irreducible_components}
+        Let \(X\) be a purely \(n\)-dimensional scheme, \(X_1, \ldots, X_t\) be the irreducible components of \(X\).
+        Write \([X] = \sum_{j=1}^t m_j [X_j]\) with \(m_j = \call(\calO_{X,X_j})\).
+        Let \(D\) be a Cartier divisor on \(X\).
+        Then, let \(D_j = D|_{X_j}\),
+        we have
+        \[ [D] = \sum_{j=1}^t m_j [D_j]. \]
+    \end{lemma}
+
+    \begin{lemma}\label{lem:flat_pullback_of_scheme_is_inverse_image}
+        Let \(f: X \to Y\) be a flat morphism of relative dimension \(n\), 
+        \(Z \subset Y\) be a subscheme.
+        Then 
+        \[ f^*[Z] = [f^{-1}(Z)]. \]
+    \end{lemma}
