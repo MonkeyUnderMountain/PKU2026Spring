@@ -1,0 +1,196 @@
+\section{March 13: Introduction to Class Field Theory}
+
+Reference: Milne's notes on class field theory
+
+\begin{slogan}
+    CFT is to describe all abelian Galois extensions of a local or global field using objects associated to the field itself.
+\end{slogan}
+
+For non-abelian extensions $\leadsto$ Langlands program.
+In this course, we will only talk about the abelian case, i.e. CFT.
+
+\subsection{Local CFT: Lubin-Tate theory}
+
+  The goal of local CFT is to classify the abelian extensions of a local field.
+  Also it describes the local components of the global Artin map.
+
+  Recall a \emph{local field} is a field locally compact with respect to a non-trivial absolute value.
+  It has a classification as following:
+  \begin{enumerate}
+      \item $K/bbQ_p$ finite extensions for some $p$;
+      \item $K/bbF_p((t))$ finite extensions for some $p$;
+      \item $K/bbR$ or $K/bbC$.
+  \end{enumerate}
+  
+  When $K$ is NA, we denote by $\pi$ the uniformier of $K$.
+  For all $a \in u \pi^m$ with $u \in \calO_K^\times$, $m \in \bbZ$, denote by $\ord_K(a) = m$.
+  We have an exact sequence
+  \[ 0 \to U_K \to K^\times \xrightarrow{\ord_K} \bbZ \to 0 \]
+  where $U_K$ is the unit group of $K$.
+  The residue field $k$ of $K$ has $q$ elements and $\characteristic k = p$.
+  The normalized absolute value on $K$ is $|a| \coloneqq q^{- \ord_K (a)}$.
+  Let $K^{\al}$ denote the separeble algebraic closure of $K$.
+
+  By ``extension of $K$'', we always means subfield of $K^\al$ containing $K$.
+  Both $\ord_K$, $|\cdot|$ have unique extension to $K^\al$.
+
+  \paragraph{Statement of the main theorem}
+
+  \textbf{Fact}: for two abelian extension $L/K$ and $M/K$, $LM/K$ is still abelian.
+  Hence we can define 
+  \[ K^\ab \coloneqq \bigcup_{L/K \text{abelian}} L.\]
+  It is still an abelian extension of $K$.
+  We have 
+  \[ \Gal(K^\ab /K) = \Gal(K^\al/K) / [\Gal(K^\al/K),\Gal(K^\al/K)], \]
+  i.e., $\Gal(K^\ab/K)$ is the maximal abelian quotient of $\Gal(K^\al/K)$.
+  Somehow we get the homological group $H^1(X)$ of a curve by consider the abelization of the fundamental group $\pi^1 (X)$ of a topological space.
+
+  Let $L/K$ be a finite unramified extension of $K$.
+  Then $L/K$ is Galois and $\Gal(L/K) \cong \Gal(l/k)$.
+  Hence $\Gal(L/K) = <\sigma>$ for $\sigma$ the Frobenius element.
+  We also denote it by $\Frob_{L/K}$.
+  The Frobenius is determined by 
+  \[ \Frob_{L/K}(\alpha) \equiv \alpha^q \mod \frakm, \quad \forall \alpha \in \calO_K. \]
+
+  \begin{theorem}[Local reciprocity law]\label{thm:local_reciprocity_law}
+      Let $K$ be a NA local field.
+      There exists a unique homomorphism
+      \[ \phi_K : K^\times \to \Gal(K^\ab/ K) \]
+      with the following properties.
+      \begin{enumerate}
+          \item For all prime element $\pi$ of $K$ and for all finite unramified extension $L/K$, $\phi_K(\pi)$ acts on $L$ as $\Frob_{L/K}$.
+          \item For all finite abelian extension $L/K$, $\Nm_{L/K}(L^\times)$ is contained in the kernel of $a \mapsto \phi_K(a)|_L$.
+          And $\phi_K$ induce an isomorphism $\phi_{L/K}: K^\times/\Nm_{L/K}(L^\times) \to \Gal(L/K)$.
+          In particular, $(K^\times : \Nm_{L/K}(L^\times)) = [L:K]$.
+      \end{enumerate}
+  \end{theorem}
+  
+  \begin{notation}
+    Write $\Nm(L^\times) \coloneqq \Nm_{L/K}(L^\times)$.
+
+    We call $\phi_K, \phi_{L / K}$ the \emph{local Artin maps} for $K$ and $L/K$;
+    or \emph{local reciprocity maps}, denoted by $\rec_K$ and $\rec_{L/K}$; 
+    and also called the \emph{norm residue map} or \emph{symbol}, denoted by $a \mapsto (a,L/K)$.
+  \end{notation}
+
+  \begin{remark}[Something incorrect]
+    Compare $a \in K^\times$ with $f \in \bbC((t))^\times$.
+    A non-zero element in $\bbC((t))^\times$ corresponds to a ``formal'' map from the infinity small neighborhood of $0$ to itself. 
+    Topologically, it somehow can be viewed as a ``loop'' and hence gives an element in the fundamental group.
+    Further more, it gives an element in the covering group of the universal covering.
+    This can be regarded as a geometry counterpart of the local Artin map.
+
+    The counterpart of the uniformier is the element $t \in \bbC((t))$.
+    And the action of $t$ on the universal covering is the monodromy around $0$.
+    Somehow it is the ``Frobenius'' element in the geometric setting.
+
+    Consider the covering tower $\tilde{X} \to Y \to X$.
+    If a loop in $X$ can be lifted to a loop in $Y$, then its action on the covering group of $Y \to X$ is trivial.
+    This is the geometric counterpart of the condition (b) in \cref{thm:local_reciprocity_law}.
+    % \Yang{}
+  \end{remark}
+  
+  The (b) says that $\forall$ finite abelian extension $L$ of $K$, we have 
+  \[ \begin{tikzcd}
+      K^\times \ar[r, "\phi_K"] \ar[d] & \Gal(K^\ab/K) \ar[d] \\
+      K^\times / \Nm(L^\times) \ar[r, "\phi_{L/K}"', "\cong"] & \Gal(L/K)
+  \end{tikzcd} \]
+
+  \begin{definition}
+      The subgroups of $K^\times$ of the form $\Nm(L^\times)$ for some finite abelian extension $L/K$ are called \emph{norm groups}. 
+  \end{definition}
+
+  \begin{corollary}\label{cor:correspondence_between_extensions_and_norm_groups}
+      Let $K$ be a NA local field.
+      Assume there exists a homomorphism $\phi: K^\times \to \Gal(K^\ab / K)$ satisfying condition (a) and (b) in \cref{thm:local_reciprocity_law}.
+      Then
+      \begin{enumerate}
+          \item the map $L \mapsto \Nm(L^\times)$ is a bijection from the set of finite extension of $K$ and the set of norm groups of $K^\times$;
+          \item $L \subset L' \iff \Nm(L^\times) \supset \Nm(L'^\times)$;
+          \item $\Nm((LL')^\times) = \Nm(L^\times) \cap \Nm(L'^\times)$;
+          \item $\Nm((L \cap L')^\times) = \Nm (L^\times) \cdot \Nm ({L'}^\times)$;
+          \item if a subgroup of $K^\times$ containing a norm group, the itself is a norm group.
+      \end{enumerate}
+  \end{corollary}
+  \begin{proof}
+      Recall $\Nm_{L'/K} = \Nm_{L / K} \circ \Nm_{ L' / K }$.
+      Hence $L \subset L'$ implies $\Nm(L^\times) \subset \Nm({L'}^\times)$.
+      This gives one direction of (b).
+      And we get $\Nm((LL')^\times) \subset \Nm(L^\times) \cap \Nm({L'}^\times)$.
+      Conversely, if $a \in \Nm(L^\times) \cap \Nm({L'}^\times)$, then $\phi_{L/K}(a) = 1 = \phi_{L'/K}(a)$.
+      But $\phi_{LL'/K}(a)|_L = \phi_{L/K}(a) = 1$ and similarly $\phi_{LL'/K}(a)|_{L'} = 1$.
+      Hence $\phi_{LL'/K}(a) = 1$ and $a \in \Nm((LL')^\times)$.
+      We get (c).
+
+      When $\Nm(L^\times) \supset \Nm(L'^\times)$, (c) implies $\Nm((LL')^\times) = \Nm(L'^\times)$.
+      As index of a norm group is equal to the corresponding extension degree, we get $LL' = L'$ and hence $L \subset L'$.
+      This proves (b).
+
+      Now prove (a).
+      The definition gives surjective of $L \mapsto \Nm(L^\times)$.
+      The (b) gives the injectivity.
+
+      Now prove (e).
+      Let $N = \Nm(L^\times)$ be a norm group.
+      Let $I \supset N$ a subgroup $K^\times$.
+      Denote by $M$ the fixed field of $\phi_{L/K}(I) \subset \Gal(L/K)$.
+      Then the local Artin map $\phi_{L/K}$ maps $I/N$ isomorphically onto $\Gal(L/M)$.
+      Consider the commutative diagram
+      \[ \begin{tikzcd}
+          K^\times \ar[r, "\phi_{L/K}"] \ar[d, "="'] & \Gal(L/K) \ar[d, "\theta"] \\
+          K^\times \ar[r, "\phi_{M/K}"'] & \Gal(M/K),
+      \end{tikzcd} \]
+      we get $\Nm(M^\times) = \ker \phi_{M/K} = \ker \theta \circ \phi_{L/K} = I$.
+      Hence $I$ is a norm group.
+
+      Finally, we prove (d).
+      The map $L \mapsto \Nm(L^\times)$ is an order inverting bijection.
+      Note that $L \cap L'$ is the largest extension of $K$ which is contained in $L$ and $L'$ 
+      while $\Nm(L^\times) \cdot \Nm(L'^\times)$ is the smallest group containing $\Nm(L^\times)$ and $\Nm(L'^\times)$.
+      By (e), $\Nm(L^\times) \cdot \Nm(L'^\times)$ is a norm group.
+      This enforces $\Nm((L \cap L')^\times) = \Nm(L^\times) \cdot \Nm(L'^\times)$.
+  \end{proof}
+
+  \begin{lemma}
+    Let $L$ be a extension of $K$. 
+    If $\Nm(L^\times)$ is of finite index of $K$, then it is open.
+  \end{lemma}
+  \begin{proof}
+    The group $U_L$ is compact, then $\Nm(U_L)$ is closed in $K^\times$.
+    By looking at orders, one has $\Nm(L^\times) \cap U_K = \Nm(U_L)$.
+    so $U_K / \Nm (U_L) \injmap K^\times / \Nm(L^\times)$.
+    Hence $\Nm(U_L)$ is closed of finite index in $U_K$.
+    Then $\Nm(U_L)$ is open in $U_K$ since the complement is finite union of closed subset.
+    Note $U_K$ is open in $K^\times$, so is $\Nm(U_L)$.
+    As $\Nm(L^\times)$ contains an open subset $\Nm(U_L)$, itself is open by group structure.
+  \end{proof}
+
+  \begin{theorem}[Local existence theorem]
+    The norm groups in $K^\times$ are exactly the open subgroups of finite index.
+  \end{theorem}
+
+  \begin{corollary}\label{cor:correspondence_between_extensions_and_open_subgroups}
+    The \cref{cor:correspondence_between_extensions_and_norm_groups} gives a bijection between the set of finite abelian extensions of $K$ and the set of open subgroups of finite index in $K^\times$.
+  \end{corollary}
+
+  \begin{remark}
+    The \cref{cor:correspondence_between_extensions_and_open_subgroups} also holds for archimedean local field.
+    The abelian extension of $\bbR$ are $\bbR$ and $\bbC$.
+    The norm subgroups of $\bbR^\times$ are $\bbR^\times$ and $\bbR_{>0}$.
+    Let $H$ be an open subgroup of $\bbR^\times$ of finite index of $\bbR$.
+    Then $H \supset \bbR^{\times m} = \{a^m|a \in \bbR^\times\}$.
+    But $\bbR^{\times m} = \bbR^{\times}$ or $\bbR_{>0}$.
+    The unique isomorphism $\bbR^\times / \bbR_{>0} \cong \Gal(\bbC/\bbR)$ gives the local Artin map for $\bbR$.
+  \end{remark}
+
+  \begin{remark}
+    When $\characteristic K = 0$, any subgroup of finite index is open.
+
+    Indeed, let $H \subset K^\times$ be a finite index subgroup.
+    Then $K^{\times m} \subset H$ for some $m$.
+    Note that $a \in K^{\times m}$ if and only if $f(X) = X^m - a$ has a solution $u \in K$.
+    Then $f'(u) = m \cdot u^{m-1} \neq 0$.
+    Hence the map defined by $f$ is locally invertible at $u$ by Implicit Function Theorem.
+    After perturbing $a$ a little bit, $f$ still has a solution in $K$.
+    So $K^{\times m}$ is open and so is $H$.
+  \end{remark}
