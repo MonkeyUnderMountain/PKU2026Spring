@@ -1,19 +1,24 @@
-#import "./note_for_myself.typ": *
+#import "../../../Accessories/note_for_myself.typ": *
+#import "../../../Accessories/my_macros.typ": *
 
-#show: article_settings.with(
-  section_level: "section",
-  heading_number_mode: "level3-last",
-  title: "title",
-  author: "The author",
-  date: datetime.today().display(),
-  author_page: link("https://www.example.com")[My Homepage],
-  version: "1.0.0",
-)
+// // #show: article_settings.with(
+// //   section_level: "section",
+// //   heading_number_mode: "level3-last",
+// //   title: "title",
+// //   author: "The author",
+// //   date: datetime.today().display(),
+// //   author_page: link("https://www.example.com")[My Homepage],
+// //   version: "1.0.0",
 
-#let CH = math.op("CH")
-#let kk = math.bold("k")
-#let calO = math.cal("O")
+// //   make_title: false
+// // )
+
 #let Yang(content) = text(red)[Yang: #content]
+#let bf(content) = math.upright(math.bold([#content]))
+#let cong = math.tilde.equiv
+#let cup = math.union
+#let cap = math.inter
+#let indent = [\ #h(2em)]
 
 == Homework 1
 
@@ -70,7 +75,7 @@ In the following, we work over a field $kk$.
   By Riemann-Roch, we have $h^0(alpha) - h^0(K_X - alpha) = 1$.
   In particular, $h^0 (alpha) gt.eq.slant 1$.
   Similarly, we have $h^0 (-alpha) gt.eq.slant 1$.
-  Hence $calO_X (alpha) tilde.equiv calO_X$ and $alpha tilde 0$ in $CH_0(X)$.
+  Hence $cal(O)_X (alpha) tilde.equiv cal(O)_X$ and $alpha tilde 0$ in $CH_0(X)$.
 
   If $X$ has a $kk$-point, saying $P$, then $deg [P] = 1$ and hence $deg: CH_0(X) arrow ZZ$ is surjective.
   
@@ -82,16 +87,13 @@ In the following, we work over a field $kk$.
   The interinterion $X inter L$ consists of at most two points counting multiplicity.
   If $X inter L$ consists of two distinct points or one point with multiplicity $2$, then $X$ has $kk$-points, a contradiction.
   Hence $X inter L$ consists of a single point $P$ whose residue field is a quadratic extension of $kk$.
-  Then $deg P = 2$ and hence the image of $deg$ is $2ZZ$.
-  // WLOG we can assume $P = [0:0:1]$.
-  // For every line $L_{a,b} = { [x:y:z] in PP^2 : a x + b y = 0 }$ with $[a:b] in PP^1$ passing through $P$, we have $L_{a,b} inter X = {P, Q_{a,b}}$ for some $Q_{a,b} in X$.
-  // By Vieta's formula, $[a:b] mapsto Q_{a,b}$ gives an isomorphism $X tilde.equiv PP^1$.
+  Then $deg P = 2$ and hence the image of $deg$ is $2 ZZ$.
 ]
 
 #exercise[
   Work out Fulton, Example 2.4.5. Namely, with the notation of the example, show $[D] = 2[l]$ and $D dot [l'] = [P]$ and deduce that $[l]$ is not linear equivalent to any Cartier divisor on $X$.
 ]
-#example("Fulton, Example 2.4.5")[
+#example[Fulton, Example 2.4.5][
    Let $(x:y:z:t)$ be homogeneous on $PP^3$, and let $X$ be the singular cone defined by the equation $z^2 = x y$. 
    Let $D$ be the Cartier divisor on $X$ defined by the equation $x = 0$. 
    Let $l$ be the line $x = z = 0$, $l'$ the line $y = z = 0$, $P$ the point $(0:0:0:1)$. 
@@ -99,27 +101,79 @@ In the following, we work over a field $kk$.
    It follows from Theorem 2.4 that there cannot be a Cartier divisor $D'$ on $X$ with $[D'] = [l']$, either as cycles or as classes in $A_1(X)$.
 ]
 #proof[
+  Easily see that $Supp D = Supp l$ is irreducible.
+  Hence we can work on an affine chart ${t eq.not 0}$ with coordinates $x, y, z$.
+  On this chart, $l$ is defined by the ideal $(x,z,x y - z^2) = (x,z)$.
+  Hence $l$ is a subvariety.
+  We have 
+  $ cal(O)_(X,l) = (kk[x, y, z] \/ (z^2 - x y))_((x,z)) = upright(bold(K))[frac(z^2, y), z]_((z)) = upright(bold(K))[z]_((z)), $
+  where $bf(K) = kk (y)$.
+  Hence $Mult_l (D) = ord_(bf(K)[z]_((z))) (z^2/y) = 2$.
+  It follows that $[D] = 2[l]$.
 
+  For the intersection $D dot [l']$, by definition, we see that $D dot [l']$ is the cycle on $l'$ defined by the equation $x = 0$.
+  Note that $l' = V(y,z) cong bb(P)^1$ with homogeneous coordinate $[x:t]$.
+  Hence $D dot [l']$ is the cycle on $bb(P)^1$ defined by the equation $x = 0$, which is just the class $[P]$.
+
+  If there exists a Cartier divisor $D'$ on $X$ with $[D'] = [l]$, then we have $D' dot [l'] = 1/2 D dot [l'] = 1/2 [P]$, which has degree $1/2$, a contradiction.
+  // #Yang[to be filled in later]
 ]
 
 #exercise[
   Work out Fulton, Example 2.5.2. Namely, show (b), (c), (d).
-  (Hint: Use the additivity of Hilbert polynomials. For (b), use Hartshorne, 1.7.4. For (d), use Fulton, A.2.7.)
+  (Hint: Use the additivity of Hilbert polynomials. For (b), use @Har77[I.7.4]. For (d), use @Fulton13Intersection[A.2.7].)
 ]
-#example("Fulton, Example 2.5.2")[ Let $X$ be a closed subscheme of $PP^n$ of dimension $<= k$, and let $Gamma (X)$ be the homogeneous coordinate ring of $X$.
+#example([@Fulton13Intersection[Example 2.5.2]])[ Let $X$ be a closed subscheme of $PP^n$ of dimension $<= k$, and let $Gamma (X)$ be the homogeneous coordinate ring of $X$.
 
-- (a) For $t$ sufficiently large, the dimension of the $t^("th")$ graded piece $Gamma (X)_t$ is a polynomial in $t$ of degree $<= k$ called the Hilbert polynomial (cf. Hartshorne (5) I.7.5). Define $d_k (X)$ to be the coefficient of $t^k / k!$ in this polynomial.
+#set enum(numbering: "(a)")
 
-- (b) If $X_1, ..., X_r$ are the irreducible components of $X$, $m_i$ the multiplicity of $X_i$ in $X$, then $d_k (X) = sum m_i d_k (X_i)$.
++ For $t$ sufficiently large, the dimension of the $t^("th")$ graded piece $Gamma (X)_t$ is a polynomial in $t$ of degree $<= k$ called the Hilbert polynomial (cf. @Har77[I.7.5]). Define $d_k (X)$ to be the coefficient of $t^k / k!$ in this polynomial.
 
-- (c) If $X$ is an irreducible variety, and $H$ is a hypersurface of degree $m$ not containing $X$, then $d_(k-1) (X inter H) = m d_k (X)$. (Here $X inter H$ is the scheme-theoretic intersection, so there are exact sequences
-$ 0 -> Gamma(X)_(t-m) -> Gamma(X)_t -> Gamma(X inter H)_t -> 0 quad "for" t >> 0. $
++ If $X_1, ..., X_r$ are the irreducible components of $X$, $m_i$ the multiplicity of $X_i$ in $X$, then $d_k (X) = sum m_i d_k (X_i)$.
 
-- (d) For any purely $k$-dimensional subscheme $X$ of $PP^n$,
-$ d_k (X) = deg[X] = integral_(PP^n) c_1 (O(1))^k inter [X]. $
++ If $X$ is an irreducible variety, and $H$ is a hypersurface of degree $m$ not containing $X$, then $d_(k-1) (X inter H) = m d_k (X)$. (Here $X inter H$ is the scheme-theoretic intersection, so there are exact sequences 
+  $ 0 -> Gamma(X)_(t-m) -> Gamma(X)_t -> Gamma(X inter H)_t -> 0 quad "for" t >> 0.) $
+
++ For any purely $k$-dimensional subscheme $X$ of $PP^n$,
+  $ d_k (X) = deg[X] = integral_(PP^n) c_1 (O(1))^k inter [X]. $
 
 (For $X$ a subvariety, $c_1 (O(1)) inter [X] = [X inter H]$, where $H$ is a hyperplane not containing $X$.)
 ]
 #proof[
-  $cal(I) cal(J)$
+  For (b), denote by $M$ the homogeneous coordinate ring of $X$, which is a finitely generated graded module over the polynomial ring $S = kk[X_0, ..., X_n]$.
+  By @Har77[I.7.4], there exists a filtration 
+  $ 0 = M_0 subset M_1 subset ... subset M_r = M $
+  such that each $M_i \/ M_(i-1)$ is isomorphic to a shifted copy of $S \/ frak(p)_i$ for some homogeneous prime ideal $frak(p)_i$.
+  Hence, by the additivity of Hilbert polynomials and exact sequences $0 to M_k to M_{k+1} to M_{k+1}/M_k to 0$, we get
+  $ d_k (X) = d_k (M) = sum d_k (S \/ frak(p)_i). $
+  Denote by $frak(q)_j$ the homogeneous prime ideal of $S$ defining the irreducible variety $X_j$.
+  By @Har77[I.7.4], we have ${frak(p)_i} = {frak(q)_j} cup {frak(q)'_j}$ counting multiplicity ($frak(q)_j$ has multiplicity $m_j$), where $frak(q)'_j$ is the non-minimal prime ideal in the set ${frak(p)_i}$.
+  For a non-minimal prime ideal $frak(p)_i$, $Proj S \/ frak(p)_i$ has dimension strictly less than $k$.
+  Hence $d_k (S \/ frak(p)_i) = 0$ for such $frak(p)_i$.
+  Then we have
+  $ d_k (X) = sum m_j d_k (S \/ frak(q)_j) + sum d_k (S \/ frak(q)'_j) = sum m_j d_k (X_j). $
+
+  #indent
+  For (c), we have the exact sequence
+  $ 0 to cal(O)_X (t-m) to cal(O)_X (t) to cal(O)_(X inter H) (t) to 0. $
+  By Serre vanishing, we have $H^1 (X, cal(O)_X (t-m)) = 0$ for $t >> 0$.
+  Hence we get the exact sequence
+  $ 0 to Gamma(X)_(t-m) to Gamma(X)_t to Gamma(X inter H)_t to 0 $
+  for $t >> 0$.
+  It gives 
+  $ P_(X inter H) (t) = P_X (t) - P_X (t-m). $ 
+  In particular, the first term of $P_(X inter H) (t)$ is 
+  $ d_k (X) t^(k) / k! - d_k (X) (t-m)^(k) / k! = d_k (X) (k m t^(k-1)) / k! = m d_k (X) t^(k-1) / (k-1)! . $.
+  Hence $d_(k-1) (X inter H) = m d_k (X)$.
+
+  For (d), we can assume $X$ is irreducible by linearity of $d_k$ and $deg$.
+  We do induction on $k$.
+  If $k = 0$, then $X$ is a point and we have $P_X (t) = dim Gamma (X) = d_0 (X)$.
+  Assume $k gt 0$.
+  Let $H$ be a hyperplane not containing $X$.
+  By (c), we have 
+  $ d_k (X) = d_(k-1) (X inter H) = deg [X inter H] = deg [X]. $
 ]
+
+
+#bibliography("../../../Accessories/ref.bib",style: "../../../Accessories/chicago-author-date_modified.csl")
