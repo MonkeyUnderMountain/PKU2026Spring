@@ -2,148 +2,200 @@
 
 \subsection{Review of moduli of curves (continued)}
 
-    \begin{enumerate}[label=(\arabic*)]
-        \item Definition of $\overline{\calM}_{g,n}$ and main properties.
-        \item Morphisms of $\overline{\calM}_{g,n}$.
-        \item Tautological subring $R^*(\overline{\calM}_{g,n}) \subset A^*(\overline{\calM}_{g,n})$.
+  \begin{enumerate}[label=(\arabic*)]
+    \item Definition of $\overline{\calM}_{g,n}$ and main properties.
+    \item Morphisms of $\overline{\calM}_{g,n}$.
+    \item Tautological subring $R^*(\overline{\calM}_{g,n}) \subset A^*(\overline{\calM}_{g,n})$.
+  \end{enumerate}
+
+  A morphism $\calX \to \calY$ of categories over $\Sch$ is representable by schemes if 
+  $\forall T \to \calY$ from a scheme $T$, $\calX \times_\calY T$ is (represented by) a scheme.
+
+  If $\calP$ is a property of morphisms of schemes, stable under base change, 
+  then a morphism $\calf: \calX \to \calY$ representable by schemes has property $\calP$ if 
+  $\forall T \to \calY$ from a scheme $\calX \times_\calY T \to T$ has property $\calP$.
+
+  An algebraic space is a sheaf $\calX$ over $\Sch_{\et}$ s.t. $\exists U \in \Sch$ and $U \to \calX$ surjective, \'etale and representable by schemes.
+
+  Then we have a further definition of representable morphism.
+  A morphism $\calX \to \calY$ of categories over $\Sch$ is \emph{representable} if 
+  $\forall T \to \calY$ from a scheme $T$, $\calX \times_\calY T$ is an algebraic space.
+
+  If $\calP$ is a property of morphisms of schemes, stable under base change and \'etale local on the source,
+  then a representable morphism $\calf: \calX \to \calY$ has property $\calP$ if 
+  $\forall T \to \calY$ from a scheme, denote by $U \to \calX \times_\calY T$ a \'etale presentation of $\calX \times_\calY T$, then $U \to \calX \times_\calY T \to T$ has property $\calP$.
+
+  \begin{definition}
+    A stack $\calX/S$ over $\Sch_\et$ is an \emph{algebraic stack} (resp. \emph{Deligne-Mumford (DM) stack}) if $\exists U \in \Sch$, surjective smooth (resp. \'etale) representable morphism.
+
+    A morphism of algebraic (resp. DM) stacks is a morphism of categories.
+  \end{definition}
+
+  If $\calX_1 \to \calX_3$, $\calX_2 \to \calX_3$ morphism of algebraic (resp. DM) stacks, then $\calX_1 \times_{\calX_3} \calX_2$ is an algebraic (resp. DM) stack.
+  
+  \begin{slogan}
+    \[ \Sch_S \subset \AlgSp_S \subset \{\text{DM stacks}/S\} \subset \{\text{algebraic stacks}/S\}. \]
+  \end{slogan}    
+
+  \begin{definition}
+    A \emph{coarse moduli space} for an algebraic stack $\calX/S$ is a morphism $\calX \to X$ for an algebraic space $X/S$ s.t.
+    \begin{enumerate}
+      \item $\pi$ universal for maps to algebraic space over $S$:
+        \[ \begin{tikzcd}
+          \calX \arrow[r] \arrow[dr] & X \arrow[d, gray, "\exists !"] \\
+          & Y.
+        \end{tikzcd} \]
+      \item $\forall \kkk$ algebraically closed, the map $|\calX(\kkk)| \to |X(\kkk)|$ is a bijection, where $|\calX(\kkk)|$ denotes the set of isomorphism classed in $\calX(\kkk)$.
     \end{enumerate}
+  \end{definition}
 
-    A morphism $\calX \to \calY$ of categories over $\Sch$ is representable by schemes if 
-    $\forall T \to \calY$ from a scheme $T$, $\calX \times_\calY T$ is (represented by) a scheme.
-
-    If $\calP$ is a property of morphisms of schemes, stable under base change, 
-    then a morphism $\calf: \calX \to \calY$ representable by schemes has property $\calP$ if 
-    $\forall T \to \calY$ from a scheme $\calX \times_\calY T \to T$ has property $\calP$.
-
-    An algebraic space is a sheaf $\calX$ over $\Sch_{\et}$ s.t. $\exists U \in \Sch$ and $U \to \calX$ surjective, \'etale and representable by schemes.
-
-
-    \begin{definition}
-        A stack $\calX/S$ over $\Sch_\et$ is an \emph{algebraic stack} (resp. \emph{Deligne-Mumford (DM) stack}) if $\exists U \in \Sch$, surjective smooth (resp. \'etale) representable morphism.
-
-        A morphism of algebraic (resp. DM) stacks is a morphism of categories.
-    \end{definition}
-
-    If $\calX_1 \to \calX_3$, $\calX_2 \to \calX_3$ morphism of algebraic (resp. DM) stacks, then $\calX_1 \times_{\calX_3} \calX_2$ is an algebraic (resp. DM) stack.
-    
-    \begin{slogan}
-    
-    \end{slogan}    
-
-    \begin{definition}
-        A coarse moduli space for an algebraic stack $\calX/S$ is a morphism $\calX \to X$ for an algebraic space $X/S$ s.t.
-        \begin{enumerate}
-            \item $\pi$ is universla for maps to algebraic space over $S$
-                \[ \begin{tikzcd}
-                    \calX
-                \end{tikzcd} \]
-            \item $\forall \kkk$ algebraically closed, the map $|\calX(\kkk)| \to |X(\kkk)|$ is a bijection, where $|\calX(\kkk)|$ denotes the set of isomorphism classed in $\calX(\kkk)$.
-        \end{enumerate}
-    \end{definition}
-
-    \begin{theorem}[Deligne-Mumford, Knudsen]
-        Let $g,n \geq 0$, $2g - 2 + n > 0$.
-        \begin{enumerate}[label=(\arabic*)]
-            \item The categories $\overline{\calM}_{g,n}$, $\calM_{g,n}$ are DM stacks,
-            \item $\overline{\calM}_{g,n}$ is proper, irreducible and smooth of dimension $3g-3+n$.
-                There exists natural inclusion $\calM_{g,n} \subset \overline{\calM}_{g,n}$ as a nonempty, open substack.
-            \item The boundary $\overline{calM}_{g,n} \setminus \calM_{g,n}$ is an effective Cartier divisor and a normal crossing divisor.
-            \item There exist coarse moduli spaces $\overline{calM}_{g,n} \to \overline{M}_{g,n}$, $\calM_{g,n} \to M_{g,n}$ over $\Spec \kkk$ with $\kkk$ algebraically closed.
-                And $\overline{M}_{g,n}$, $M_{g,n}$ are normal varieties of dimension $3g-3+n$.
-                There exists natural inclusion $M_{g,n} \subset \overline{M}_{g,n}$ as a nonempty, open and dense subvariety.
-            \item $\overline{M}_{g,n}$ is irreducible, projective, and has at most quotient singularities, i.e. $exist$ Zariski open cover by varieties $V/G$, where $V = \Spec R$ smooth, $G$ a finite group acting on $V$ (and $R$), $V/G = \Spec R^G$.
-            \item $\overline{M}_{g,n} \setminus M_{g,n}$ is a Weil divisor.
-        \end{enumerate}
-    \end{theorem}
+  \begin{theorem}[Deligne-Mumford, Knudsen]
+    Let $g,n \geq 0$, $2g - 2 + n > 0$.
+    \begin{enumerate}[label=(\arabic*)]
+      \item The categories fibered in groupoids $\overline{\calM}_{g,n}$, $\calM_{g,n}$ are DM stacks,
+      \item $\overline{\calM}_{g,n}$ is proper, irreducible and smooth of dimension $3g-3+n$.
+        There exists natural inclusion $\calM_{g,n} \subset \overline{\calM}_{g,n}$ as a nonempty, open substack.
+      \item The boundary $\overline{\calM}_{g,n} \setminus \calM_{g,n}$ is an effective Cartier divisor and a normal crossing divisor.
+      \item There exist coarse moduli spaces $\overline{\calM}_{g,n} \to \overline{M}_{g,n}$, $\calM_{g,n} \to M_{g,n}$ over $\Spec \kkk$ with $\kkk$ algebraically closed.
+        And $\overline{M}_{g,n}$, $M_{g,n}$ are normal varieties of dimension $3g-3+n$.
+        There exists natural inclusion $M_{g,n} \subset \overline{M}_{g,n}$ as a nonempty, open and dense subvariety.
+      \item $\overline{M}_{g,n}$ is irreducible, projective, and has at most quotient singularities, i.e. $\exists$ Zariski open cover by varieties $V/G$, where $V = \Spec R$ smooth, $G$ a finite group acting on $V$ (and $R$), $V/G = \Spec R^G$.
+      \item $\overline{M}_{g,n} \setminus M_{g,n}$ is a Weil divisor.
+    \end{enumerate}
+  \end{theorem}
 
 
-\subsection{Morphisms between $\overline{\calM}_{g,n}$}
+\subsection[Morphism between moduli of stable curves]{Morphisms between $\overline{\calM}_{g,n}$}
 
-    A stable graph $\Gamma = (\{V,H,L,g,a,i\})$, where
+  To understand the geometry of $\overline{\calM}_{g,n}$, we first try to give a stratification of $\overline{\calM}_{g,n}$ by topological type of curves, which is encoded by some combinatorial data called stable graph.
+  For every irreducible component of a stable curve, we associate a vertex, and for every node, we associate an edge connecting the two vertices corresponding to the two components intersecting at the node.
+  And then label these by some numerical data, such as the genus of each component, the number of marked points on each component, etc.
+  We get the following definition of stable graph.
+
+  \begin{definition}
+    A \emph{stable graph} is a tuple $\Gamma = (V,H,L,g,a,i,\zeta)$, where
     \begin{itemize}
-        \item $V=V(\Gamma)$ is nonempty finite set (vertices of $\Gamma$);
-        \item $H= H (\Gamma)$ is a finite set (half-adges of $\Gamma$);
-        \item $g: V \to \bbZ_{\geq 0}$ a map;
-        \item $a:H \to V$, associating to $h \in H$ a vertex $a(h)$ incident to $V$; 
-        \item $H(v) = {h \in H| a(h) = v}$;
-        \item $i:H \to H$ is an involution;
+      \item $V=V(\Gamma)$ is nonempty finite set (vertices of $\Gamma$);
+      \item $H= H (\Gamma)$ is a finite set (half-edges of $\Gamma$);
+      \item $g: V \to \bbZ_{\geq 0}$ a map;
+      \item $a:H \to V$, associating to $h \in H$ a vertex $a(h)$ incident to $V$; 
+      \item $H(v) = \{h \in H| a(h) = v\}$;
+      \item $i:H \to H$ is an involution (send a half-edge to the other half-edge of the same edge, or send a leg to itself);
+      \item $L = L(\Gamma) = \{l \in H | i(l) = l\}$ (legs of $\Gamma$);
+      \item $E(\Gamma) = \{e = \{h,h'\} \subset H | h\neq h', i(h) = h'\}$ (edges of $\Gamma$);
+      \item $\zeta: L \to \{1,\cdots,n\}$ a bijection (labeling of legs);
     \end{itemize}
-    Let $E = \{e = \{h,h'\} \subset H | h\neq h', i(h) = h'\}$ be edges of $\Gamma$.
+    such that the resulted graph is connected and $2g(v) - 2 + n(v) > 0$ for all $v \in V$, where $n(v) = |H(v)|$.
 
-    \Yang{}
+    Set $g(\Gamma) \coloneqq \sum_{v \in V} g(v) + 1 + |E(\Gamma)| - |V|$ be the \emph{genus} of $\Gamma$ and $n(\Gamma) = |L(\Gamma)|$ be the \emph{number of legs} of $\Gamma$.
+  \end{definition}
 
-    \Yang{cfg = category fibered in groupoid}
+  \begin{definition}\label{def:morphisms_inverse_image_and_G_g_n_of_stable_graphs}
+    Let $\Gamma,\Gamma'$ be two stable graphs.
+    A morphism $\varphi: \Gamma' \to \Gamma$ of stable graphs is a pair of maps $\varphi = (\varphi_V:V \to V, \varphi_H:H \to H)$ compatible with $g,a,i,\zeta$ such that $\varphi_V$ is surjective and $\varphi_H$ is injective.
+    In particular, $\varphi_H$ induces a map $\varphi_E: E(\Gamma') \to E(\Gamma)$.
 
-    In the following, $g,n \geq 0$, $2g-2+n > 0$ are fixed.
-
-    Let $(C,p_1,\cdots,p_n)$ be a stable $n$-pointed curve of genus $g$.
-    Let $\nu: \tilde{C} = \bigsqcup_{i \in I} \tilde{C_i} \to C$ be the normalization of $C$.
-    Let $S \subset C$ the set of nodes of $C$.
-
-    The dual graph $\Gamma = \Gamma_C$ of $C$ is defined as $\Gamma = (V,H,L,g,a,i)$
+    For every $v \in V(\Gamma)$, we define the subgraph $\Gamma'_{v}$ of $\Gamma'$ as follows:
     \begin{itemize}
-        \item $V \cong \{\tilde{C_i} | i \in I\}$;
-        \item $H = \{\nu^{-1}(s) | s \in S\} \cup \{p_1,\cdots,p_n\}$;
-        \item $L = L(\Gamma) = \{l_1,\cdots,l_n\}$;
-        \item $g: V \to \bbZ_{\geq 0}$, $g(\tilde{C_i}) = g(\tilde{C_i})$;
-        \item $a: H \to V$, $a(h_{s,j}) = \tilde{C_i}$ if $\nu^{-1}(s) \cap \tilde{C_i} = {h_{s,j}}$;
-        \item $i:H \to H$, $i(h_{s,1}) = h_{s,2}$, $i(h_{s,2}) = h_{s,1}$.
+      \item $V(\Gamma'_{v}) = \varphi_V^{-1}(v)$;
+      \item $H(\Gamma'_{v}) = \{h' \in H(\Gamma') | a(h') \in V(\Gamma'_{v})\}$.
     \end{itemize}
-    \Yang{}
+    Then $\Gamma'_{v'}$ is a stable graph with genus $g(\Gamma'_{v'}) = g(v')$ and number of legs $n(\Gamma'_{v'}) = n(v')$.
 
-    \begin{theorem}
-        Let $(\calC \to S, \sigma_1,\sigma_2)$ be a family of stable $2$-pointed curves of (possibly disconnected) prestable curves over a scheme $S$ 
-        such that $\sigma_1(s)$ and $\sigma_2(s)$ are smooth distinct points of $\calC_s$ for all $s \in S$.
-        Then there exists a canonical finite morphism $\xi: \calC \to \calC'$ of schemes over $S$ such that
-        \begin{enumerate}[label=(\arabic*)]
-            \item $\phi': \calC' \to S$ is a family of prestable curves with a section $\sigma': S \to \calC'$ such that $\sigma' = \xi \circ \sigma_1 = \xi \circ \sigma_2$ and $\sigma'(s)$ is a node of $\calC'_s$ for all $s \in S$;
-            \item $\xi$ restricts to an isomorphism $\calC \setminus (\sigma_1(S) \cup \sigma_2(S)) \to \calC' \setminus \sigma'(S)$ and there is an identification of $|\calC|$ with $|\calC'/\sim|$ under the equivalence relation $\sigma_1(s) \sim \sigma_2(s)$ for all $s \in S$;
-            \item $\forall U \subset \calC'$ open, $\Gamma(U, \calO_{\calC'}) = \{h \in \Gamma(\xi^{-1}(U), \calO_\calC) | \sigma_1^*h = \sigma_2^*h\}$.
-        \end{enumerate}
-        This construction is compatible with base change $\calS' \to \calS$.
-    \end{theorem}
+    Set 
+    \[ G_{g,n} = \{\text{ stable graph } \Gamma \text{ with genus } g \text{ and } n \text{ legs}\}/ \Aut(\Gamma). \]
+  \end{definition}
 
-    Let $\Gamma \in G_{g,n}$. 
-    We set
-    \begin{align*}
-        \calM^\Gamma &= \{(C,p_1,\cdots,p_n) \in \calM_{g,n} | \Gamma_C = \Gamma\} \subset \overline{\calM}_{g,n}, \\
-        \calM_\Gamma &= \prod_{v \in V(\Gamma)} \calM_{g(v),n(v)}, \\
-        \overline{\calM}_\Gamma &= \prod_{v \in V(\Gamma)} \overline{\calM}_{g(v),n(v)}.
-    \end{align*}
+  \begin{example}
+    \Yang{...}
+  \end{example}
 
-    Let $\Gamma \in G_{g,n}$, there exists finite morphism 
-    \[ \xi_\Gamma: \overline{\calM}_\Gamma \to \overline{\calM}_{g,n}, (C_v,p_{v,1},\cdots,p_{v,n(v)})_{v \in V(\Gamma)} \mapsto (\calC,\sigma_1,\cdots,\sigma_n), \]
-    where $C$ is obtained by gluing all pairs $(q_{h'}, q_{h''})$ for $h \in H(\Gamma)$, $h'' = i(h)$, and $\sigma_j = p_{v,l}$ if $l_j$ is the $l$-th leg attached to $v$.
-    \Yang{}
+  In the following, $g,n \geq 0$, $2g-2+n > 0$ are fixed.
 
-    Given a morphism of stable graphs $\varphi: \Gamma' \to \Gamma$, there exists a natural gluing morphism $\xi_\varphi: \overline{\calM}_{\Gamma'} \to \overline{\calM}_\Gamma$,
-    where for each $v \in V(\Gamma)$, the component of $\xi_\varphi$ to the factor $\overline{\calM}_{g(v),n(v)}$ is given by the gluing map $\xi_{\Gamma_v'}$ (with $\Gamma_v'$ as in Def of $\varphi$).
+  Let $(C,p_1,\cdots,p_n)$ be a stable $n$-pointed curve of genus $g$.
+  Let $\nu: \tilde{C} = \bigsqcup_{i \in I} \tilde{C_i} \to C$ be the normalization of $C$.
+  Let $S \subset C$ the set of nodes of $C$.
 
-    \begin{theorem}
-        Let $\Gamma \in G_{g,n}$, $\calM^\Gamma$ is a nonempty, irreducible, locally closed substack of $\overline{\calM}_{g,n}$.
-        And 
-        \[ \overline{\calM}_{g,n} = \bigsqcup_{\Gamma \subset G_{g,n}} \calM^{\Gamma'}, \]
-    \end{theorem}
+  \begin{definition}
+    The dual graph $\Gamma_C$ of $C$ is defined as $\Gamma_C = (V,H,L,g,a,i,\zeta)$:
+    \begin{itemize}
+      \item $V \cong \{\tilde{C_i} | i \in I\}$;
+      \item $H = \{\nu^{-1}(s) | s \in S\} \cup \{p_1,\cdots,p_n\}$;
+      \item $L = \{p_1,\cdots,p_n\}$;
+      \item $g: V \to \bbZ_{\geq 0}$, $\tilde{C_i} \mapsto g(\tilde{C_i})$;
+      \item $a: H \to V$, $q' \mapsto \tilde{C_i}$ if $q' \in \tilde{C_i}$;
+      \item $i:H \to H$, $i(q') = q''$ if $\nu(q') = \nu(q'')$;
+      \item $\zeta: L \to \{1,\cdots,n\}$, $p_j \mapsto j$.
+    \end{itemize}
+  \end{definition}
 
-    If $|E(\Gamma)| = 1$, then $\overline{\calM^\Gamma}$ is called boundary divisor.
+  \begin{remark}
+    We have an exact sequence of groups
+    \[ 1 \to \Aut(\tilde{C},q \in H(\Gamma_C)) \to \Aut(C,p_1,\cdots,p_n) \to \Aut(\Gamma_C) \to 1. \]
+  \end{remark}
 
-    \Yang{}
+  \begin{theorem}
+    Let $(\calC \to S, \sigma_1,\sigma_2)$ be a family of stable $2$-pointed curves of (possibly disconnected) prestable curves over a scheme $S$ 
+    such that $\sigma_1(s)$ and $\sigma_2(s)$ are smooth distinct points of $\calC_s$ for all $s \in S$.
+    Then there exists a canonical finite morphism $\xi: \calC \to \calC'$ of schemes over $S$ such that
+    \begin{enumerate}[label=(\arabic*)]
+      \item $\phi': \calC' \to S$ is a family of prestable curves with a section $\sigma': S \to \calC'$ such that $\sigma' = \xi \circ \sigma_1 = \xi \circ \sigma_2$ and $\sigma'(s)$ is a node of $\calC'_s$ for all $s \in S$;
+      \item $\xi$ restricts to an isomorphism $\calC \setminus (\sigma_1(S) \cup \sigma_2(S)) \to \calC' \setminus \sigma'(S)$ and there is an identification of $|\calC|$ with $|\calC'/\sim|$ under the equivalence relation $\sigma_1(s) \sim \sigma_2(s)$ for all $s \in S$;
+      \item $\forall U \subset \calC'$ open, $\Gamma(U, \calO_{\calC'}) = \{h \in \Gamma(\xi^{-1}(U), \calO_\calC) | \sigma_1^*h = \sigma_2^*h\}$.
+    \end{enumerate}
+    This construction is compatible with base change $\calS' \to \calS$.
+  \end{theorem}
 
-    Let $\Gamma_1,\Gamma_2,\Gamma \in G_{g,n}$.
-    A $(\Gamma_1,\Gamma_2)$-structure on $\Gamma$ is $(\Gamma,\varphi_1,\varphi_2) = (\phi_i: \Gamma_i \to \Gamma)_{i=1,2}$ of morphisms of stable graphs.
-    $(\Gamma,\phi_i)_{i=1,2}$ is generic if $E(\Gamma) = E(\Gamma_1) \sqcup E(\Gamma_2)$.
-    Two $(\Gamma_1,\Gamma_2)$-structures $(\Gamma,\phi_i)_{i=1,2}$ and $(\Gamma',\phi_i')_{i=1,2}$ are isomorphic if $\exists$ isomorphism $\psi: \Gamma \to \Gamma'$ s.t. $\psi \circ \phi_i = \phi_i'$ for $i=1,2$.
-    \Yang{}
+  \begin{definition}
+  Let $\Gamma \in G_{g,n}$. 
+  We set
+  \begin{align*}
+      \calM^\Gamma &= \{(C,p_1,\cdots,p_n) \in \calM_{g,n} | \Gamma_C = \Gamma\} \subset \overline{\calM}_{g,n}, \\
+      \calM_\Gamma &= \prod_{v \in V(\Gamma)} \calM_{g(v),n(v)}, \quad
+      \overline{\calM}_\Gamma = \prod_{v \in V(\Gamma)} \overline{\calM}_{g(v),n(v)}.
+  \end{align*}
+  \end{definition}
 
-    \begin{theorem}
-        Let $\Gamma_1,\Gamma_2 \in G_{g,n}$.
-        The fiber product $\overline{\calM}_{\Gamma_1} \times_{\overline{\calM}_{g,n}} \overline{\calM}_{\Gamma_2}$ of DM stacks of the gluing morphisms $\xi_{\Gamma_i}: \overline{\calM}_{\Gamma_i} \to \overline{\calM}_{g,n}$ is given by 
-        \[ \calF_{\Gamma_1,\Gamma_2} = \bigsqcup \]
-    \end{theorem}
+  Let $\Gamma \in G_{g,n}$, there exists finite morphism 
+  \[ \xi_\Gamma: \overline{\calM}_\Gamma \to \overline{\calM}_{g,n},\quad (C_v,p_{v,1},\cdots,p_{v,n(v)})_{v \in V(\Gamma)} \mapsto (\calC,\sigma_1,\cdots,\sigma_n), \]
+  where $C$ is obtained by gluing all pairs $(q_{h'}, q_{h''})$ for $h \in H(\Gamma)$, $h'' = i(h)$, and $\sigma_j = p_{v,l}$ if $l_j$ is the $l$-th leg attached to $v$.
+  We have $\xi_\Gamma(\calM_\Gamma) = \overline{\calM^\Gamma}$, the closure of $\calM^\Gamma$ in $\overline{\calM}_{g,n}$.
+  It is called the \emph{gluing morphism} associated to $\Gamma$.
+  And $\xi_\Gamma$ is representable, finite and unramified.
+  It has degree $|\Aut(\Gamma)|$ onto its image $\overline{\calM^\Gamma}$.
+  % \Yang{}
 
-    \begin{example}
-        Let $(\phi: \calC \to S, \sigma_1,\sigma_{n+1})$ be a family of stable $n+1$-pointed curves of genus $g-1$.
+  Given a morphism of stable graphs $\varphi: \Gamma' \to \Gamma$, there exists a natural gluing morphism $\xi_\varphi: \overline{\calM}_{\Gamma'} \to \overline{\calM}_\Gamma$,
+  where for each $v \in V(\Gamma)$, the component of $\xi_\varphi$ to the factor $\overline{\calM}_{g(v),n(v)}$ is given by the gluing map $\xi_{\Gamma_v'}$ (with $\Gamma_v'$ as \cref{def:morphisms_inverse_image_and_G_g_n_of_stable_graphs}).
 
-    \end{example}
+  \begin{theorem}
+    Let $\Gamma \in G_{g,n}$.
+    Then $\calM^\Gamma$ is a nonempty, irreducible, locally closed substack of $\overline{\calM}_{g,n}$.
+    And 
+    \[ \overline{\calM}_{g,n} = \bigsqcup_{\Gamma \subset G_{g,n}} \calM^{\Gamma'}. \]
+    We have 
+    \[ \dim \calM^\Gamma = \dim \overline{\calM}_{g,n} - |E(\Gamma)|. \]
+  \end{theorem}
 
-    
+  If $|E(\Gamma)| = 1$, then $\overline{\calM^\Gamma}$ is called \emph{boundary divisor}.
+
+  \Yang{}
+
+  Let $\Gamma_1,\Gamma_2,\Gamma \in G_{g,n}$.
+  A $(\Gamma_1,\Gamma_2)$-structure on $\Gamma$ is $(\Gamma,\varphi_1,\varphi_2) = (\phi_i: \Gamma_i \to \Gamma)_{i=1,2}$ of morphisms of stable graphs.
+  $(\Gamma,\phi_i)_{i=1,2}$ is generic if $E(\Gamma) = E(\Gamma_1) \sqcup E(\Gamma_2)$.
+  Two $(\Gamma_1,\Gamma_2)$-structures $(\Gamma,\phi_i)_{i=1,2}$ and $(\Gamma',\phi_i')_{i=1,2}$ are isomorphic if $\exists$ isomorphism $\psi: \Gamma \to \Gamma'$ s.t. $\psi \circ \phi_i = \phi_i'$ for $i=1,2$.
+  \Yang{}
+
+  \begin{theorem}
+      Let $\Gamma_1,\Gamma_2 \in G_{g,n}$.
+      The fiber product $\overline{\calM}_{\Gamma_1} \times_{\overline{\calM}_{g,n}} \overline{\calM}_{\Gamma_2}$ of DM stacks of the gluing morphisms $\xi_{\Gamma_i}: \overline{\calM}_{\Gamma_i} \to \overline{\calM}_{g,n}$ is given by 
+      \[ \calF_{\Gamma_1,\Gamma_2} = \bigsqcup \]
+  \end{theorem}
+
+  \begin{example}
+      Let $(\phi: \calC \to S, \sigma_1,\sigma_{n+1})$ be a family of stable $n+1$-pointed curves of genus $g-1$.
+
+  \end{example}
+
+  
