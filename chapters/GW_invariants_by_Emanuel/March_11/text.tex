@@ -92,19 +92,37 @@
 
   \begin{definition}\label{def:morphisms_inverse_image_and_G_g_n_of_stable_graphs}
     Let $\Gamma,\Gamma'$ be two stable graphs.
-    A morphism $\varphi: \Gamma' \to \Gamma$ of stable graphs is a pair of maps $\varphi = (\varphi_V:V \to V, \varphi_H:H \to H)$ compatible with $g,a,i,\zeta$ such that $\varphi_V$ is surjective and $\varphi_H$ is injective.
-    In particular, $\varphi_H$ induces a map $\varphi_E: E(\Gamma') \to E(\Gamma)$.
-
-    For every $v \in V(\Gamma)$, we define the subgraph $\Gamma'_{v}$ of $\Gamma'$ as follows:
+    A morphism $\varphi: \Gamma' \to \Gamma$ of stable graphs is a pair of maps 
+    \[ \varphi = \left( \begin{tikzcd}[row sep=1ex]
+      V' \arrow[r, "\varphi_V", two heads] & V,\\
+      H'  & H \arrow[l, "\varphi_H"', hook']
+    \end{tikzcd} \right)
+    \]
+    (note the \textbf{direction} of the arrows) such that
     \begin{itemize}
-      \item $V(\Gamma'_{v}) = \varphi_V^{-1}(v)$;
-      \item $H(\Gamma'_{v}) = \{h' \in H(\Gamma') | a(h') \in V(\Gamma'_{v})\}$.
+      \item $\varphi_H$ is injective, and sends edges (resp. legs) of $\Gamma$ to the edges (resp. legs) of $\Gamma'$;
+      \item $\varphi_V$ is surjective with the commutate diagram
+        \[ \begin{tikzcd}
+          H'  \arrow[d, "a'"] & H \arrow[d, "a"] \arrow[l, "\varphi_H"'] \\
+          V' \arrow[r, "\varphi_V"] & V.
+        \end{tikzcd} \]
+      \item $\forall v \in V$, its preimage 
+        \[ \Gamma'_v \coloneqq \varphi_V^{-1}(v) \coloneqq \bigg\{ V(\Gamma'_v) = \varphi_V^{-1}(v),\quad H(\Gamma'_v) = \{h' \in H(\Gamma') | a(h') \in V(\Gamma'_v)\} \bigg\} \]
+        is a stable graph with genus $g(\Gamma'_v) = g(v)$ and number of legs $n(\Gamma'_v) = n(v)$.
     \end{itemize}
-    Then $\Gamma'_{v'}$ is a stable graph with genus $g(\Gamma'_{v'}) = g(v')$ and number of legs $n(\Gamma'_{v'}) = n(v')$.
-
-    Set 
-    \[ G_{g,n} = \{\text{ stable graph } \Gamma \text{ with genus } g \text{ and } n \text{ legs}\}/ \Aut(\Gamma). \]
   \end{definition}
+
+  \begin{example}
+    \Yang{}
+  \end{example}
+
+  \begin{remark}
+    A morphism $\varphi: \Gamma' \to \Gamma$ of stable graphs can be viewed as a process of gluing some stable graphs $\Gamma'_v$ for $v \in V(\Gamma)$ to get $\Gamma'$.
+    \Yang{}
+  \end{remark}
+
+  Set 
+    \[ G_{g,n} = \{\text{ stable graph } \Gamma \text{ with genus } g \text{ and } n \text{ legs}\}/ \Aut(\Gamma). \]
 
   \begin{example}
     \Yang{...}
