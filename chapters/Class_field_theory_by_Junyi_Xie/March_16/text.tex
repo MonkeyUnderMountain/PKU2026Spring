@@ -1,0 +1,125 @@
+\section{March 16}
+
+\textbf{continue from last time}
+
+\subsection{Some remarks of local reciprocity law}
+
+  \begin{remark}
+    If $\characteristic K = p > 0$, then there always exists a subgroup of $K^\times$ which is not open.
+
+    Consider the derivation $\delta: K=\bbF_p((t)) \to K$ by $t \mapsto 1$. 
+    Let $L/K$ be a finite separable extension, then $\delta$ extends to a derivation $\delta_L: L \to L$.
+    (one can view a derivation as a vector field, and the extension is an \'etale covering, since it is locally isomorphic, the vector field can be lifted to the covering.)
+    By considering the kernel of $\delta$, we get $L^p \cap K = K^p$.
+    Hence $K^\times / (K^\times)^p \subset K^\times / (L^\times)^p$ are $\bbF_p$-vector spaces.
+    By direct computation, we have
+    \[ K^\times / (K^\times)^p \cong \Image \delta = \left\{ \sum_{i \geq 1} a_i t^i : a_i \in \bbF_p, p \nmid i+1 \right\}. \]
+    As $\bbF_p$-vector spaces, $\Image \delta$ has uncountable dimension.
+    On the other hand, there exists countable and dense subset $S \subset L^\times$.
+    Its image in $L^\times / (L^\times)^p$ is also countable. 
+    We can find a codimension one subspace $V \subset L^\times / (L^\times)^p$ containing the image of $S$.
+    Then the preimage of $V$ in $L^\times$ is a subgroup of $L^\times$ of index $p$ which is dense in $L^\times$.
+    It is not closed and hence not open by finite index.
+  \end{remark}
+
+  \begin{remark}\label{rmk:unit_has_trivial_image_under_artin_local_map_when_restrict_to_unramified_extension}
+    Let 
+    \[ K^\unr \coloneqq \bigcup_{L/K \text{ finite unramified}} L. \]
+    The residue field of $K^\unr$ is an algebraic closure of the residue field of $K$ and $\Gal(K^\unr/K) \cong \Gal(\overline{k}/k)$.
+    Then there exists a unique element $\Frob_K \in \Gal(K^\unr/K)$ such that $\Frob_K$ induces the $q$-th power map on the residue field, where $q = \# k$.
+    We have an isomorphism of topological groups
+    \[ \hat{\bbZ} \to \Gal(K^\unr/K), \quad \alpha \mapsto \Frob_K^\alpha. \]
+    Then the (a) in \cref{thm:local_reciprocity_law} can be restated as follows: for all uniformizer $\pi$ of $K$, $\phi_K(\pi)|_{K^\unr} = \Frob_K$.
+    In particular, for all unit $u \in \calO_K^\times$, $\phi_K(u)|_{K^\unr} = \id$.
+  \end{remark}
+
+  \begin{remark}
+    The groups 
+    \[ U_K \supset 1 + \frakm_K \supset 1 + \frakm_K^2 \supset \cdots \]
+    form a fundamental system of neighborhoods of $1$ in $U_K$.
+    Let $L/K$ be a finite abelian extension.
+    If $L/K$ is unramified, then $U_K \subset \ker (\phi_{L/K})$ by \cref{rmk:unit_has_trivial_image_under_artin_local_map_when_restrict_to_unramified_extension}.
+    We say that $L/K$ has \emph{conductor} $0$.
+    Otherwise, the smallest integer $n \geq 1$ such that $1 + \frakm_K^n \subset \ker (\phi_{L/K})$ is called the \emph{conductor} of $L/K$.
+    
+    Tautologically, the extension $L/K$ is unramified if and only if its conductor is $0$.
+    The conductor measures the ramification of $L/K$.
+    We say that $L/K$ is \emph{tamely ramified} if its conductor is $\leq 1$, and \emph{wildly ramified} otherwise.
+    Note that $(1+\frakm^i)/(1+\frakm^{i+1})$ are $p$-groups for $i \geq 1$, so $\phi|_{L/K}|_{U_K}$ factors through $U_K/(1+\frakm_K)$ iff $L/K$ is tamely ramified.
+  \end{remark}
+
+  \begin{remark}
+    The homomorphisms
+    \[ \phi_{L/K}: K^\times / \Nm_{L/K}(L^\times) \to \Gal(L/K) \]
+    form an inverse system as $L$ varies over all finite abelian extensions of $K$, ordered by inclusion.
+    By taking the inverse limit, we get an isomorphism of topological groups
+    \[ \widehat{\phi}_K: \widehat{K^\times} \to \Gal(K^\ab/K), \]
+    where $\widehat{K^\times}$ is the profinite completion of $K^\times$.
+    This topology on $K^\times$ is called the \emph{norm topology}.
+    
+    By \cref{thm:norm_groups_are_exactly_open_subgroups_of_finite_index}, norm topology is coarser than the original topology on $K^\times$.
+    Fix a uniformizer $\pi$ of $K$, then $K^\times \cong \pi^\bbZ \cdot U_K$.
+    Then subgroups $(1+\frakm^n)\left<\pi^m\right> \cong (1+\frakm^n) \times m\bbZ$ form a fundamental system of neighborhoods of $1$ in the norm topology.
+    In particular, $U_K$ is not open under the norm topology.
+    When completing $K^\times$ under the norm topology, we get $\widehat{K^\times} = \pi^{\hat{\bbZ}}\cdot U_K \cong \hat{\bbZ} \times U_K$.
+
+    More canonically, the identity map 
+    \[ (K^\times, \text{ original topology}) \to (K^\times, \text{ norm topology}) \] 
+    is continuous and induces a homomorphism of completion $K^\times \to \widehat{K^\times}$ fitting into the following commutative diagram
+    \[ \begin{tikzcd}
+        0 \arrow[r] & U_K \arrow[r] \arrow[d, equal] & K^\times \arrow[r] \arrow[d] & \bbZ \arrow[r] \arrow[d, hook] & 0 \\
+        0 \arrow[r] & U_K \arrow[r] & \widehat{K^\times} \arrow[r] & \hat{\bbZ} \arrow[r] & 0.
+    \end{tikzcd} \]
+  \end{remark}
+
+  \begin{remark}\label{rmk:decomposition_of_K_ab_into_unramified_and_totally_ramified_part}
+    The choice of a uniformizer $\pi$ of $K$ gives a decomposition $\widehat{K^\times} \cong \hat{\bbZ} \times U_K$ of $\widehat{K^\times}$ into a product of two closed subgroups.
+    Hence we get a decomposition of $K^\ab = K^\unr \cdot K_\pi$, where $K_\pi$ is the subfield of $K^\ab$ fixed by $\phi_K(\pi)$ and $K^\unr$ is the subfield of $K^\ab$ fixed by $\phi_K(U_K)$.
+    Clearly, 
+    \[ K_\pi = \bigcup_{L/K \text{ finite abelian}, \pi \in \Nm(L^\times)} L. \]
+    Here the condition $\pi \in \Nm(L^\times)$ implies that $L/K$ is totally ramified.
+    The map $\phi_K$ restricts to an isomorphism $U_K \to \Gal(K_\pi/K)$.
+    It maps the filtration $U_K \supset 1 + \frakm_K \supset 1 + \frakm_K^2 \supset \cdots$ to the filtration of $\Gal(K_\pi/K)$ by ramification groups.
+  \end{remark}
+
+  \begin{example}
+    When $K = \bbQ_p$ with uniformizer $p$, the decomposition in \cref{rmk:decomposition_of_K_ab_into_unramified_and_totally_ramified_part} is given by $\bbQ_p^\ab = \bbQ_p^\unr \cdot \bbQ_p(\mu_{p^\infty})$, where $\bbQ_p(\mu_{p^\infty})$ is the union of all cyclotomic extensions of $\bbQ_p$ and $\bbQ_p^\unr = \bigcup_{p \neq m} \bbQ_p(\zeta_m)$.
+  \end{example}
+
+  \begin{remark}
+    The composition of two totally ramified extensions need not be totally ramified.
+    For example, pick $u \in \bbZ_p^\times$ which is not a square.
+    Both $\bbQ_p(\sqrt{p})/\bbQ_p$ and $\bbQ_p(\sqrt{pu})/\bbQ_p$ are totally ramified, but $\bbQ_p(\sqrt{p}, \sqrt{pu})/\bbQ_p$ is not totally ramified since it contains $\bbQ_p(\sqrt{u})/\bbQ_p$ which is unramified.
+  \end{remark}
+
+
+\subsection{Outline of the proofs of the main theorems in local CFT}
+
+  \begin{theorem}[uniqueness of the local reciprocity map]\label{thm:uniqueness_of_local_reciprocity_map}
+    Assume \cref{thm:norm_groups_are_exactly_open_subgroups_of_finite_index}, then there exists at most one homomorphism $\phi_K: K^\times \to \Gal(K^\ab/K)$ satisfying the properties in \cref{thm:local_reciprocity_law}.
+  \end{theorem}
+  \begin{proof}
+    Assume there exists such homomorphism $\phi_K$.
+    The \cref{cor:correspondence_between_extensions_and_norm_groups} holds with ``norm groups'' replaced by ``open subgroups of finite index''.
+    Let $\pi$ be a uniformizer of $K$, $K_{\pi,n}$ be the extension of $K$ with norm group $(1+\frakm_K^n)\left<\pi\right>$, and $K_\pi = \bigcup_{n \geq 1} K_{\pi,n}$.
+
+    As $\pi$ is a norm, $\phi_K(\pi)$ acts trivially on $K_\pi$.
+    Since it acts as the Frobenius on $K^\unr$, the action of $\phi_K(\pi)$ on $K_\pi K^\unr$ is completely determined.
+    On the other hand, $K_\pi K^\unr = K^\ab$ by \cref{rmk:decomposition_of_K_ab_into_unramified_and_totally_ramified_part}.
+    Hence $\phi_K(\pi)$ is determined by the properties in \cref{thm:local_reciprocity_law}, 
+    i.e., $\phi_K(\pi) = \phi'_K(\pi)$ for any other homomorphism $\phi'_K$ satisfying the properties in \cref{thm:local_reciprocity_law}.
+    Note that we can change the uniformizer $\pi$ by any element in $\pi U_K$, and the same argument shows that $\phi_K(\pi u) = \phi'_K(\pi u)$ for all $u \in U_K$.
+    Hence $\phi_K = \phi'_K$.
+  \end{proof}
+
+  Hence to prove the local reciprocity law, it suffices to show the existence in \cref{thm:local_reciprocity_law} and to prove \cref{thm:norm_groups_are_exactly_open_subgroups_of_finite_index}.
+
+  There are three proofs.
+  The first two give an explicit construction of $K_{\pi,n}$ and the local Artin map $\phi_{K_{\pi,n}/K}$.
+  The last two will introduce some cohomological results and these results will be used in the global CFT as well.
+  The last one is completely cohomological and does not give an explicit construction of the local Artin map, but it is simpler.
+
+  The first proof is based on Lubin-Tate formal groups. It gives an explicit construction of $K_{\pi,n}$ and the local Artin map 
+  \[ \phi_{K_{\pi}/K}: U_K \to \Gal(K_\pi/K). \]
+  Moreover, it shows that $K_\pi \cdot K^\unr$ and $\phi|_{K_\pi \cdot K^\unr}$ are independent of the choice of $\pi$.
+  Finally, it uses the Hasse-Arf theorem to show that $K_\pi \cdot K^\unr = K^\ab$.
