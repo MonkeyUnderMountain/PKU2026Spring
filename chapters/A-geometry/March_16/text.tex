@@ -12,9 +12,9 @@ The following are equivalent:
 \subsection{Foliations in algebraic geometry}
 
   Let $\kk$ be a field, $X/\kk$ a smooth variety.
-  Recall the (sheaf of algebraic) sections of the tangent bundle $\calT_X$ is defined as the sheafication of the presheaf
-  \[ U \mapsto \Der_\kk(\calO_X(U)), \quad \forall \text{ affine open } U \subset X \]
-  \Yang{why above definition is not a (pre)sheaf?}
+  Recall the (sheaf of algebraic) sections of the tangent bundle $\calT_X$ is defined as the sheaf determined by 
+  \[ U \mapsto \Der_\kk(\calO_X(U)), \quad \forall \text{ affine open } U \subset X. \]
+  % \Yang{why above definition is not a (pre)sheaf?}
   Then $\calT_X$ is a locally free sheaf of rank $n$.
   
   \begin{definition}
@@ -33,7 +33,7 @@ The following are equivalent:
   
 
   \begin{definition}[formal leaf]
-    Assume $P in X(\kk)$ is a $\kk$-rational point.
+    Assume $P \in X(\kk)$ is a $\kk$-rational point.
     A \emph{formal leaf} of $\calF$ through $P$ is a closed smooth formal subscheme $\hat{L}_P \subset \hat{X}_P$ such that $\calF|_{\hat{L}_P} = \Image(\calT_{\hat{L}_P} \to \calT_{\hat{X}_P}|_{\hat{L}_P})$.
   \end{definition}
 
@@ -116,18 +116,18 @@ The following are equivalent:
   The condition $f \in \bbZ[[t]]$ is equivalent to that the $p$-adic radius of convergence, $R_p(f)$, is at least $1$ for all $p$.
 
 
-  \begin{conjecture}
+  \begin{conjecture}\label{conj:algebraicity_of_leaves_by_reduction}
     Let $\kk$ be a number field, $X/\kk$ a smooth variety, $\calF$ a foliation on $X$.
     Suppose that $\calF$ is $p$-closed for almost all $\frakp \subset \calO_\kk$.
     Then there exists a Zariski open subset $U \subset X$ such that every formal leaf through a point in $U(\overline{\kk})$ is algebraic.
   \end{conjecture}
 
-  Essentially, The fact that leaves are algebraic implies that the foliation comes from a fiberation.
+  Essentially, the fact that leaves are algebraic implies that the foliation comes from a fibration.
 
   We have the following partial result by Bost.
 
-  \begin{theorem}[{\cite{Bost}}]
-    In the conjecture \Yang{}, if for some point $P \in X(\kk)$, the holomorphic leaf $L_P$ through $P$ for some embedding $\sigma: \kk \hookrightarrow \bbC$ satisfies the \emph{Liouville condition}, then the formal leaf through $P$ is algebraic (as subvariety of $X$).
+  \begin{theorem}[{\cite{Bost}}]\label{thm:Bost_main_theorem}
+    In the \cref{conj:algebraicity_of_leaves_by_reduction}, if for some point $P \in X(\kk)$, the holomorphic leaf $L_P$ through $P$ for some embedding $\sigma: \kk \hookrightarrow \bbC$ satisfies the \emph{Liouville condition}, then the formal leaf through $P$ is algebraic (as subvariety of $X$).
   \end{theorem}
 
   \begin{definition}
@@ -145,7 +145,7 @@ The following are equivalent:
     Hence all holomorphic leaves satisfy the Liouville condition.
   \end{example}
 
-  \begin{corollary}
+  \begin{corollary}\label{cor:isogeny_of_elliptic_curves_by_foliation}
     Let $E_i$ be elliptic curves over $\bbQ$ for $i = 1, 2$.
     TFAE:
     \begin{enumerate}
@@ -162,11 +162,11 @@ The following are equivalent:
     For almost all $p$, 
     \[ \calD^p = p^*_1 (D_1)^p + p^*_2 (D_2)^p = a_p(E_1) p^*_1 D_1 + a_p(E_2) p^*_2 D_2 = a_p (p^*_1 D_1 + p^*_2 D_2) \mod p. \]
     Hence $\calF$ is $p$-closed for almost all $p$.
-    By \Yang{} Bost's theorem, we are done.
+    By \cref{thm:Bost_main_theorem}, we are done.
   \end{proof}
 
   \begin{remark}
-    The \Yang{above} corollary is originally proved by Faltings.
+    The \cref{cor:isogeny_of_elliptic_curves_by_foliation} is originally proved by Faltings.
     It is a special case of the following theorem.
   \end{remark}
 
@@ -178,20 +178,18 @@ The following are equivalent:
   \end{theorem}
 
   \begin{remark}
-    In the \Yang{conjecuture}, we get a formal leaf $\hat{L}_P$ through $P$.
-    The $p$-closed condition implies the ``radius of convergence'' $R_p$ of $\hat{L}_P$ has a lower bound $B_p$ only depending on $p$.
+    In the \cref{conj:algebraicity_of_leaves_by_reduction}, we get a formal leaf $\hat{L}_P$ through $P$.
+    The $p$-closed condition implies the ``radius of convergence'' $R_p$ of $\hat{L}_P$ has a lower bound only depending on $p$.
     Moreover, we have 
     \[ \prod_{p \text{ good }} R_p > 0. \]
     \textbf{Roughly}, we can view the Liouville condition implies that the radius of convergence $R_\infty$ of $\hat{L}_P$ over $\bbC$ is infinite.
   \end{remark}
 
-
-
   \paragraph{Grothendieck-Katz $p$-curvature conjecture}
 
   We consider more conjectures.
 
-  \begin{conjecture}
+  \begin{conjecture}[Grothendieck]\label{conj:ODE_reduction}
     Let $\kk$ be a number field.
     Consider an ODE for $X = (x_1(t), \dots, x_n(t))^T \in \overline{\kk(t)}^n$:
     \[ \frac{d X}{d t} = - A(t) X \]
@@ -211,14 +209,14 @@ The following are equivalent:
       \item $\calE^\nabla$ is the subsheaf of $\calE$ consisting of horizontal sections, i.e. $\calE^\nabla(U) = \{ s \in \calE(U) : \nabla(s) = 0 \}$ for any affine open $U \subset X$.
       \item we say $\nabla$ is \emph{trivial} if $\calE = \calE^\nabla \otimes_\kk \calO_X$ (generated by horizontal sections).
        we say $\nabla$ is \emph{isotrivial} if there exists a finite étale cover $f: Y \to X$ such that $f^* \nabla$ is trivial.
-      \item say $(\calE, \nabla)$ is \emph{integrable} if the \emph{curvature} $\nabla^2: \calE \to \calE \otimes \Omega^2_X$ is zero, i.e. $\nabla_{[u,v]} = [\nabla_u, \nabla_v] \in \End_\kk(\calE)$ for any vector fields $u, v$ on $X$.
+      \item say $(\calE, \nabla)$ is \emph{integrable} if the \emph{curvature} $\nabla^2: \calE \to \calE \otimes \Omega^2_X$ is zero, i.e. $\nabla_{[u,v]} - [\nabla_u, \nabla_v] = 0 \in \End_\kk(\calE)$ for any vector fields $u, v$ on $X$.
         Here we view $\nabla$ as a map $\calT_X \to \End_\kk(\calE)$ by $\nabla_u(s) = \nabla(s)(u)$ for any $u \in \calT_X(U)$ and $s \in \calE(U)$.
       \item if $\characteristic \kk = p > 0$, we define the $p$-curvature 
         \[ \psi_p: \calT_X \to \End_\kk(\calE), \quad u \mapsto \nabla_u^p - \nabla_{u^{[p]}}. \]
     \end{enumerate}
   \end{definition}
 
-  \begin{conjecture}
+  \begin{conjecture}[Katz]\label{conj:p_curvature}
     Let $\kk$ be a number field, $X/\kk$ a smooth variety, and $(\calE, \nabla)$ an integrable connection on $X$.
     TFAE:
     \begin{enumerate}
@@ -227,9 +225,9 @@ The following are equivalent:
     \end{enumerate}
   \end{conjecture}
 
-  \Yang{Above} two conjectures are equivalent.
+  \cref{conj:ODE_reduction,conj:p_curvature} are equivalent.
 
-  \Yang{The } conjecture on algebraicity of leaves can imply the $p$-curvature conjecture.
+  \cref{conj:algebraicity_of_leaves_by_reduction} can imply \cref{conj:p_curvature}.
 
   Take the geometric vector bundle $W := \bbV(\calE) = \Spec \Sym^\bullet \calE$ over $X$ via $\pi: W \to X$.
   For any $v \in T_X(U)$, we have $\nabla_v: \calE(U) \to \calE(U)$ acting on $\Sym^\bullet \calE(U)$ satisfying the Leibniz rule.
