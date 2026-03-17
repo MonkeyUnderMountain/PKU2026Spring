@@ -55,8 +55,13 @@ The simplest case is $j = 1$, corresponding to line bundles or Cartier divisors.
   \end{example}
 
   For a Cartier divisor $D$ on a scheme $X$, define the \emph{support} of $D$ to be
-  \[ |D| \coloneqq \Supp (D) \coloneqq \bigcup_{V \subset X, \ord_V(D) \neq 0} V . \]
+  \[ |D| \coloneqq \Supp (D) \coloneqq \bigcup_{\substack{V \subset X, \text{ subvariety} \\ \text{local equation of } D \notin \calO_{X,V}^*}} V . \]
   Cartier divisors have supports , but line bundles do NOT.
+
+  \begin{remark}
+    When $X$ is not normal, the support of a Cartier divisor may have components of codimension $\geq 2$.
+    \Yang{}
+  \end{remark}
 
   \begin{definition}
     A \emph{pseudo-divisor} on $X$ is a triple $(L,Z,s)$ where 

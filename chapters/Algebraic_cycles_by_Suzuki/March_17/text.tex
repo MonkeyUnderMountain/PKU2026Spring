@@ -1,0 +1,211 @@
+\section{March 17}
+
+\paragraph{Recall}:
+For a line bundle $L$ on a scheme $X$, we have defined:
+\[ c_1(L) \cap : \CH_i(X) \to \CH_{i-1}(X), \quad [V] \mapsto c_1(L) \cap [V] \coloneqq \text{ the class of } L|_V. \]
+
+\begin{proposition}
+  We have the following properties of the first Chern class operator:
+  % \begin{enumerate}
+  \Yang{}
+\end{proposition}
+
+
+\subsection{Vector bundles and projective bundles}
+
+  Let $X$ be a scheme and $\pi:E \to X$ be a (geometric) vector bundle of rank $r$.
+  The sheaf $\calE$ of sections of $E$ is a locally free sheaf of rank $r$ on $X$.
+  We have $E = \calSpec_X(\Sym^\bullet \calE^\vee)$.
+  Define the \emph{projective bundle} $\bbP(E)$ of $E$ by 
+  \[ \bbP(E) \coloneqq \calProj_X(\Sym^\bullet \calE^\vee) \]
+  with the projection $p:\bbP(E) \to X$.
+  The fiber of $p$ over a point $x \in X$ is the projective space $\bbP(E_x)$ parametrizing lines in the vector space $E_x$.
+
+  We have the Euler sequence on $\bbP(E)$:
+  \[ 0 \to \calO_{\bbP(E)}(-1) \to p^*E \to \calT_{\bbP(E)/X}(-1) \to 0, \]
+  where $\calO_{\bbP(E)}(-1)$ is the tautological line bundle on $\bbP(E)$ and $\calT_{\bbP(E)/X}$ is the relative tangent bundle of $\bbP(E)$ over $X$.
+
+  \begin{remark}
+    In \cite{Har77}, he defines the projective bundle $\bbP(\calE) = \calProj_X(\Sym^\bullet \calE)$, which parametrizes hyperplanes in the fibers of $E$.
+    Its $\bbP(E)$ is the dual projective bundle of our $\bbP(\calE)$.
+  \end{remark}
+
+  \begin{remark}
+    The projection $\pi$ and $p$ are flat morphisms of relative dimension $r$ and $r-1$ respectively.
+    And $p$ is also proper.
+  \end{remark}
+
+  \begin{theorem}\label{thm:Chow_group_of_vector_and_projective_bundle}
+    Let $X$ be a scheme, $\pi: E \to X$ be a (geometric) vector bundle of rank $r$ and $p: \bbP(E) \to X$ be the projective bundle of $E$.
+    \begin{enumerate}
+      \item The pullback $\pi^*: \CH_i(X) \to \CH_{i+r}(E)$ is an isomorphism for all $i$.
+      \item We have isomorphisms of abelian groups:
+        \[\theta_E : \bigoplus_{j=0}^{r-1} \CH_{i-j}(X) \to \CH_i(\bbP(E)), \quad (a_0, \ldots, a_{r-1}) \mapsto \sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*a_j. \]
+        \Yang{check the grading.}
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{example}
+    Apply \cref{thm:Chow_group_of_vector_and_projective_bundle} to $X = \Spec k$ and $E = \bbA^r$, we get 
+    \[ \CH_i(\bbA^r) = \begin{cases}
+        \bbZ \cdot [\bbA^r] & i = r, \\
+        0 & i \neq r,
+    \end{cases} \quad \CH_i(\bbP^{r-1}) = \begin{cases}
+        \bbZ \cdot [L_i] & 0 \leq i \leq r-1, \\
+        0 & \text{otherwise}.
+    \end{cases} \]
+    Here $L_i$ is a linear subspace of $\bbP^{r-1}$ of dimension $i$.
+  \end{example}
+
+  \begin{example}
+    Apply \cref{thm:Chow_group_of_vector_and_projective_bundle} to a smooth curve $X = C$ and $E = C \times \bbA^2$ so that $\bbP(E) = C \times \bbP^1$, we get
+    \[ \CH_1(C \times \bbP^1) = p^*\CH_0(C) \oplus c_1(\calO_{\bbP(E)}(1)) \cap p^*\CH_1(C) \]
+    and 
+    \[ \CH_0(C \times \bbP^1) = c_1(\calO_{\bbP(E)}(1)) \cap p^*\CH_0(C) \xrightarrow{\sim} \CH_0(C). \]
+
+    In general, $\CH_0$ is unchanged by passing to a projective bundle.
+    In fact, $\CH_0$ is a stable birational invariant for smooth projective varieties: it is unchanged under birational transformations and stable under taking products with projective spaces.
+  \end{example}
+
+  \begin{proof}[Proof of \cref{thm:Chow_group_of_vector_and_projective_bundle}]
+    \hspace{1em}
+    \begin{step}
+      Surjectivity of $\pi^*$.
+    \end{step}
+    Let $\pi: E \to X$ be as in the statement.
+    WTS: $\pi^*$ is an isomorphism.
+    Let $U \subseteq X$ be any affine open subset such that $E|_U \cong U \times \bbA^r$.
+    Let $Z = X \setminus U$.
+    By the localization sequence, we have a commutative diagram with exact rows:
+    \[\begin{tikzcd}
+        \CH_{i}(Z) \arrow[r]\arrow[d, "\cong"] & \CH_{i}(X) \arrow[r]\arrow[d, "\cong"] & \CH_{i}(U) \arrow[r]\arrow[d, "\cong"] & 0 \\
+        \CH_{i+r}(E|_Z) \arrow[r] & \CH_{i+r}(E) \arrow[r]  & \CH_{i+r}(E|_U) \arrow[r]  & 0.
+    \end{tikzcd}\]
+    By diagram chasing, it's enough to show the assertion for $U$ and $Z$.
+    By induction on the dimension of $X$, we can assume the assertion holds for $Z$.
+    By induction on $r$, we can assume $r = 1$.
+    In this case, WTS: $\pi^*: \CH_i(X) \to \CH_{i+1}(X \times \bbA^1)$ is surjective.
+    Let $V \subseteq X \times \bbA^1$ be a subvariety of dimension $i+1$.
+    WTS, $[V] \in \Image(\pi^*)$.
+
+    \Yang{dimension of $V$}
+
+    By replacing $X$ by $\overline{\pi(V)}$, we can assume $V$ dominates $X$.
+    Hence $V$ defines a closed point on $\Spec \fkk(X) \times_\kk \bbA^1_\kk = \Spec \fkk(X)[t]$.
+    Let $\frakp \subset \fkk(X)[t]$ be the corresponding prime ideal.
+    And $f \in \fkk(X)[t]$ be a generator of $\frakp$.
+    Regarding $f$ as a rational function on $X \times \bbA^1$,
+    \[ \divisor(f) = V + \sum_i m_i [D_i], \]
+    where $D_i$ are some prime divisors on $X \times \bbA^1$ which do not dominate $X$.
+    Hence they are of the form $D_i = D_i' \times \bbA^1$ for some subvariety $D_i' \subseteq X$.
+    Hence 
+    \[ [V] \sim - \sum n_j \pi^*[D_j'] \in \CH_{i+1}(X \times \bbA^1). \]
+    This proves the surjectivity of $\pi^*$.
+
+    \begin{step}
+      Surjectivity of the map $\theta_E: \bigoplus_{j=0}^{r-1} \CH_{i-j}(X) \to \CH_i(\bbP(E))$.
+    \end{step}
+    By localization and noetherian induction, we can assume $E$ is trivial, i.e. $E = X \times \bbA^r$ and $\bbP(E) = X \times \bbP^{r-1}$.
+    ETS: letting $F = X \times \bbA^{r+1}$, if $\theta_E$ is surjective, then $\theta_F$ is also surjective.
+    We have a diagram:
+    \[ \bbP(E) = X \times \bbP^{r-1} \injmap^f X \times \bbP \hookleftarrow^g E = X \times \bbA^r. \]
+    This diagram induces
+    \[\begin{tikzcd}
+        \CH_{i}(\bbP(E)) \arrow[r, "\theta_E"]\arrow[d, "\id"] & \CH_i(\bbP(E)) \arrow[r, "f_*"]\arrow[d, "f^*"] & \CH_i(X \times \bbP) \arrow[d, "g^*"] \\
+        \bigoplus_{j=0}^{r-1} \CH_{i-j}(X) \arrow[r, "\theta_E"] & \CH_i(\bbP(E)) \arrow[r, "f_*"] & \CH_i(X \times \bbP).
+    \end{tikzcd}\]
+    \Yang{}
+
+    Let $\beta \in \CH_i(X \times \bbP)$.
+    Since $\pi^*$ is surjective, there exists $\alpha \in \CH_{i-(r-1)}(X)$ such that $g^*\beta = p^*\alpha$.
+    By the commutativity of the diagram, $\beta - q^*\alpha \in \Image(f_*)$.
+    By induction hypothesis, there exists $(\alpha_j) \in \bigoplus_{j=0}^{r-1} \CH_{i+j-(r-1)}(X)$ such that 
+    \[ f_*\theta_E((\alpha_j)) = \beta - q^*\alpha. \]
+
+    Note that $\calO_{\bbP(E)}(1) = f^*\calO_{X \times \bbP}(1)$, we have
+    \[ f_*\theta_E((\alpha_j)) = \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^j \cap f_*(p^*\alpha_j) = \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^{j+1} \cap q^*\alpha_j. \]
+
+
+    \begin{step}
+      Injectivity of $\theta_E$.
+    \end{step}
+    WTS: if $\sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha_j = 0$, then $\alpha_j = 0$ for all $j$.
+    This follows from :
+    \begin{claim}
+      Let $\alpha \in \CH_i(X)$. 
+      Then 
+      \[ p_*(c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha) = \begin{cases}
+          0 & j < r-1, \\
+          \alpha & j = r-1.
+      \end{cases} \]
+    \end{claim}
+
+    \begin{step}
+      Injectivity of $\pi^*$.
+    \end{step}
+
+    \Yang{}
+
+  \end{proof}
+
+
+  \begin{proof}[Proof of the claim]
+    May assume $\alpha = [V]$ and $X = V$ is a variety.
+    Then $p_*(c_1(\calO_{\bbP(E)}(1))^j \cap p^*[X]) \in \CH $.
+    For $j < r-1$, 
+
+    \Yang{}
+  \end{proof}
+
+
+
+\subsection{Chern classes of vector bundles}
+
+  We'll first define the ``inverse Chern classes'', called the Segre classes.
+
+  \begin{definition}
+    Let $X$ be a scheme, $E$ be a vector bundle of rank $r$ on $X$, $p: \bbP(E) \to X$ be the projective bundle of $E$.
+    Define the \emph{$j$-th Segre class homomorphism}  of $E$ by
+    \[ s_j(E) \cap : \CH_i(X) \to \CH_{i-j}(X), \quad \alpha \mapsto c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap p^*\alpha. \]
+  \end{definition}
+
+  \begin{proposition}
+    \begin{enumerate}
+      \item Let $X$ be a scheme, $E$ be a vector bundle of rank $r$ on $X$, $\alpha \in \CH_i(X)$.
+      Then 
+      \[ s_j(E) \cap \alpha = \begin{cases}
+          0 & j < 0, \\
+          \alpha & j = 0.
+      \end{cases} \]
+      \item Let $E,E'$ be vector bundles of rank $r,r'$ on $X$ respectively.
+      Then 
+      \[ s_j(E) \cap ( s_{j'}(E') \cap \alpha ) = s_{j'}( E') \cap ( s_j(E) \cap \alpha ) \]
+      for all $j,j' \in \bbZ$ and $\alpha \in \CH_i(X)$.
+
+      \item Let $f: X \to Y$ be a proper morphism, $E$ be a vector bundle of rank $r$ on $Y$ and $\alpha \in \CH_i(X)$.
+      Then
+      \[ f_*( s_j(f^*E) \cap \alpha ) = s_j(E) \cap f_*\alpha. \]
+
+      \item Let $f: X \to Y$ be a flat morphism, $E$ be a vector bundle of rank $r$ on $Y$ and $\alpha \in \CH_i(Y)$.
+      Then
+      \[ f^*( s_j(E) \cap \alpha ) = s_j(f^*E) \cap f^*\alpha. \]
+
+      \item Let $L$ be a line bundle on $X$, $\alpha \in \CH_i(X)$.
+      Then $s_1(L) \cap \alpha = -c_1(L) \cap \alpha$.
+    \end{enumerate}
+  \end{proposition}
+  \begin{proof}
+    (a) - (d) follow from the corresponding statements for $c_1(L) \cap$ for line bundles $L$ on $X$.
+    For instance, as for (c), we have a commutative diagram:
+    \[\begin{tikzcd}
+      \bbP(f^*E) \arrow[r, "f'"] \arrow[d, "p'"] & X \arrow[d, "f"] \\
+      \bbP(E) \arrow[r, "f''"] & Y
+    \end{tikzcd}\]
+    Then 
+    \[ f_*( s_j(f^*E) \cap \alpha ) = f_*( c_1(\calO_{\bbP(f^*E)}(1))^{r-1+j} \cap p'^*\alpha ) = c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap f''_*p'^*\alpha = s_j(E) \cap f_*\alpha. \]
+
+    \Yang{}
+
+    For (e), we have $\bbP(L) = X$ and $\calO_{\bbP(L)}(-1) = L$.
+    Hence $s_1(L) \cap \alpha = c_1(\calO_{\bbP(L)}(1)) \cap p^*\alpha = -c_1(L) \cap \alpha$.
+  \end{proof}
