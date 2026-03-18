@@ -1,0 +1,163 @@
+\section{March 17}
+
+\textbf{Recall}: Let $(M, \omega)$ be a symplectic manifold and $f \in C^\infty(M)$.
+Then we can define the Hamiltonian vector field $X_f$ by $i_{X_f} \omega = -df$.
+
+\subsection{Poisson bracket}
+
+  For any vector field $Y$, we have
+  \[ \omega(X_f, Y) = -df(Y) = -Y(f). \]
+
+  \begin{definition}
+    For any $f,g \in C^\infty(M)$, we define the \emph{Poisson bracket} $\{f, g\} \in C^\infty(M)$ by
+    \[ \{f, g\} \coloneqq \omega(X_f, X_g). \]
+  \end{definition}
+  Then we have
+  \[ \{f, g\} = -X_g(f) = X_f(g). \]
+  \begin{proposition}
+    The Poisson bracket satisfies the following properties:
+    \begin{itemize}
+      \item $\{f, g\} = -\{g, f\}$ (antisymmetry);
+      \item $\{f, gh\} = \{f, g\}h + g\{f, h\}$ (Leibniz rule);
+      \item $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$ (Jacobi identity).
+    \end{itemize}
+  \end{proposition}
+  \begin{proof}
+    Homework.
+    % \Yang{}
+  \end{proof}
+
+  \begin{definition}
+    Assume $V$ is a commutative associative algebra over $\bbR$.
+    If there is a bilinear map $\{\cdot, \cdot\} : V \times V \to V$ such that
+    \begin{itemize}
+      \item $\{f, g\} = -\{g, f\}$ (antisymmetry);
+      \item $\{f, gh\} = \{f, g\}h + g\{f, h\}$ (Leibniz rule);
+      \item $\{f, \{g, h\}\} + \{g, \{h, f\}\} + \{h, \{f, g\}\} = 0$ (Jacobi identity).
+    \end{itemize}
+    Then we call $(V, \{\cdot, \cdot\})$ a \emph{Poisson algebra}.
+  \end{definition}
+
+  \begin{remark}
+    If we forget the multiplicative structure and the Leibniz rule, then the antisymmetry and the Jacobi identity imply that $(V, \{\cdot, \cdot\})$ is a Lie algebra.
+  \end{remark}
+
+  Hence, we have shown that $(C^\infty(M), \{\cdot, \cdot\})$ is a Poisson algebra.
+
+  \begin{definition}
+    A \emph{Poisson manifold} is a smooth manifold $M$ equipped with a Poisson algebra structure on $C^\infty(M)$.
+  \end{definition}
+
+  \begin{corollary}
+    A symplectic manifold is a Poisson manifold.
+  \end{corollary}
+  
+  \begin{lemma}
+    For any $f, g \in C^\infty(M)$, we have
+    \[ X_{\{f, g\}} = [X_f, X_g]. \]
+  \end{lemma}
+  \begin{proof}
+    This is a consequence of \cref{prop:Lie_brakect_of_symplectic_vector_fields}.
+  \end{proof}
+
+  \begin{corollary}
+    The map $f \mapsto X_f$ is a Lie algebra homomorphism from $(C^\infty(M), \{\cdot, \cdot\})$ to the Lie algebra of vector fields on $M$.
+  \end{corollary}
+
+  \begin{proposition}\label{prop:Lie_brakect_of_symplectic_vector_fields}
+    If $X,Y$ are symplectic vector fields on a symplectic manifold $(M, \omega)$, then 
+    \[ X_{\omega(X, Y)} = [X, Y]. \]
+  \end{proposition}
+  \begin{proof}
+    We have 
+    \[ i_{[Y, Z]} \omega = i_{\calL_Y Z} \omega = \calL_Y (i_Z \omega) - i_Z (\calL_Y \omega) \]
+    since $\calL_Y$ is a derivation. 
+    Note that $\calL_Y \omega = 0$ since $Y$ is a symplectic vector field. 
+    For the first term, we have
+    \[ \calL_Y (i_Z \omega) = d(i_Y i_Z \omega) + i_Y d(i_Z \omega) = d(i_Y i_Z \omega) \]
+    by Cartan's formula and $Z$ being symplectic.
+    Hence, we have
+    \[ i_{[Y, Z]} \omega = d(i_Y i_Z \omega) = -d(\omega(Y, Z)). \]
+    Therefore, we have $[Y, Z]$ is the Hamiltonian vector field of $\omega(Y, Z)$.
+  \end{proof}
+
+  Let $G$ be a Lie group with Lie algebra $\frakg$.
+  Recall that the orbits of the co-adjoint action of $G$ on $\frakg^*$ have a natural symplectic structure.
+  However, $\frakg^*$ itself is not a symplectic manifold.
+  For example, its dimension is odd when $\dim G$ is odd.
+
+  For any $f,h \in C^\infty(\frakg^*)$, $\xi \in \frakg^*$,
+  \[ df |_\xi \in T_\xi^* \frakg^* \cong \frakg^{**} \cong \frakg. \]
+  Similarly, we have $dh |_\xi \in \frakg$.
+  Hence, we can take the Lie bracket of $df |_\xi$ and $dh |_\xi$ in $\frakg$.
+  Vary $\xi$, we get a smooth function 
+  \[ \{f,h\}: \xi \mapsto \left< \xi, [df |_\xi, dh |_\xi] \right> \]
+  on $\frakg^*$, where $\left< \cdot, \cdot \right>$ is the natural pairing between $\frakg^*$ and $\frakg$.
+ 
+  \begin{proposition}
+    Above discussion defines a Poisson bracket on $C^\infty(\frakg^*)$.
+  \end{proposition}
+  \begin{proof}
+    Homework.
+  \end{proof}
+
+  \begin{remark}
+    If $\dim G$ is odd, then $\frakg^*$ is not a symplectic manifold, but it is a Poisson manifold.
+  \end{remark}
+
+  Let $M$ be an orbit of the co-adjoint action of $G$ on $\frakg^*$ of positive dimension.
+  Then $M$ has a natural symplectic structure $\omega$.
+
+  \begin{proposition}
+    For $f,h \in C^\infty(\frakg^*)$, we have $\{f,h\} |_{M} = \omega(X_f, X_h)$.
+  \end{proposition}
+  \begin{proof}
+    Homework.
+  \end{proof}
+
+  \begin{remark}
+    We can decompose $\frakg^*$ into the disjoint union of the orbits of the co-adjoint action of $G$ on $\frakg^*$, which are symplectic manifolds.
+    This is a \emph{singular foliation}.
+    In this foliation, every leaf is a symplectic manifold, but the dimension of the leaves may vary.
+    Such a foliation is called a \emph{symplectic foliation}.
+    Indeed, any Poisson manifold has a natural symplectic foliation.
+  \end{remark}
+
+  \begin{lemma}
+    Let $M$ be a Poisson manifold.
+    Let $(x_1, \dots, x_n)$ be a local coordinate system on $M$.
+    For any $f,g \in C^\infty(M)$, we have
+    \[ \{f, g\} = \sum_{i,j} \{x_i,x_j\} \frac{\partial f}{\partial x_i} \frac{\partial g}{\partial x_j}. \]
+  \end{lemma}
+  \begin{proof}
+    Since $X_f$ is a derivation on $C^\infty(M)$, we have
+    \[ X_f = \sum_i a_i(x) \frac{\partial }{\partial x_i}. \]
+    Acting $X_f$ on $x_j$, we have
+    \[ X_f(x_j) = \sum_i a_i(x) \frac{\partial x_j}{\partial x_i} = a_j(x). \]
+    Hence, we have
+    \[ a_j(x) = \{f, x_j\} = -\{x_j, f\}. \]
+    Repeating the above process, we have
+    \[ \{x_j, - \} = \sum_i \{x_j, x_i\} \frac{\partial }{\partial x_i}. \]
+    Therefore, we have
+    \[ a_j(x) = -\{x_j, f\} = -\sum_i \{x_j, x_i\} \frac{\partial f}{\partial x_i}. \]
+    Finally, we get
+    \[ \{f, g\} = X_f(g) = \sum_j a_j(x) \frac{\partial g}{\partial x_j} = \sum_{i,j} \{x_i,x_j\} \frac{\partial f}{\partial x_i} \frac{\partial g}{\partial x_j}. \]
+  \end{proof}
+
+  Suppose that $(M, \omega)$ is a symplectic manifold with local coordinates $(x_1, \dots, x_n)$.
+  Write $\omega = \frac{1}{2} \sum_{i,j} \omega_{ij} dx_i \wedge dx_j$, where $\omega_{ij} = \omega(\partial_{x_i}, \partial_{x_j})$.
+  We have 
+  \[ -d x_i = i_{X_{x_i}} \omega =  \sum_j \{x_i, x_j\} i_{\partial_{x_j}} \omega = \sum_j \{x_i, x_j\} \sum_k \omega_{jk} dx_k. \]
+  Hence, we have
+  \[ \sum_j \{x_i, x_j\} \omega_{jk} = -\delta_{ik}. \]
+  In matrix form, we have
+  \[ (\{x_i, x_j\}) = -(\omega_{ij})^{-1}. \]
+
+  \begin{corollary}\label{cor:symplectic_manifold_has_non-degenerated_Poisson_bracket}
+    If $\{-, -\}$ comes from a symplectic structure, then the matrix $(\{x_i, x_j\})$ is invertible.
+  \end{corollary}
+
+  \begin{remark}
+    The converse of \cref{cor:symplectic_manifold_has_non-degenerated_Poisson_bracket} is also true.
+    That is, if the matrix $(\{x_i, x_j\})$ is invertible, then $\{-, -\}$ comes from a symplectic structure.
+  \end{remark}
