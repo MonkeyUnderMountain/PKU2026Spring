@@ -1,0 +1,219 @@
+\section{March 19}
+
+\subsection{Chern classes}
+
+  \begin{definition}
+    Let $X$ be a scheme.
+    Denote by $R_X \subset \End(\CH_\bullet (X))$ the commutative subring generated  by the Segre classes of vector bundles on $X$.
+    Let $E$ be a vector bundle on $X$ of rank $r$.
+    Define the \emph{Segre polynomial} by 
+    \[ s_t(E) \coloneqq \sum_{j \geq 0} s_i(E) t^j \in R_X [[t]]. \]
+    Define the \emph{Chern polynomial} by
+    \[ c_t(E) \coloneqq s_t(E)^{-1} \in R_X [[t]] \]
+    and the \emph{$j$-th Chern class} in $R_X$ by
+    \[ c_j(E) \coloneqq \text{the coefficient of } t^j \text{ in } c_t(E). \]
+  \end{definition}
+
+  The first few Chern classes are given by
+  \begin{align*}
+    c_0(E) & = 1, \\
+    c_1(E) & = -s_1(E), \\
+    c_2(E) & = s_1(E)^2 - s_2(E), \\
+    c_3(E) & = -s_1(E)^3 + 2 s_1(E) s_2(E) - s_3(E).
+  \end{align*}
+  \Yang{check}
+
+  Thus the homomorphisms $s_j(E), c_j(E): \CH_\bullet(X) \to \CH_{\bullet - j}(X)$ shift the degree by $j$.
+  Hence for any $j > \dim X$, we have $s_j(E) = c_j(E) = 0$.
+  This implies that $s_t(E), c_t(E) \in R_X [t]$ are polynomials of degree at most $\dim X$.
+
+  \begin{theorem}
+    \begin{enumerate}
+      \item Let $E$ be a vector bundle on a scheme $X$ of rank $r$.
+        Then $c_j(E) = 0$ for any $j > r$.
+      \item Let $E,E'$ be vector bundles on a scheme $X$, $\alpha \in \CH_i(X)$.
+        Then $c_j(E) \cap (c_{j'}(E') \cap \alpha) = c_{j'}(E') \cap (c_j(E) \cap \alpha)$ for any $j,j' \geq 0$.
+      \item Let $f: X \to Y$ be a proper morphism, $E$ a vector bundle on $Y$, $\alpha \in \CH_i(X)$.
+        Then $f_* (c_j(f^* E) \cap \alpha) = c_j(E) \cap f_* \alpha \in \CH_{i-j}(Y)$.
+      \item Let $f: X \to Y$ be a flat morphism of relative dimension $n$, $E$ a vector bundle on $Y$, $\alpha \in \CH_i(Y)$.
+        Then $f^* (c_j(E) \cap \alpha) = c_j(f^* E) \cap f^* \alpha \in \CH_{i+n-j}(X)$.
+      \item (Whitney sum formula) Let $0 \to E' \to E \to E'' \to 0$ be a short exact sequence of vector bundles on a scheme $X$.
+        Then $c_t(E) = c_t(E') c_t(E'')$ in $R_X [[t]]$.
+      \item Let $L$ be a line bundle on a scheme $X$.
+        Then $c_1(L)$ defined above coincides with the first Chern class defined in the previous lecture.
+    \end{enumerate}
+  \end{theorem}
+  \begin{proof}
+    The assertions (b)(c)(d) and (f) follows from the corresponding properties of Segre classes using that $c_j(E)$ is a polynomial in $s_1(E), \dots, s_j(E)$ which does not depend on $E$.
+    For instance, in situation of (c), for $j = 2$, we have
+    \[ f_* (c_2(f^* E) \cap \alpha) = f_* ((s_1(f^* E)^2 - s_2(f^* E)) \cap \alpha) = (s_1(E)^2 - s_2(E)) \cap f_* \alpha = c_2(E) \cap f_* \alpha. \]
+
+    Toward the proof of (a) and (e), the challenge is that a short exact sequence of vector bundles does not necessarily split, as opposed to the case of differential geometry.
+    However, we have the Splitting Principle (\cref{thm:splitting_principle}).
+    Then (a) immediately follows from \cref{prop:chern_classes_of_vector_bundles_and_its_filtration_by_line_bundles}.
+    For (e), note that the filtrations of $E', E''$ induce a filtration of $E$ with successive quotients being the line bundles $L_u' = E'^{u-1} / E'^u$ and $L_u'' = E''^{u-1} / E''^u$.
+    By \cref{prop:chern_classes_of_vector_bundles_and_its_filtration_by_line_bundles}, we have
+    \[ c_t(E) = \prod_{u=1}^r (1 + c_1(L_u) t) = \prod_{u=1}^{r'} (1 + c_1(L_u') t) \prod_{u=1}^{r''} (1 + c_1(L_u'') t) = c_t(E') c_t(E''). \]
+  \end{proof}
+
+  \begin{lemma}[Splitting Principle]\label{thm:splitting_principle}
+    Let $E$ be a vector bundle on a scheme $X$.
+    Then there exists a flat morphism $f: X' \to X$ of constant relative dimension such that 
+    \begin{enumerate}
+      \item $f^*: \CH_\bullet(X) \to \CH_{\bullet} (X')$ is injective, and
+      \item $F = f^* E$ admits a filtration by subbundles 
+        \[ F = F^0 \supset F^1 \supset \cdots \supset F^r = 0 \]
+        such that each successive quotient $L_u = F^{u-1} / F^u$ is a line bundle on $X'$.
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    Let $p: \bbP(E) \to X$ be the projective bundle of lines in $E$.
+    Then we have the Euler sequence
+    \[ 0 \to \calO_{\bbP(E)}(-1) \to p^* E \to \calT_{\bbP(E)/X} \to 0, \]
+    where $\calO_{\bbP(E)}(-1)$ is the tautological line bundle on $\bbP(E)$ and $\calT_{\bbP(E)/X}$ is the relative tangent bundle.
+    Note that $\calO_{\bbP(E)}(-1)$ is a subbundle of $p^* E$ and $\calT_{\bbP(E)/X}$ has rank $r-1$.
+    Replacing $X$ by $\bbP(E)$ and $E$ by $\calT_{\bbP(E)/X}$ and iterating this construction, we obtain the desired morphism $f: X' \to X$ and the filtration of $F = f^* E$.
+  \end{proof}
+
+  \begin{lemma}\label{lem:nowhere_vanishing_section_implies_vanishing_product_of_chern_classes}
+    Let $E$ be a vector bundle on a scheme $X$ with a filtration by subbundles
+    \[ E = E^0 \supset E^1 \supset \cdots \supset E^r = 0 \]
+    such that each successive quotient $L_u = E^{u-1} / E^u$ is a line bundle on $X$.
+    Assume $E$ admits a nowhere vanishing section $s$.
+    Then 
+    \[ \prod_{u=1}^r c_1(L_u) = 0 \in R_X. \]
+  \end{lemma}
+  \begin{proof}
+    ETS there exists $u$ such that $L_u$ admits a nowhere vanishing section $s_u$.
+    Then $L_u \cong \calO_X$ and $c_1(L_u) = 0$.
+    We have a short exact sequence of vector bundles 
+    \[ 0 \to E^1 \to E \to L_1 \to 0. \]
+    Let $s_1$ be the image of $s$ in $L_1$.
+    If $s_1$ is nonzero, then $L_1$ admits a nowhere vanishing section and we are done.
+    Assume $s_1$ has zero locus $Y$.
+    Then $E^1|_Y$  has an induced nowhere vanishing section.
+    Replace $E$ by $E^1|_Y$ and repeat the above argument.
+    The we are done
+    \Yang{}
+  \end{proof}
+
+  \begin{proposition}\label{prop:chern_classes_of_vector_bundles_and_its_filtration_by_line_bundles}
+    Let $E$ be a vector bundle on a scheme $X$ of rank $r$ with a filtration by subbundles
+    \[ E = E^0 \supset E^1 \supset \cdots \supset E^r = 0 \]
+    such that each successive quotient $L_u = E^{u-1} / E^u$ is a line bundle on $X$.
+    Then 
+    \[ c_t(E) = \prod_{u=1}^r (1 + c_1(L_u) t) \in R_X [t]. \]
+  \end{proposition}
+  \begin{proof}
+    Let $p: \bbP(E) \to X$ be the projective bundle of lines in $E$.
+    By the Euler sequence, we have $ 0 \to \calO_{\bbP(E)} \to (p^* E) \otimes \calO_{\bbP(E)}(1)$ is exact.
+    That is, $(p^* E) \otimes \calO_{\bbP(E)}(1)$ admits a nowhere vanishing section.
+    Note that $(p^* E) \otimes \calO_{\bbP(E)}(1)$ admits a filtration by subbundles with successive quotients $p^*L_u \otimes \calO_{\bbP(E)}(1)$.
+    By \cref{lem:nowhere_vanishing_section_implies_vanishing_product_of_chern_classes}, we have 
+    \begin{equation}\label{eq:product_of_twisted_chern_classes_vanishes}
+      \prod_{u=1}^r c_1(p^*L_u \otimes \calO_{\bbP(E)}(1)) = 0.
+    \end{equation}
+    Let $\eta \coloneqq c_1(\calO_{\bbP(E)}(1))$, $\sigma_u$ (resp. $\overline{\sigma_u}$) be the $u$-th elementary symmetric polynomial in $c_1(L_1), \ldots, c_1(L_r)$ (resp. $c_1(p^*L_1), \dots, c_1(p^*L_r)$).
+    Then by \eqref{eq:product_of_twisted_chern_classes_vanishes}, we have
+    \[ \prod_{u=1}^r (c_1(p^*L_u) + \eta) = \sum_{j=0}^r \overline{\sigma_j} \eta^{r-j} = 0. \]
+    Hence $\forall j \geq 0$, we have
+    \[ \eta^{r-1+j} + \overline{\sigma_1} \eta^{r-1+j-1} + \cdots + \overline{\sigma_r} \eta^{r-1+j-r} = 0. \]
+    By the projective bundle formula, we have
+    \[ p_*\big( \eta^{r-1+j} + \overline{\sigma_1} \eta^{r-1+j-1} + \cdots + \overline{\sigma_r} \eta^{r-1+j-r} \big) = 0. \]
+    That is, 
+    \[ s_j(E) + \sigma_1 s_{j-1}(E) + \cdots + \sigma_j s_0(E) = 0. \]
+    In addition, using $s_0(E) = 1$, we get
+    \[ (1 + \sigma_1 t + \cdots + \sigma_r t^r) s_t(E) = 1. \]
+    This implies $c_t(E) = 1 + \sigma_1 t + \cdots + \sigma_r t^r$ as desired.\Yang{to be revised.}
+  \end{proof}
+
+
+\subsection{Chern roots}
+
+  Let $E$ be a vector bundle on a scheme $X$ of rank $r$ on a scheme $X$.
+  Imagine $E$ has "roots":
+  \[ c_t(E) = \prod_{u=1}^r (1 + \alpha_u t) \in R_X [t]. \]
+  Then $\alpha_1, \dots, \alpha_r$ are called the \emph{Chern roots} of $E$.
+  Each $c_j(E)$ is the $j$-th elementary symmetric polynomial in $\alpha_1, \dots, \alpha_r$.
+  Hence any symmetric polynomial in $\alpha_1, \dots, \alpha_r$ can be expressed as a polynomial in $c_1(E), \dots, c_r(E)$.
+  In practice, we may pretend as if $E$ splits (i.e. $E \cong L_1 \oplus \cdots \oplus L_r$) and $\alpha_u = c_1(L_u)$.
+
+  \begin{example}
+    Let $E$ be a vector bundle on a scheme $X$ of rank $r$.
+    If $c_t(E) = \prod_{u=1}^r (1 + \alpha_u t)$, then 
+    \[ c_t(E^\vee) = \prod_{u=1}^r (1 - \alpha_u t) \]
+    and $c_j(E^\vee) = (-1)^j c_j(E)$.
+    Indeed, if $E$ has a filtration with successive quotients $L_u$, then $E^\vee$ has a filtration with successive quotients $L_u^\vee$.
+    Note that $c_1(L_u^\vee) = - c_1(L_u)$.
+
+    For another example, let $E, F$ be vector bundles on a scheme $X$ of rank $r, s$ respectively.
+    If $c_t(E) = \prod_{u=1}^r (1 + \alpha_u t)$ and $c_t(F) = \prod_{u=1}^{s} (1 + \beta_u t)$, then
+    \[ c_t(E \otimes F) = \prod_{u=1}^r \prod_{v=1}^s (1 + (\alpha_u + \beta_v) t). \]
+
+    Similarly, we can get
+    \[ c_t(\bigwedge^m E) = \prod_{1 \leq u_1 < \cdots < u_m \leq r} (1 + (\alpha_{u_1} + \cdots + \alpha_{u_m}) t). \]
+    In particular, $c_1(\bigwedge^r E) = c_1(E)$.
+  \end{example}
+
+  \begin{example}
+    Let $i: X \hookrightarrow Y$ be a closed embedding of smooth projective varieties of codimension $d$.
+    We have the tangent exact sequence
+    \[ 0 \to \calT_X \to i^* \calT_Y \to N_{X/Y} \to 0, \]
+    where $\calT_X, \calT_Y$ are the tangent bundles of $X, Y$ respectively and $N_{X/Y}$ is the normal bundle of $X$ in $Y$.
+    By the Whitney sum formula, we have
+    \[ c(\calT_X) = c(i^* \calT_Y) c(N_{X/Y})^{-1}. \]
+    Here $c(E) = 1 + c_1(E) + c_2(E) + \cdots$ is the total Chern class of $E$.
+    Looking at the degree $1$ part, we get
+    \[ c_1(\calT_X) = i^* c_1(\calT_Y) - c_1(N_{X/Y}). \]
+    Note that $c_1(\calT_X) = - K_X$.
+    Then 
+    \[ K_X = K_Y|_X + \wedge^d N_{X/Y}. \]
+    This is the adjunction formula.
+    When $d = 1$, we have $N_{X/Y} = \calO_X(X)$ and the adjunction formula becomes $K_X = (K_Y + X)|_X$.
+    When $X$ is a curve in a surface $Y$, we have $K_X = (K_Y + X)|_X$ and hence $2g(X) - 2 = K_X \cdot X = (K_Y + X) \cdot X$.
+    This is the genus-degree formula for curves in surfaces.
+  \end{example}
+
+  \begin{example}
+    Let $E$ be a vector bundle on a scheme $X$ of rank $r$ with Chern roots $\alpha_1, \dots, \alpha_r$.
+    Define the \emph{Chern character} of $E$ by
+    \[ \ch(E) \coloneqq \sum_{i=1}^r \exp(\alpha_i) \in (R_X \otimes_\bbZ \bbQ) [[t]]. \]
+    We have 
+    \[ \ch(E) = r + c_1(E) + \frac{1}{2} \big(c_1(E)^2 - 2 c_2(E)\big) + \cdots. \]
+
+    Define the \emph{Todd class} of $E$ by
+    \[ \td(E) \coloneqq \prod_{u=1}^r \frac{\alpha_u}{1 - \exp(-\alpha_u)} \in (R_X \otimes_\bbZ \bbQ) [[t]]. \]
+    We have
+    \[ \td(E) = 1 + \frac{1}{2} c_1(E) + \frac{1}{12} \big(c_1(E)^2 + c_2(E)\big) + \cdots. \]
+
+    If $0 \to E' \to E \to E'' \to 0$ is a short exact sequence of vector bundles on a scheme $X$, then \[ \ch(E) = \ch(E') + \ch(E'') \quad \text{and} \quad \td(E) = \td(E') \td(E''). \]
+
+    And the Chern character is multiplicative with respect to the tensor product, i.e. 
+    \[ \ch(E \otimes F) = \ch(E) \ch(F). \]
+  \end{example}
+
+
+\subsection{Segre class of cones}
+
+
+  \begin{definition}
+    Let $X$ be a scheme. 
+    Let $\calS^\bullet$ be a graded $\calO_X$-algebra such that $\calO \surjmap \calS^0$ and $\calS^1$ is a coherent sheaf on $X$ and $\calS^\bullet$ is generated by $\calS^1$ as an $\calO_X$-algebra.
+    Define $C = \calSpec_X \calS^\bullet$ and $\bbP(C) = \calProj_X \calS^\bullet$.
+    The the projection $p: \bbP(C) \to X$ is proper but not necessarily flat.
+    Define $\bbP(C \oplus \theta) = \calProj_X (\calS^\bullet [t])$ and the projection $q: \bbP(C \oplus \theta) \to X$.
+    Define the \emph{Segre class} of $C$ by
+    \[ s(C) \coloneqq q_* \bigg( \sum_{j \geq 0} c_1(\calO_{\bbP(C \oplus \theta)}(1))^j \cap [\bbP(C \oplus \theta)] \bigg) \in \CH_\bullet(X). \]
+  \end{definition}
+
+  \begin{lemma}
+    \begin{enumerate}
+      \item Let $E$ be a vector bundle on a scheme $X$.
+        Then $s(E) = s(E) \cap [X]$ coincides with the Segre class of $E$ defined in the previous lecture.
+      \item Let $C$ be a cone on a scheme $X$ and $E$.
+    \end{enumerate}
+    \Yang{}
+  \end{lemma}
+  \begin{proof}
+    \Yang{}
+  \end{proof}

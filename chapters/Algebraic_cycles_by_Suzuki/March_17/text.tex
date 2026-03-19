@@ -1,14 +1,36 @@
 \section{March 17}
 
-\paragraph{Recall}:
+\paragraph{Recall:}
 For a line bundle $L$ on a scheme $X$, we have defined:
 \[ c_1(L) \cap : \CH_i(X) \to \CH_{i-1}(X), \quad [V] \mapsto c_1(L) \cap [V] \coloneqq \text{ the class of } L|_V. \]
 
-\begin{proposition}
-  We have the following properties of the first Chern class operator:
-  % \begin{enumerate}
-  \Yang{}
+\begin{proposition}\label{prop:properties_of_intersection_with_first_chern_class_operator}
+  We have the following properties of the first Chern class operator.
+  \begin{enumerate}
+    \item Let $L,L'$ be line bundles on a scheme $X$, $\alpha, \alpha' \in \CH_i(X)$.
+      Then
+      \begin{align*}
+        c_1(L \otimes L') \cap \alpha & = c_1(L) \cap \alpha + c_1(L') \cap \alpha, \\
+        c_1(L) \cap (\alpha + \alpha') & = c_1(L) \cap \alpha + c_1(L) \cap \alpha', \\
+        c_1(L^\vee) \cap \alpha & = - c_1(L) \cap \alpha \in \CH_{i-1}(X).
+      \end{align*}
+    \item Let $f: X \to Y$ be a proper morphism, $L$ be a line bundle on $Y$ and $\alpha \in \CH_i(X)$.
+      Then
+      \[ f_*( c_1(f^*L) \cap \alpha ) = c_1(L) \cap f_*\alpha \in \CH_{i-1}(Y). \]
+    \item Let $f: X \to Y$ be a flat morphism of relative dimension $n$, $L$ be a line bundle on $Y$ and $\alpha \in \CH_i(Y)$.
+      Then
+      \[ f^*( c_1(L) \cap \alpha ) = c_1(f^*L) \cap f^*\alpha \in \CH_{i+n-1}(X). \]
+    \item Let $L,L'$ be line bundles on a scheme $X$ and $\alpha \in \CH_i(X)$.
+      Then
+      \[ c_1(L) \cap ( c_1(L') \cap \alpha ) = c_1(L') \cap ( c_1(L) \cap \alpha ) \in \CH_{i-2}(X). \]
+  \end{enumerate}
+  % \Yang{}
 \end{proposition}
+\begin{proof}
+  The assertions (a)-(c) follow from the corresponding properties of pseudo-divisors in \cref{prop:basic_properties_of_intersection_with_pseudo-divisors}.
+  For (d), we can assume $\alpha = [X]$ and $X$ is a variety.
+  Then it follows from \cref{thm:commutativity_of_intersection_with_cartier_divisors}.
+\end{proof}
 
 
 \subsection{Vector bundles and projective bundles}
@@ -27,7 +49,7 @@ For a line bundle $L$ on a scheme $X$, we have defined:
 
   \begin{remark}
     In \cite{Har77}, he defines the projective bundle $\bbP(\calE) = \calProj_X(\Sym^\bullet \calE)$, which parametrizes hyperplanes in the fibers of $E$.
-    Its $\bbP(E)$ is the dual projective bundle of our $\bbP(\calE)$.
+    Its $\bbP(\calE)$ is the dual projective bundle of our $\bbP(E)$.
   \end{remark}
 
   \begin{remark}
@@ -40,8 +62,8 @@ For a line bundle $L$ on a scheme $X$, we have defined:
     \begin{enumerate}
       \item The pullback $\pi^*: \CH_i(X) \to \CH_{i+r}(E)$ is an isomorphism for all $i$.
       \item We have isomorphisms of abelian groups:
-        \[\theta_E : \bigoplus_{j=0}^{r-1} \CH_{i-j}(X) \to \CH_i(\bbP(E)), \quad (a_0, \ldots, a_{r-1}) \mapsto \sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*a_j. \]
-        \Yang{check the grading.}
+        \[\theta_E : \bigoplus_{j=0}^{r-1} \CH_{i-(r-1)+j}(X) \to \CH_i(\bbP(E)), \quad (a_0, \ldots, a_{r-1}) \mapsto \sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*a_j. \]
+        % \Yang{check the grading.}
     \end{enumerate}
   \end{theorem}
 
@@ -190,8 +212,12 @@ For a line bundle $L$ on a scheme $X$, we have defined:
       Then
       \[ f^*( s_j(E) \cap \alpha ) = s_j(f^*E) \cap f^*\alpha. \]
 
-      \item Let $L$ be a line bundle on $X$, $\alpha \in \CH_i(X)$.
-      Then $s_1(L) \cap \alpha = -c_1(L) \cap \alpha$.
+      \item Let $E,E'$ be vector bundles of rank $r,r'$ on $X$ respectively, $\alpha \in \CH_i(X)$.
+      Then
+      \[ s_j(E) \cap ( s_{j'}(E') \cap \alpha ) = s_{j'}( E') \cap ( s_j(E) \cap \alpha ). \]
+
+      \item Let $L$ be a line bundle on $X$ and $\alpha \in \CH_i(X)$.
+      Then $s_1(L) \cap \alpha = - c_1(L) \cap \alpha$.
     \end{enumerate}
   \end{proposition}
   \begin{proof}

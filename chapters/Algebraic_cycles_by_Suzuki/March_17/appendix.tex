@@ -1,1 +1,29 @@
 \section{Appendix}
+
+  \begin{proposition}\label{prop:basic_properties_of_intersection_with_pseudo-divisors}
+    We have the following basic properties.
+    \begin{enumerate}
+      \item Let $X$ be a scheme, $D,D'$ be pseudo-divisors on $X$, $\alpha,\alpha'$ be $i$-cycles on $X$.
+        Then 
+        \[ D \cdot (\alpha + \alpha') = D \cdot \alpha + D \cdot \alpha' \in \CH_{i-1}(|D| \cap (|\alpha| \cup |\alpha'|)). \]
+
+      \item The same as (a). 
+        We have 
+        \[ (D + D') \cdot \alpha = D \cdot \alpha + D' \cdot \alpha \in \CH_{i-1}\big((|D| \cup |D'|) \cap |\alpha|\big). \]
+
+      \item Let $f: X \to Y$ be a proper morphism, $\alpha$ be an $i$-cycle on $X$, $D$ be a pseudo-divisor on $Y$, 
+        then $f_* (f^* D \cdot \alpha) = D \cdot f_* \alpha \in \CH_{i-1}(|D| \cap f(|\alpha|))$.
+
+      \item Let $f:X \to Y$ be a flat morphism of relative dimension $n$, $\alpha$ be an $i$-cycle on $Y$, $D$ be a pseudo-divisor on $Y$, then 
+        \[ f^* (D \cdot \alpha) = f^* D \cdot f^* \alpha \in \CH_{i+n-1}(f^{-1} (|D|) \cap f^{-1}(|\alpha|)). \]
+
+      \item Let $D$ be a pseudo-divisor on a scheme $X$ s.t. $L_D \cong \calO_X$.
+        Then, for all $i$-cycles $\alpha$ on $X$, $D \cdot \alpha = 0 \in \CH_{i-1} (|\alpha|).$
+    \end{enumerate} 
+  \end{proposition}
+
+    \begin{theorem}\label{thm:commutativity_of_intersection_with_cartier_divisors}
+    Let $D,D'$ be Cartier divisors on an $n$-dimensional variety $X$.
+    Then 
+    \[  D \cdot [D'] = D' \cdot [D] \in \CH_{n-2}(|D| \cap |D'|). \]
+  \end{theorem}
