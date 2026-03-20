@@ -1,0 +1,142 @@
+\section{March 19}
+
+
+\subsection{Hamiltonian mechanics}
+
+  Assume that $(M,g,J,\omega)$ is a (almost) K\"ahler manifold, where $g$ is the Riemannian metric, $J$ is the complex structure, and $\omega$ is the K\"ahler form.
+  We have 
+  \[ \omega(X,Y) = g(JX,Y), \quad \forall X,Y \in TM. \]
+  For all $f \in C^\infty(M)$, let $\nabla f$ be the gradient of $f$ with respect to $g$.
+  We have 
+  \[ g \left( \nabla f, X \right) = X(f), \quad \forall X \in TM. \]
+  Let $X_f$ be the Hamiltonian vector field of $f$ with respect to $\omega$, i.e.,
+  \[ \omega(X_f, Y) = -Y(f), \quad \forall Y \in TM. \]
+  Then we have
+  \[ \omega(X_f, Y) = -g(\nabla f, Y) = g(J \nabla f, Y), \quad \forall Y \in TM. \] 
+  Hence, we have $X_f = J \nabla f$.
+  We prove the following lemma.
+
+  \begin{lemma}
+    Let $(M,g,J,\omega)$ be a (almost) K\"ahler manifold. 
+    For all $f \in C^\infty(M)$, we have
+    \[ X_f = J \nabla f. \]
+  \end{lemma}
+
+  \begin{example}
+    Let $M = \bbR^{2n}$ with  real coordinates $(q_1, \ldots, q_n, p_1, \ldots, p_n)$.
+    Then we have the standard K\"ahler structure $\omega = \sum_{i=1}^n dq_i \wedge dp_i$, $g(\partial_{q_i}, \partial_{q_j}) = g(\partial_{p_i}, \partial_{p_j}) = \delta_{ij}$, $g(\partial_{q_i}, \partial_{p_j}) = 0$ and $J \partial_{q_i} = \partial_{p_i}$, $J \partial_{p_i} = -\partial_{q_i}$.
+    
+    Let $H \in C^\infty(\bbR^{2n})$.
+    Then we have
+    \[ \nabla H = \sum_{i=1}^n \left( \frac{\partial H}{\partial q_i} \partial_{q_i} + \frac{\partial H}{\partial p_i} \partial_{p_i} \right). \]
+    It follows that
+    \[ X_H = J \nabla H = \sum_{i=1}^n \left( - \frac{\partial H}{\partial p_i} \partial_{q_i} + \frac{\partial H}{\partial q_i} \partial_{p_i} \right). \]
+    Let $\gamma(t) = (q_1(t), \ldots, q_n(t), p_1(t), \ldots, p_n(t))$ be an integral curve of $X_H$, i.e., $\dot{\gamma}(t) = X_H(\gamma(t))$.
+    Then we have
+    \[ \dot{q}_i(t) = -\frac{\partial H}{\partial p_i}, \quad \dot{p}_i(t) = \frac{\partial H}{\partial q_i}, \quad i = 1, \ldots, n. \]
+    These are the \emph{Hamilton's equations}.
+    % \Yang{}
+  \end{example}
+
+  \begin{example}
+    Assume a particle of mass $m$ moves in configuration space $\bbR^3$ under a potential $V \in C^\infty(\bbR^3)$.
+    If the trajectory of the particle is $\gamma(t) = (q_1(t), q_2(t), q_3(t))$, by Newton's second law, we have
+    \[ m \ddot{\gamma}(t) = -\nabla V. \]
+    In coordinates, we have
+    \[ m \ddot{q}_i(t) = -\frac{\partial V}{\partial q_i}, \quad i = 1,2,3. \]
+    Set $p_i = m \dot{q}_i$.
+    This is the \emph{momentum} of the particle.
+    Then we have
+    \begin{equation}\label{eq:Newton_second_law}
+      \dot{p}_i(t) = m \ddot{q}_i(t) = -\frac{\partial V}{\partial q_i}, \quad i = 1,2,3.
+    \end{equation}  
+    Set $\bbR^6 = T^*\bbR^3$ with coordinates $(q_1, q_2, q_3, p_1, p_2, p_3)$.
+    This is the \emph{phase space} of the particle.
+
+    Let 
+    \[ H = -\left( \frac{1}{2m} \|p\|^2 + V(q) \right) \in C^\infty(\bbR^6). \]
+    The $-H$ is the \emph{total energy} of the particle.
+    Let $\beta(t) = (q_1(t), q_2(t), q_3(t), p_1(t), p_2(t), p_3(t))$ be an integral curve of $X_H$.
+    We have 
+    \[ \frac{\partial H}{\partial q_i} = -\frac{\partial V}{\partial q_i}, \quad \frac{\partial H}{\partial p_i} = -\frac{1}{m} p_i, \quad i = 1,2,3. \]
+    By Hamilton's equations, we have
+    \begin{equation}\label{eq:hamilton_equations}
+      \dot{q}_i(t) = -\frac{\partial H}{\partial p_i} = \frac{1}{m} p_i, \quad \dot{p}_i(t) = \frac{\partial H}{\partial q_i} = -\frac{\partial V}{\partial q_i}, \quad i = 1,2,3.
+    \end{equation}
+    Hence the Hamilton's equations \eqref{eq:hamilton_equations} are equivalent to Newton's second law \eqref{eq:Newton_second_law}.
+  \end{example}
+
+  Let $(M,\omega)$ be a symplectic manifold, $H \in C^\infty(M)$ and $X_H$ be the Hamiltonian vector field of $H$.
+  Let $\gamma(t)$ be an integral curve of $X_H$.
+  
+  \begin{lemma}
+    A function $f \in C^\infty(M)$ is a constant of motion, i.e., $f(\gamma(t))$ is constant for all $t$, if and only if $\{H,f\} = 0$.
+  \end{lemma}
+  \begin{proof}
+    Let $\gamma(t)$ be an arbitrary integral curve of $X_H$.
+    We have
+    \[ \frac{d}{dt} f(\gamma(t)) = df(\dot{\gamma}(t)) = df(X_H) = -i_{X_f} \omega(X_H) = -\omega(X_f, X_H) = -\{f,H\}|_{\gamma(t)}. \]
+    The lemma follows immediately.
+  \end{proof}
+
+  \begin{definition}
+    If $\{f,H\} = 0$, we say that $f$ is a \emph{first integral} or \emph{integral of motion} of $H$.
+  \end{definition}
+
+  Note that $H$ is always a first integral of itself since $\{H,H\} = 0$.
+  This is the \emph{conservation of energy}.
+
+
+\subsection{Darboux's theorem}
+
+  \begin{theorem}\label{thm:Darboux}
+    For any symplectic manifold $(M,\omega)$ and any point $p \in M$, there exist local coordinates $(x_1, \ldots, x_m, y_1, \ldots, y_m)$ around $p$ such that
+    \[ \omega = \sum_{i=1}^m dx_i \wedge dy_i. \]
+   In particular, any two symplectic manifolds of the same dimension are locally symplectomorphic.
+  \end{theorem}
+  \begin{proof}
+    Induct on $m$.
+    Assume that the theorem holds for $m-1$.
+    Take $y_1 \in C^\infty(M)$ such that $dy_1(p) \neq 0$.
+    Let $X$ be the Hamiltonian vector field of $-y_1$.
+    Then we have $i_X \omega = dy_1$.
+    Then $X(p) \neq 0$ since $dy_1(p) \neq 0$.
+    There exists a function $x_1$ defined in a neighborhood of $p$ such that $X(x_1) \equiv 1$ on this neighborhood.
+    Without loss of generality, replace $M$ by this neighborhood and assume that $X(x_1) \equiv 1$ on $M$.
+    Let $Y$ be the Hamiltonian vector field of $x_1$.
+    Then we have $i_Y \omega = -dx_1$.
+    We have
+    \[ \omega(X,Y) = -(i_Y \omega)(X) = dx_1(X) \equiv 1. \]
+    By \cref{...}, since $X,Y$ are symplectic vector fields, we have 
+    \[ i_{[X,Y]} \omega =  - d(\omega(X,Y)) = 0. \]
+    Hence, we have $[X,Y] = 0$ by the non-degeneracy of $\omega$.
+    Then 
+    \[ Y(y_1) = dy_1(Y) = (i_X \omega)(Y) = \omega(X,Y) \equiv 1. \]
+    By Frobenius' theorem, there exist local coordinates $(x_1, y_1, z_1, \ldots, z_{2m-2})$ around $p$ such that $X = \partial_{x_1}$ and $Y = \partial_{y_1}$.
+    Let $\omega' = \omega - dx_1 \wedge dy_1$.
+    Then $\omega'$ is a closed 2-form.
+    We have $i_X \omega' = i_X \omega - i_X (dx_1 \wedge dy_1) = dy_1 - dy_1 = 0$ and $i_Y \omega' = i_Y \omega - i_Y (dx_1 \wedge dy_1) = -dx_1 + dx_1 = 0$.
+    So $\omega' = \sum_{i=1}^{2m-2} a_{ij} dz_i \wedge dz_j$.
+    Since $d\omega' = 0$, we have $a_{ij}$ does not depend on $x_1$ and $y_1$.
+    So $\omega'$ can be viewed as a closed 2-form on the $(2m-2)$-dimensional manifold with coordinates $(z_1, \ldots, z_{2m-2})$.
+    Note that 
+    \[ \wedge^m \omega = \left(\wedge^{m-1} \omega'\right) \wedge dx_1 \wedge dy_1 \neq 0. \]
+    Hence, $\wedge^{m-1} \omega' \neq 0$.
+    It follows that $\omega'$ is a symplectic form on the $(2m-2)$-dimensional manifold with coordinates $(z_1, \ldots, z_{2m-2})$.
+    By the induction hypothesis, there exist local coordinates $(x_2, \ldots, x_m, y_2, \ldots, y_m)$ around $p$ such that $\omega' = \sum_{i=2}^m dx_i \wedge dy_i$.
+    Hence, we have $\omega = \sum_{i=1}^m dx_i \wedge dy_i$.
+  \end{proof}
+
+  \begin{corollary}
+    There is no local invariant of symplectic manifolds other than the dimension.
+  \end{corollary}
+
+  Given any symplectic manifold $(M,\omega)$ and $H \in C^\infty(M)$.
+  Let $f$ be a first integral of $H$, i.e., $\{H,f\} = 0$.
+  For $p \in M$ with $df(p) \neq 0$, by the proof of Darboux's theorem (\cref{thm:Darboux}), there exist local coordinates $(x_1, \ldots, x_m, y_1, \ldots, y_m)$ around $p$ such that $\omega = \sum_{i=1}^m dx_i \wedge dy_i$ and $f = y_m$.
+  With the standard K\"ahler structure with respect to these coordinates, we have 
+  \[ X_f = J \nabla f = -\partial_{x_m}. \]
+  Since $\{H,f\} = 0$, we have 
+  \[ \frac{\partial H}{\partial x_m} = -\{H,f\} = 0. \]
+  Hence, $H$ does not depend on $x_m$.
+
