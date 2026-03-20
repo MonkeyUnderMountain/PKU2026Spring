@@ -1,0 +1,31 @@
+\section{Appendix}
+
+  \begin{theorem}[Local reciprocity law]\label{thm:local_reciprocity_law}
+      Let $K$ be a NA local field.
+      There exists a unique homomorphism
+      \[ \phi_K : K^\times \to \Gal(K^\ab/ K) \]
+      with the following properties.
+      \begin{enumerate}
+          \item For all prime element $\pi$ of $K$ and for all finite unramified extension $L/K$, $\phi_K(\pi)$ acts on $L$ as $\Frob_{L/K}$.
+          \item For all finite abelian extension $L/K$, $\Nm_{L/K}(L^\times)$ is contained in the kernel of $a \mapsto \phi_K(a)|_L$.
+          And $\phi_K$ induce an isomorphism $\phi_{L/K}: K^\times/\Nm_{L/K}(L^\times) \to \Gal(L/K)$.
+          In particular, $(K^\times : \Nm_{L/K}(L^\times)) = [L:K]$.
+      \end{enumerate}
+  \end{theorem}
+
+  \begin{corollary}\label{cor:correspondence_between_extensions_and_norm_groups}
+      Let $K$ be a NA local field.
+      Assume there exists a homomorphism $\phi: K^\times \to \Gal(K^\ab / K)$ satisfying condition (a) and (b) in \cref{thm:local_reciprocity_law}.
+      Then
+      \begin{enumerate}
+          \item the map $L \mapsto \Nm(L^\times)$ is a bijection from the set of finite extension of $K$ and the set of norm groups of $K^\times$;
+          \item $L \subset L' \iff \Nm(L^\times) \supset \Nm(L'^\times)$;
+          \item $\Nm((LL')^\times) = \Nm(L^\times) \cap \Nm(L'^\times)$;
+          \item $\Nm((L \cap L')^\times) = \Nm (L^\times) \cdot \Nm ({L'}^\times)$;
+          \item if a subgroup of $K^\times$ containing a norm group, the itself is a norm group.
+      \end{enumerate}
+  \end{corollary}
+
+    \begin{theorem}[Local existence theorem]\label{thm:norm_groups_are_exactly_open_subgroups_of_finite_index}
+    The norm groups in $K^\times$ are exactly the open subgroups of finite index.
+  \end{theorem}
