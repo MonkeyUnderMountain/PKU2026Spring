@@ -1,0 +1,135 @@
+\section{March 26}
+
+
+\subsection{Solve the Hamiltonian equation by first integrals}
+
+  Let $(M, \omega)$ be a symplectic manifold, $H \in C^\infty(M)$, and $X_H$ be the Hamiltonian vector field associated to $H$. 
+  Let $f$ be a first integral of $H$, i.e., $\{H, f\} = 0$. 
+  Assume $p \in M$ satisfies $df|_{p} = 0$.
+  By proof of the Darboux theorem, we can find a local coordinate system $(x_1, \ldots, x_m, y_1, \ldots, y_m)$ around $p$ such that $\omega = \sum_{i=1}^m dx_i \wedge dy_i$ and $f = y_m$.
+  Let $X_f$ be the Hamiltonian vector field associated to $f$. 
+  Then $X_f = J \nabla f = - \partial_{x_m}$.
+  We have 
+  \[ \frac{\partial}{\partial x_m} H = - X_f H = - \{H, f\} = 0. \]
+  So $H$ is independent of $x_m$.
+  Let $\gamma(t) = (x_1(t), \ldots, x_m(t), y_1(t), \ldots, y_m(t))$ be an integral curve of $X_H$.
+  We have $y_m(t) = f(\gamma(t)) = C$ is a constant.
+  The equation of $\gamma$ satisfies the Hamiltonian equation
+  \begin{equation}\label{eq:Hamiltonian_eqution_Mar26}
+    \begin{cases}
+      \dot{x}_i = - \dfrac{\partial H}{\partial y_i}(x_1, \ldots, x_{m-1}, y_1, \ldots, y_{m-1}, C), \\
+      \dot{y}_i = \dfrac{\partial H}{\partial x_i}(x_1, \ldots, x_{m-1}, y_1, \ldots, y_{m-1}, C).
+    \end{cases}
+  \end{equation} 
+  Note that if we have solved the \cref{eq:Hamiltonian_eqution_Mar26} for $i = 1, \ldots, m-1$, then we can solve the original Hamiltonian equation for $i = 1, \ldots, m$ by adding the constant $y_m(t) = C$ and integrating the equation 
+  \[ \dot{x}_m = - \dfrac{\partial H}{\partial y_m}(x_1, \ldots, x_{m-1}, y_1, \ldots, y_{m-1}, C). \]
+  So we can reduce the dimension of the Hamiltonian system by one.
+  Therefore, if we have $m$ independent first integrals of $H$, then we can reduce the dimension of the Hamiltonian system to zero and solve the equation explicitly.
+
+  \begin{definition}
+    Consider a set of smooth functions $f_1, \ldots, f_k$ on $M$.
+    We say $f_1, \ldots, f_k$ are \emph{independent} if $df_1, \ldots, df_k$ are linearly independent at for $p$ in a dense open subset of $M$.
+  \end{definition}
+
+
+\subsection{Lagrangian submanifolds}
+
+
+  Assume $\{f_i,f_j\} = 0$ for $i,j = 1, \ldots, k$ and $f_1, \ldots, f_k$ are independent.
+  Let $X_i$ be the Hamiltonian vector field associated to $f_i$.
+  We have $i_{X_j} \omega = -d f_j$.
+  If $df_1, \ldots, df_k$ are linearly independent at $p$, then $X_1, \ldots, X_k$ are linearly independent at $p$.
+  We have 
+  \[ [X_i, X_j] = X_{\{f_i, f_j\}} = 0. \]
+  So flows of $X_i$ and $X_j$ commute: $\theta_i(t) \cdot \theta_j(s) = \theta_j(s) \cdot \theta_i(t)$, where $\theta_i: (-\varepsilon, \varepsilon) \to \Aut(X)$ is the flow of $X_i$.
+  We have 
+  \[ \omega(X_i, X_j) = \{f_i, f_j\} = 0. \]
+  Therefore, $\omega|_{\upoperatorname{span}\{X_1, \ldots, X_k\}} = 0$.
+
+  \begin{definition}
+    Let $(V,B)$ be a symplectic vector space.
+    A subspace $W \subseteq V$ is called \emph{isotropic} if $B|_{W} = 0$.
+  \end{definition}
+
+  \begin{definition}
+    Let $W^B \coloneqq \{v \in V: B(v,w) = 0, \forall w \in W\}$ be the \emph{symplectic complement} of $W$.
+  \end{definition}
+
+  Then we know that $W$ is isotropic if and only if $W \subseteq W^B$.
+
+  \begin{example}
+    Consider $V = \bbC^n = \bbR^{2n}$ with the standard symplectic form $\omega = \sum_{i=1}^n dx_i \wedge dy_i$, inner product $\langle \cdot, \cdot \rangle$ and complex structure $J$.
+    By definition, we have $u \in W^B$ if and only if $\omega(u, w) = 0$ for all $w \in W$.
+    We have $\omega(u, w) = \langle J u, w \rangle$.
+    So $u \in W^B$ if and only if $\langle J u, w \rangle = 0$ for all $w \in W$, which is equivalent to $J u \in W^\perp$.
+    Hence, we get $W^B = J^{-1} W^\perp = J W^\perp$.
+    In particular, $\dim W^B = \dim W^\perp = 2n - \dim W$.
+  \end{example}
+
+  Since all symplectic vector spaces of the same dimension are isomorphic, we have $\dim W^B = 2n - \dim W$ for any symplectic vector space $(V, B)$ and any subspace $W \subseteq V$.
+  If $W$ is isotropic, then $\dim W \leq \dim W^B = 2n - \dim W$, which implies $\dim W \leq n$.
+
+  Recall that $W$ is isotropic if and only if $W \subseteq W^B$.
+  \begin{definition}
+    An subspace $W \subset V$ is called \emph{co-isotropic} if $W^B \subseteq W$.
+  \end{definition}
+  \begin{definition}
+    An isotropic subspace $W$ is called \emph{Lagrangian} if $W = W^B$.
+  \end{definition}
+
+  \begin{example}
+    Let $V = \bbC^n$ with the standard symplectic form $\omega = \sum_{i=1}^n dx_i \wedge dy_i$.
+
+    Let $W = \bigoplus_{i=1}^k \bbR \cdot \partial_{x_i}$.
+    We have $W^\perp = \bigoplus_{i=k+1}^n \bbR \cdot \partial_{x_i} \oplus \bigoplus_{i=1}^n \bbR \cdot \partial_{y_i}$.
+    So $W^B = J W^\perp = \bigoplus_{i=k+1}^n \bbR \cdot \partial_{y_i} \oplus \bigoplus_{i=1}^n \bbR \cdot \partial_{x_i}$.
+    Then $W$ is isotropic.
+
+    Let $W = \bigoplus_{i=1}^n \bbR \cdot \partial_{x_i} \oplus \bigoplus_{i=1}^k \bbR \cdot \partial_{y_i}$.
+    We have $W^\perp = \bigoplus_{i=k+1}^n \bbR \cdot \partial_{y_i}$ and then $W^B = J W^\perp = \bigoplus_{i=k+1}^n \bbR \cdot \partial_{x_i}$.
+    Then $W$ is co-isotropic.
+
+    Let $W = \bigoplus_{i=1}^n \bbR \cdot \partial_{x_i}$.
+    We have $W$ is Lagrangian.
+
+    Consider $U(n) = \{A \in M_n(\bbC): A^* A = I\}$.
+    It preserves the standard metric and the standard complex structure, so it preserves the standard symplectic form.
+    Hence $W$ is isotropic (resp. co-isotropic, Lagrangian) if and only if $A W$ is isotropic (resp. co-isotropic, Lagrangian) for any $A \in U(n)$.
+  \end{example}
+
+  Let $(M, \omega)$ be a symplectic manifold.
+
+  \begin{definition}
+    A submanifold $N \subseteq M$ is called \emph{isotropic} (resp. \emph{co-isotropic}, \emph{Lagrangian}) if $T_p N$ is an isotropic (resp. co-isotropic, Lagrangian) subspace of $T_p M$ for all $p \in N$.
+  \end{definition}
+
+  If $N$ is isotropic, then $\dim N \leq \frac{1}{2} \dim M$.
+  If $N$ is co-isotropic, then $\dim N \geq \frac{1}{2} \dim M$.
+  If $N$ is Lagrangian, then $\dim N = \frac{1}{2} \dim M$.
+
+  \begin{example}
+    Any curve in $(M, \omega)$ is isotropic.
+  \end{example}
+
+  \begin{example}
+    Let $M = \bbC\bbP^n$ with the Fubini-Study symplectic form $\omega_{FS}$.
+    Recall that $\bbC\bbP^n$ parametrizes complex lines in $\bbC^{n+1}$.
+    We have an embedding $\bbR^{n+1} \hookrightarrow \bbR^{n+1} \ten_\bbR \bbC = \bbC^{n+1}$, which induces an embedding $\bbR\bbP^n \hookrightarrow \bbC\bbP^n$.
+    Then $\bbR\bbP^n$ is a Lagrangian submanifold of $(\bbC\bbP^n, \omega_{FS})$.
+  \end{example}
+
+  Let $f_1, \ldots, f_k$ be independent and pairwise $\{f_i, f_j\} = 0$.
+  Let $X_i$ be the Hamiltonian vector field associated to $f_i$.
+  We have $\omega(X_i, X_j) = \{f_i, f_j\} = 0$.
+  So $\omega|_{\upoperatorname{span}\{X_1, \ldots, X_k\}} = 0$.
+  So $W = \upoperatorname{span}\{X_1, \ldots, X_k\}$ is an isotropic subspace of $T_p M$.
+  Then $k = \dim W \leq \frac{1}{2} \dim M$.
+
+
+
+
+
+
+
+
+
