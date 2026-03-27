@@ -1,0 +1,205 @@
+\section{March 27}
+
+
+\subsection{Lubin-Tate group laws}
+
+  Let $A = \calO_K$ be the ring of integers of a NA local field $K$ with uniformizer $\pi$. 
+
+  \begin{notation}
+    Let $\calF_\pi$ be the set of power series $f(X) \in A[[X]]$ such that $f(X) \equiv \pi X \mod X^2$ and $f(X) \equiv X^q \mod \pi$ where $q = \#(A/\pi A)$. 
+  \end{notation}
+
+  \begin{example}
+    The polynomial $f(X) = \pi X + X^q$ is an element of $\calF_\pi$.
+  \end{example}
+
+  \begin{example}
+    Let $K = \bbQ_p$ and $\pi = p$. 
+    Consider the power series $f(X) = (X + 1)^p - 1$. 
+    We have $f(X) \equiv pX \mod X^2$ and $f(X) \equiv X^p \mod p$. 
+    Thus, $f(X) \in \calF_p$.
+  \end{example}
+
+  \begin{lemma}\label{lem:find_homomorphism_between_f_and_g}
+    Let $f,g \in \calF_\pi$ and $\phi_1(x_1,\cdots,x_n)$ be a linear form in $n$ variables with coefficients in $A$. 
+    Then there exists a unique power series $\phi(x_1,\cdots,x_n) \in A[[x_1,\cdots,x_n]]$ such that $\phi = \phi_1 + \varepsilon_{\geq 2}$ and $f(\phi(x_1,\cdots,x_n)) = \phi(g(x_1),\cdots,g(x_n))$.
+  \end{lemma}
+  \begin{proof}
+    Show there exists a unique $\phi_r(x_1,\cdots,x_n) \in A[x_1,\cdots,x_n]$ of degree $\leq r$ such that $\phi_r = \phi_1 + \varepsilon_{\geq 2}$ and $f(\phi_r(x_1,\cdots,x_n)) = \phi_r(g(x_1),\cdots,g(x_n)) + \varepsilon_{\geq r+1}$.
+    
+    Induction on $r \geq 1$.
+    For $r=1$, we can take $\phi_1$ itself.
+    Then 
+    \[ f(\phi_1(x_1,\cdots,x_n)) = \pi \phi_1(x_1,\cdots,x_n) + \varepsilon_{\geq 2} = \phi_1(g(x_1),\cdots,g(x_n)) + \varepsilon_{\geq 2} \]
+    since $f,g = \pi X + \varepsilon_{\geq 2}$.
+    The uniqueness of $\phi_1$ follows from the fact that $\phi_1 = \phi_1 + \varepsilon_{\geq 2}$.
+    Assume we have $\phi_r$ for some $r \geq 1$.
+    Set $\phi_{r+1} = \phi_r + Q$ where $Q$ is a homogeneous polynomial of degree $r+1$.
+    Then
+    \[ f(\phi_{r+1}(x_1,\cdots,x_n)) = f(\phi_r(x_1,\cdots,x_n) + Q) = f(\phi_r(x_1,\cdots,x_n)) + \pi Q + \varepsilon_{\geq r+2} \]
+    and
+    \[ \phi_{r+1}(g(x_1),\cdots,g(x_n)) = \phi_r(g(x_1),\cdots,g(x_n)) + Q(\pi x_1,\cdots,\pi x_n) + \varepsilon_{\geq r+2}. \]
+    Thus, we need to solve the equation
+    \[ (\pi^{r+1} - \pi) Q = f(\phi_r(x_1,\cdots,x_n)) - \phi_r(g(x_1),\cdots,g(x_n)) + \varepsilon_{\geq r+2}. \]
+    Take 
+    \[ Q = \text{the homogeneous part of degree $r+1$ of } \frac{f(\phi_r(x_1,\cdots,x_n)) - \phi_r(g(x_1),\cdots,g(x_n))}{\pi^{r+1} - \pi}. \]
+    Then $\phi_{r+1}$ satisfies the required properties.
+    And the equation above has a unique solution $Q$.
+    But we need to show that $Q$ has coefficients in $A$, i.e. $\pi$ divides the homogeneous part of degree $r+1$ of $f(\phi_r(x_1,\cdots,x_n)) - \phi_r(g(x_1),\cdots,g(x_n))$.
+    Note that after modulo $\pi$, we have $f(X) \equiv X^q$ and $g(X) \equiv X^q$.
+    Thus, 
+    \[ f \circ \phi_r - \phi_r \circ g \equiv \phi_r^q - \phi_r(x_1^q,\cdots,x_n^q) \equiv 0 \mod \pi. \]
+    This completes the induction step and hence the proof.
+  \end{proof}
+
+  \begin{proposition}
+    For all $f \in \calF_\pi$, there exists a unique formal group law $F_f \in A[[X,Y]]$ such that $f \in \End(F_f)$.
+  \end{proposition}
+  \begin{proof}
+    By \cref{lem:find_homomorphism_between_f_and_g}, we can construct a power series $F_f(X,Y) \in A[[X,Y]]$ such that $F_f = X + Y + \varepsilon_{\geq 2}$ and $f(F_f(X,Y)) = F_f(f(X),f(Y))$.
+    We need to show that $F_f$ is a formal group law.
+
+    For the commutativity, consider $G(X,Y) := F_f(Y,X)$.
+    We have $G = X + Y + \varepsilon_{\geq 2}$ and $f(G(X,Y)) = G(f(X),f(Y))$.
+    By the uniqueness in \cref{lem:find_homomorphism_between_f_and_g}, we have $F_f = G$, i.e. $F_f(X,Y) = F_f(Y,X)$.
+    Similar for the associativity.
+
+    \Yang{inverse?}
+  \end{proof}
+
+  \begin{example}
+    Let $K = \bbQ_p$ and $\pi = p$.
+    Then $f(T) = (T + 1)^p - 1$ is an element of $\calF_p$.
+    And $F_f(x,y) = (x + 1)(y + 1) - 1$ is the corresponding formal group law.
+  \end{example}
+
+  \begin{definition}
+    The formal group law $F_f$ constructed above is called the \emph{Lubin-Tate group law} associated to $f$.
+  \end{definition}
+
+  The Lubin-Tate group law are exactly the formal group laws admitting an endomorphism $f$ with derivative $\pi$ and to be the Frobenius modulo $\pi$.
+
+  \begin{proposition}
+    For all $f,g \in \calF_\pi$ and $a \in A$, let $[a]_{g,f}$ be the unique power series in $A[[X]]$ such that $[a]_{g,f}(T) = aT + \varepsilon_{\geq 2}$ and $f([a]_{g,f}(T)) = [a]_{g,f}(g(T))$ by \cref{lem:find_homomorphism_between_f_and_g}.
+    Then $[a]_{g,f} \in \Hom(F_f,F_g)$.
+  \end{proposition}
+  \begin{proof}
+    Exercise.
+  \end{proof}
+
+  \begin{proposition}\label{prop:operator_properties_of_a_g_f}
+    For all $a,b \in A$ and $f,g,h \in \calF_\pi$, we have 
+    \[ [a+b]_{h,f} = [a]_{h,f} +_f [b]_{h,f}, \quad [ab]_{h,f} = [a]_{h,g} \circ [b]_{g,f}. \]
+  \end{proposition}
+  \begin{proof}
+    Exercise.
+  \end{proof}
+
+  \begin{corollary}
+    For all $f,g \in \calF_\pi$, we have $F_f \cong F_g$.
+  \end{corollary}
+  \begin{proof}
+    Take $u \in A^\times$.
+    Consider $[u]_{g,f}$ and $[u^{-1}]_{f,g}$.
+    We have $[u]_{g,f} \circ [u^{-1}]_{f,g} = [u u^{-1}]_{f,f} = [1]_{f,f} = \id_{F_f}$ and $[u^{-1}]_{f,g} \circ [u]_{g,f} = [u^{-1} u]_{g,g} = [1]_{g,g} = \id_{F_g}$.
+  \end{proof}
+
+  In fact, there exists a unique isomorphism $h$ between $F_f$ and $F_g$ such that $h = T + \varepsilon_{\geq 2}$ and $f \circ h = h \circ g$.
+
+  \begin{corollary}
+    For all $a \in A$, there exists a unique endomorphism $[a]_f$ of $F_f$ such that $[a]_f(T) = aT + \varepsilon_{\geq 2}$ and $f \circ [a]_f = [a]_f \circ f$.
+    Moreover, the map $a \mapsto [a]_f$ is a ring homomorphism from $A$ to $\End(F_f)$.
+  \end{corollary}
+  \begin{proof}
+    By \cref{prop:operator_properties_of_a_g_f}, set $[a]_f = [a]_{f,f}$.
+  \end{proof}
+
+  Hence the abelian group $(\frakm_L, +_{F_f})$ has an $A$-module structure given by $a \cdot x := [a]_f(x)$ for all $a \in A$ and $x \in \frakm_L$ where $L$ is any extension of $K$.
+
+  \begin{example}
+    Let $K = \bbQ_p$, $\pi = p$ and $f(T) = (T + 1)^p - 1$.
+    Then $F_f(x,y) = (x + 1)(y + 1) - 1$.
+    For all $a \in \bbZ_p$, define
+    \[ (1+T)^a \coloneqq \sum_{n=0}^\infty \binom{a}{n} T^n \in \bbZ_p[[T]]. \]
+    Note that $\binom{a}{n} \in \bbZ_p$ for all $a \in \bbZ_p$ and $n \geq 0$ since when $a \in \bbZ$, its image in $\bbZ_p$.
+    We claim that $[a]_f(T) = (1+T)^a - 1$.
+    Clearly, $[a]_f(T) = aT + \varepsilon_{\geq 2}$.
+    And we have 
+    \[ f \circ ((1+T)^a - 1) =  (1+T)^{ap} - 1 = ((1+T)^a - 1) \circ f \]
+    for all $a \in \bbZ$.
+    By continuity, the above equation holds for all $a \in \bbZ_p$.
+    Thus, $[a]_f(T) = (1+T)^a - 1$.
+    Under the isomorphism 
+    \[ (\frakm_L, +_f) \to (1 + \frakm_L, \cdot), \quad x \mapsto 1 + x, \]
+    the $[a]_f$ corresponds to the map $y \mapsto y^a$ for all $a \in \bbZ_p$ and $y \in 1 + \frakm_L$.
+  \end{example}
+
+  \begin{remark}
+    We have $[\pi]_f = f$.
+  \end{remark}
+
+  \begin{remark}
+    The homomorphism $a \mapsto [a]_f$ from $A$ to $\End(F_f)$ is injective since $[a]_f(T) = aT + \varepsilon_{\geq 2}$.
+  \end{remark}
+
+  \begin{remark}
+    We have a canonical isomorphism $[1]_{g,f} : F_f \to F_g$ commuting with the actions of $A$ on $F_f$ and $F_g$.
+  \end{remark}
+
+  In summary, for all $f \in \calF_\pi$, we have a formal group law $F_f$ admitting an endomorphism $f$.
+  Moreover, there exists a unique $A$-module structure 
+  \[ A \to \End(F_f), \quad a \mapsto [a]_f \]
+  such that 
+  \begin{enumerate}
+    \item $[a]_f(T) = aT + \varepsilon_{\geq 2}$ for all $a \in A$;
+    \item $f \circ [a]_f = [a]_f \circ f$ for all $a \in A$;
+    \item $[\pi]_f = f$.
+  \end{enumerate}
+  If $f,g \in \calF_\pi$, then $F_f$ and $F_g$ are isomorphic via the unique isomorphism $[1]_{g,f}$ commuting with the actions of $A$ on $F_f$ and $F_g$.
+
+
+\subsection[Construction of K\_pi]{Construction of $K_\pi$}
+
+  According to the main theorem of local class field theory, there exists a unique abelian extension $K_\pi$ of $K$ such that $K^\ab = K_\pi K^\unr$ and $\pi$ is a norm from any finite extension of $K$ contained in $K_\pi$.
+
+  Easy to construct $K^\unr$.
+  Let $\mu_m$ be the group of $m$-th roots of unity in $\overline{K}$ for all $m \geq 1$.
+  When $p \not\mid m$, $K[\mu_m]$ is an unramified extension of $K$.
+  The residue field of $K[\mu_m]$ is the splitting field of $X^m - 1$ over the residue field of $K$.
+  Hence $\# (\tilde{K[\mu_m]}) = q^f$ where $f$ is the smallest positive integer such that $m \mid (q^f - 1)$.
+  Thus, $\bigcup_{m \geq 1, p \not\mid m} K[\mu_m]$ is a unramaified extension of $K$ with residue field $\overline{\tilde{K}}$.
+  Hence, 
+  \[ \bigcup_{m \geq 1, p \not\mid m} K[\mu_m] = K^\unr. \]
+  We have $\Gal(K^\unr/K) \cong \Gal(\overline{\tilde{K}}/\tilde{K}) \cong \hat{\bbZ}$ and for $a \in \hat{\bbZ}$ acts on $K^\unr$ as follows:
+  \[ \forall \xi \in \mu_m, \quad a_0 \cong a \mod m \implies a(\xi) = \xi^{a_0}. \]
+
+  When $K = \bbQ_p$ and $\pi = p$.
+  There is a similar construction of $K_\pi$, namely, $K_\pi = \bigcup_{n \geq 1} \bbQ_p(\mu_{p^n})$. 
+  The action 
+  \[ \bbZ/p^n\bbZ \times \mu_{p^n} \to \mu_{p^n}, \quad (a, \xi) \mapsto \xi^a \]
+  makes $\mu_{p^n}$ a free $\bbZ/p^n\bbZ$-module.
+  As $\bbZ/p^n\bbZ \cong \bbZ_p/p^n\bbZ_p$, we can view $\mu_{p^n}$ as a $\bbZ_p$-module.
+  The action of $\bbZ_p$ on $\mu_{p^n}$ induces an isomorphism 
+  \[ (\bbZ_p/p^n\bbZ_p)^\times \to \Gal(\bbQ_p(\mu_{p^n})/\bbQ_p), \quad a \mapsto (x \mapsto x^a). \]
+  Take the inverse limit, we have an isomorphism
+  \[ \bbZ_p^\times \to \Gal(K_\pi/K), \quad a \mapsto (x \mapsto x^a). \]
+
+  We turn to the general case.
+  Extend the absolute value on $K$ to $K^\al$.
+  Let $f \in \calF_\pi$, $\alpha, \beta \in K^\al$ with $|\alpha|, |\beta| < 1$ and $a \in A$.
+  The series $F_f(\alpha, \beta)$ and $[a]_f(\alpha)$ converge.
+  Therefore, we can define $\Lambda_f$ to be the $A$-module with 
+  \[ \Lambda_f = \{ \alpha \in K^\al : |\alpha| < 1 \}, \quad \alpha +_{\Lambda_f} \beta = F_f(\alpha, \beta), \quad a \cdot \alpha = [a]_f(\alpha). \]
+  Define $\Lambda_n$ be the submodule of $\Lambda_f$ killed by $[\pi^n]_f$.
+  If $g \in \calF_\pi$, then the canonical $A$-module isomorphism $[1]_{g,f} : F_f \to F_g$ induces an $A$-module isomorphism $\Lambda_f \to \Lambda_g$.
+
+
+
+
+
+
+
+
+
+
+
