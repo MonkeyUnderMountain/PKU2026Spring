@@ -1,0 +1,179 @@
+\section{March 31}
+
+
+\subsection{Deformation to the normal cone}
+
+  Let $f: X \injmap Y$ be a closed immersion of schemes.
+  Recall $C_{X/Y}$ is an ``approximation'' of $Y$ near $X$.
+  We aim to deform $f:X \injmap Y$ to the zero section $s_0: X \injmap C_{X/Y}$.
+  More precisely, we want to construct 
+  \begin{itemize}
+    \item a scheme $M^0$;
+    \item a flat morphism $\rho^0: M^0 \to \bbP^1$;
+    \item a closed immersion $F^0: X \times \bbP^1 \injmap M^0$ over $\bbP^1$;
+  \end{itemize}
+  such that $F^0$ restricts to $f$ over $t \neq 0$ and to $s_0$ over $t=0$.
+
+  \begin{construction}
+    Let $M_{X/Y} \coloneqq \Bl_{X \times \{0\}}(Y \times \bbP^1)$ be the blow-up of $Y \times \bbP^1$ along $X \times \{0\}$ and $\rho: M_{X/Y} \to Y \times \bbP^1 \to \bbP^1$ be the natural projection.
+    
+    \begin{claim}\label{claim:deformation_to_normal_cone}
+      The fiber $\rho^{-1}(t)$ is isomorphic to $Y$ for $t \neq 0$ and to $\Bl_{X \times \{0\}}(Y \times \bbP^1) \cup \bbP(C_{X/Y} \oplus \calO)$ for $t=0$.
+      And $\Bl_{X \times \{0\}}(Y \times \bbP^1) \cap \bbP(C_{X/Y} \oplus \calO) \cong \bbP(C_{X/Y})$.
+    \end{claim}
+
+    \begin{claim}\label{claim:deformation_to_normal_cone_2}
+      $f \times \id: X \times \bbP^1 \injmap Y \times \bbP^1$ lifts to a closed immersion $F: X \times \bbP^1 \injmap M_{X/Y}$ over $\bbP^1$.
+      It restricts to $f$ over $t \neq 0$ and to $X \xrightarrow{s_0} \bbP(C_{X/Y} \oplus \calO) \setminus \bbP(C_{X/Y}) \injmap \bbP(C_{X/Y} \oplus \calO) \injmap \rho^{-1}(0)$ over $t=0$.
+    \end{claim}
+
+    Let $M^0_{X/Y} \coloneqq M_{X/Y} \setminus \Bl_{X \times \{0\}}(Y \times \{0\})$ and $\rho^0 \coloneqq \rho|_{M^0_{X/Y}}$, $F^0: X \times \bbP^1 \injmap M^0_{X/Y}$ be the induced morphism.
+    By \cref{claim:deformation_to_normal_cone,claim:deformation_to_normal_cone_2}, we have 
+    \[ \rho^{-1}(t) \cong \begin{cases}
+      Y, & t \neq 0, \\
+      C_{X/Y}, & t=0,
+    \end{cases} \]
+    and $F^0$ restricts to $f$ over $t \neq 0$ and to $s_0$ over $t=0$.
+  \end{construction}
+
+  \begin{proof}[Proof of \cref{claim:deformation_to_normal_cone}]
+    TMay be verified locally, and may assume $Y = \Spec A$ is affine, $X = \Spec A/I$ and $Y \times \bbA^1 = \Spec A[t]$.
+    Then 
+    \begin{align*}
+      \Bl_{X \times \{0\}}(Y \times \bbA^1) &= \Proj_{A[t]} \bigoplus_{n \geq 0} (I \cdot A[t] + (t))^n, \\
+      \rho^{-1}(0) &= \Proj_{A} \bigoplus_{n \geq 0} ((I,t)^n / t \cdot (I,t)^{n}), \\
+      \Bl_{X \times \{0\}}(Y \times \{0\}) &= \Proj_{A} \bigoplus_{n \geq 0} (I^n), \\
+      \bbP(C_{X/Y} \oplus \calO) &= \Proj_{A} \bigoplus_{n \geq 0} ((I,t)^n / (I,t)^{n+1}), \\
+      \bbP(C_{X/Y}) &= \Proj_{A} \bigoplus_{n \geq 0} (I^n / I^{n+1}).
+    \end{align*}
+    We will verify:
+    \[ 0 \to \calO_{\rho^{-1}(0)} \to \calO_{\Bl_{X \times \{0\}}(Y \times \{0\})} \oplus \calO_{\bbP(C_{X/Y} \oplus \calO)} \to \calO_{\bbP(C_{X/Y})} \to 0 \]
+    or equivalently
+    \[ 0 \to \bigoplus_{n \geq 0} ((I,t)^n / t \cdot (I,t)^{n}) \to \bigoplus_{n \geq 0} (I^n) \oplus \bigoplus_{n \geq 0} ((I,t)^n / (I,t)^{n+1}) \to \bigoplus_{n \geq 0} (I^n / I^{n+1}) \to 0 \]
+    is exact.
+    \Yang{}
+  \end{proof}
+
+  \begin{proof}[Proof of \cref{claim:deformation_to_normal_cone_2}]
+    By the universal property of blow-up, we have the following Cartesian diagram:
+    \[ \begin{tikzcd}
+      \Bl_{X \times \{0\}}(X \times \bbP^1) \ar[r, "F"] \ar[d] & \Bl_{X \times \{0\}}(Y \times \bbP^1) \ar[d] \\
+      X \times \bbP^1 \ar[r, "f \times \id"] & Y \times \bbP^1.
+    \end{tikzcd} \]
+    Since $X \times \{0\}$ is a Cartier divisor in $X \times \bbP^1$, $\Bl_{X \times \{0\}}(X \times \bbP^1) \cong X \times \bbP^1$.
+  \end{proof}
+% \subsection{Specialization homomorphism}
+
+  \begin{definition}[Specialization homomorphism]
+    Let $V \subset Y$ be an $i$-dimensional subvariety.
+    Then $V_{X\cap V/ V} \injmap C_{X/Y}$ is purely $i$-dimensional.
+    Define $\sigma: Z_i(Y) \to Z_i(C_{X/Y})$ by $\sigma([V]) = [C_{X\cap V/ V}]$, called the \emph{specialization homomorphism}.
+  \end{definition}
+
+  \begin{proposition}
+    Let $\alpha \in Z_i(Y)$.
+    If $\alpha \sim 0$, then $\sigma(\alpha) \sim 0$.
+    In particular, we have a well-defined specialization homomorphism $\sigma: \CH_i(Y) \to \CH_i(C_{X/Y})$.
+  \end{proposition}
+  \begin{proof}
+    We have a diagram:
+    \[ \begin{tikzcd}
+      C_{X/Y} \ar[r, hook, "g"] & M^0_{X/Y} & M_{X/Y}^0 \setminus C_{X/Y} \cong Y \times \bbA^1. \ar[l, hook', "h"]
+    \end{tikzcd} \]
+    We have the localization sequence:
+    \[ \begin{tikzcd}
+      \CH_{i+1}(C_{X/Y}) \ar[r, "g_*"]  \ar[dr] & \CH_{i+1}(M^0_{X/Y}) \ar[r, "h^*"] \ar[d, "g^*"] & \CH_{i+1}(Y \times (\bbP^1 \setminus \{0\})) \ar[ld, gray, "\exists"] \ar[r] & 0 \\
+      & \CH_i(C_{X/Y})  & \CH_i(Y) \ar[u, "\pr_Y^*"] \ar[l, "\sigma"] &
+    \end{tikzcd}
+    \]
+    % \[ \CH_{i+1}(C_{X/Y}) \xrightarrow{g_*} \CH_{i+1}(M^0_{X/Y}) \xrightarrow{h^*} \CH_{i+1}(Y \times (\bbP^1 \setminus \{0\})) \to 0. \]
+    where $g^*: \CH_{i+1}(M^0_{X/Y}) \to \CH_i(C_{X/Y})$ is the Gysin map for the Cartier divisor $C_{X/Y} \injmap M^0_{X/Y}$.
+    Then $g^*g_* = c_1(N_{C_{X/Y}/M^0_{X/Y}}) \cap - = 0$ because $N_{C_{X/Y}/M^0_{X/Y}} \cong (\rho^0)^* N_{0/\bbP^1} \cong \calO_{C_{X/Y}}$ is trivial.
+    By the diagram, we have an induced map 
+    \[ \CH_{i+1}(Y \times \bbA^1) \to \CH_i(C_{X/Y}), \]
+    and 
+    \[ \CH_i(Y) \xrightarrow{\pr_Y^*} \CH_{i+1}(Y \times \bbA^1) \to \CH_i(C_{X/Y}). \]
+    This agrees with $\sigma$: let $V$ be a subvariety of $Y$ of dimension $i$, then $h^*[M^0_{V\cap X/V}] = [V \times (\bbP^1 \setminus \{0\})] = \pr_Y^*[V]$ because $M^0_{V\cap X/V} \subset M_{X/Y}^0$ is the flat closure of $V \times (\bbP^1 \setminus \{0\}) \subset Y \times (\bbP^1 \setminus \{0\})$.
+    Also, $g^*[M^0_{V\cap X/V}] = [M^0_{X\cap V/V} \cap (\rho^0)^{-1}(0)] = [C^0_{X\cap V/V}] = \sigma[V]$.
+  \end{proof}
+
+  \begin{definition}
+    Let $f: X \injmap Y$ be a regular closed immersion of codimension $r$.
+    Define the Gysin map $f^*: \CH_i(Y) \to \CH_{i-r}(X)$ as the composition
+    \[ \CH_i(Y) \xrightarrow{\sigma} \CH_i(N_{X/Y}) \xrightarrow{s^*} \CH_{i-r}(X), \]
+    where $s: X \injmap N_{X/Y}$ is the zero section.
+  \end{definition}
+
+  For an $i$-cycle $\alpha = \sum n_j [V_j]$ on $Y$, we have
+  \[ f^* \alpha = \sum n_j X \cdot V_j, \]
+  where $X \cdot V_j$ is the intersection product defined in \cref{constr:intersection_product_for_regular_embedding}.
+
+  \begin{definition}
+    Let $X$ be a smooth variety of dimension $n$, $\delta: X \injmap X \times X$ be the diagonal embedding, which is a regular closed immersion of codimension $n$ and $N_{X/X \times X} \cong T_X$.
+    Define the intersection product on $\CH^*(X)$ as the composition
+    \[ \CH^i(X) \otimes \CH^j(X) \xrightarrow{\times} \CH^{i+j}(X \times X) \xrightarrow{\delta^*} \CH^{i+j}(X). \]
+  \end{definition}
+
+
+\subsection{Refined Gysin map}
+
+  Consider a fiber diagram
+  \[ \begin{tikzcd}
+    X' \ar[d, "h"] \ar[r, "f'"] & Y' \ar[d, "g"] \\
+    X \ar[r, "f"] & Y
+  \end{tikzcd} \]
+  where $f$ is a regular closed immersion of codimension $r$.
+  (Note that $f'$ is not necessarily a regular closed immersion.)
+  Then $C_{X'/Y'} \injmap h^* C_{X/Y} \eqqcolon N$.
+
+  \begin{definition}
+    Define the \emph{refined Gysin map} $f^!: \CH_i(Y') \to \CH_{i-r}(X')$ as the composition
+    \[ \CH_i(Y') \xrightarrow{\sigma} \CH_i(C_{X'/Y'}) \to \CH_i(N) \xrightarrow{s^*} \CH_{i-r}(X'), \]
+    where $s: X' \injmap N$ is the zero section.
+  \end{definition}
+
+  For an $i$-cycle $\alpha = \sum n_j [V_j]$ on $Y'$, we have
+  \[ f^! \alpha = \sum n_j X' \cdot_{Y} V_j. \]
+  where $X' \cdot_Y V_j$ is supported on $X' \times_Y V_j \subset X'$.
+  
+  If $Y' = Y$ and $g = \id$, then $f^!$ coincides with the Gysin map $f^*$ defined before.
+
+  \begin{theorem}
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X'' \ar[r,"f''"] \ar[d, "q"] & Y'' \ar[d, "p"] \\
+      X' \ar[r, "f'"] \ar[d, "h"] & Y' \ar[d, "g"] \\
+      X \ar[r, "f"] & Y
+    \end{tikzcd} \]
+    where $f$ is a regular closed immersion of codimension $r$.
+    \begin{enumerate}
+      \item If $p$ is proper and $\alpha \in \CH_i(Y'')$, then $f^! p_* \alpha = q_* f^! \alpha \in \CH_{i-r}(X')$.
+      \item If $p$ is flat of relative dimension $n$ and $\alpha \in \CH_i(Y')$, then $f^! p^* \alpha = q^* f^! \alpha \in \CH_{i+n-r}(X'')$.
+      \item If $f'$ is also a regular embedding of codimension $r$ and $\alpha \in \CH_i(Y'')$, then $f^! \alpha = f'^! \alpha \in \CH_{i-r}(X'')$.
+    \end{enumerate}
+  \end{theorem}
+  \begin{proof}
+    For (a), (b), use the corresponding properties for Segre classes for subschemes.
+    For instance, for (a), may assume $\alpha = [V]$ for some subvariety $V \subset Y''$.
+    Then $f^! p_* [V] = \deg(V/p(V)) X \cdot_Y p(V) = \deg(V/p(V)) \bigl(c(N) \cdot s(p(V)\cap X', p(V))\bigr)_{i-r} = \bigl( c(N) \cdot q_* s(V \cap X'', V) \bigr)_{i-r} = q_* \bigl( c(N) \cdot s(V \cap X'', V) \bigr)_{i-r} = q_*(X \cdot_{Y} V) = q_* f^! [V]$.
+
+    \Yang{}
+  \end{proof}
+
+  \begin{theorem}[Excess intersection formula]
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X'' \ar[r,"f''"] \ar[d, "q"] & Y'' \ar[d, "p"] \\
+      X' \ar[r, "f'"] \ar[d, "h"] & Y' \ar[d, "g"] \\
+      X \ar[r, "f"] & Y
+    \end{tikzcd} \]
+    where $f$ is a regular closed immersion of codimension $r$ and $f'$ is a regular closed immersion of codimension $r'$.
+    Let $N' \coloneqq N_{X'/Y'} \injmap N \coloneqq h^* N_{X/Y}$.
+    Then for $\alpha \in \CH_i(Y'')$, we have
+    \[ f^! \alpha = c_{r-r'}(q^*(N/N')) \cap f'^! \alpha. \]
+  \end{theorem}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+  
+

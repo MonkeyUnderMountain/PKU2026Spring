@@ -1,0 +1,97 @@
+\section{March 31}
+
+\subsection{Integrable systems}
+
+  Let $(M, \omega)$ be a symplectic manifold of dimension $2n$, $f_1, \dots, f_k$ be $k$ independent smooth functions on $M$ such that $\{f_i, f_j\} = 0$ for all $i, j$. 
+  Then $k \leq n$.
+
+  \begin{definition}
+    A \emph{(completely) integrable system} on a symplectic manifold $(M, \omega)$ of dimension $2n$ is a collection of $n$ independent smooth functions $f_1, \dots, f_n$ such that $\{f_i, f_j\} = 0$ for all $i, j$.
+  \end{definition}
+
+  Consider $F: M \to \bbR^n$ defined by $F(p) = (f_1(p), \dots, f_n(p))$. 
+  Let $c \in \bbR^n$ be a regular value of $F$, then $F^{-1}(c)$ is a smooth submanifold of $M$ of dimension $n$.
+  Assume for all $p \in F^{-1}(c)$, the differentials $df_1(p), \dots, df_n(p)$ are linearly independent.
+  Let $X_i$ be the Hamiltonian vector field associated to $f_i$.
+  Then $X_1, \dots, X_n$ are linearly independent at each point of $F^{-1}(c)$.
+  For any $j$, $f_k$ is constant along the flow of $X_j$.
+  So if $p \in F^{-1}(c)$, then the flow of $X_j$ starting at $p$ will stay in $F^{-1}(c)$ for all time.
+  Hence $X_1, \dots, X_n$ is a basis of the tangent space of $F^{-1}(c)$ at each point.
+
+  Recall $\omega(X_i, X_j) = 0$ for all $i, j$ since $\{f_i, f_j\} = 0$.
+  Hence $\omega$ restricts to zero on $F^{-1}(c)$, which means $F^{-1}(c)$ is a Lagrangian submanifold of $M$.
+  Recall $[X_i, X_j] = X_{\{f_i, f_j\}} = 0$ for all $i, j$.
+  Assume $X_i$ is complete for all $i$, then the flows of $X_1, \dots, X_n$ generate an action of $\bbR^n$ on $F^{-1}(c)$.
+  One can check this action is transitive on the connected components of $F^{-1}(c)$,
+  hence every connected component of $F^{-1}(c)$ must be $\bbR^n/\Gamma$ for some discrete subgroup $\Gamma$ of $\bbR^n$.
+  If this connected component is compact, then $\Gamma$ must be a lattice of $\bbR^n$, which means this connected component is a torus $\bbT^n$.
+
+  \begin{theorem}[Arnold-Liouville]
+    Assume $c$ is a regular value of map $F: M \to \bbR^n$ defined by an integrable system on a symplectic manifold $(M, \omega)$ of dimension $2n$.
+    \begin{enumerate}
+      \item Compact connected components of $F^{-1}(c)$ are Lagrangian tori $\bbT^n$.
+      \item There exists a local coordinate $\phi_1, \dots, \phi_n$ on such a connected component such that the vector fields $X_1, \dots, X_n$ has the form $X_i = \sum_{j=1}^n A_{ij}(c) \partial_{\phi_j}$ for some functions $A_{ij}$ depending only on $c$.
+      \item There exists a local coordinate $\psi_1, \dots, \psi_n$ on a neighborhood of such a connected component such that $\psi_i$ is constant along the flow of $X_j$ for all $i, j$ and $\omega = \sum_{i=1}^n d\psi_i \wedge d\phi_i$.
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{remark}
+    The coordinate $\psi_1, \dots, \psi_n$ is called \emph{action coordinate} and the coordinate $\phi_1, \dots, \phi_n$ is called \emph{angle coordinate}.
+  \end{remark}
+
+
+\subsection{Compatible almost complex structures}
+
+  Recall an almost complex structure on a manifold $M$ is a bundle map $J: TM \to TM$ such that $J^2 = -\id$.
+
+  \begin{definition}
+    Let $(M, \omega)$ be a symplectic manifold.
+    An almost complex structure $J$ on $M$ is called \emph{compatible} with $\omega$ if $g(\cdot, \cdot) \colon= \omega(\cdot, J\cdot)$ defines a Riemannian metric on $M$.
+  \end{definition}
+
+  \begin{lemma}
+    Assume $J$ is compatible with $\omega$, then 
+    \begin{enumerate}
+      \item $g(JX, JY) = g(X, Y)$;
+      \item $\omega(JX, JY) = \omega(X, Y)$;
+    \end{enumerate}
+    for all vector fields $X, Y$ on $M$.
+  \end{lemma}
+  \begin{proof}
+    For (a), we have $g(JX, JY) = \omega(JX, J^2 Y) = -\omega(JX, Y) = g(X, Y)$.
+    For (b), we have $\omega(JX, JY) = g(JX, Y) = g(Y, JX) = \omega(Y, J^2 X) = -\omega(Y, X) = \omega(X, Y)$.
+  \end{proof}
+
+  Moreover, $g(X, JY) = \omega(X, J^2 Y) = \omega(Y, X)$ for all vector fields $X, Y$ on $M$.
+  Hence we have $\omega(X, Y) = g(JX, Y)$ and $\omega$ is determined by $g$ and $J$.
+  Hence $(M, g, J, \omega)$ is an almost K\"ahler manifold.
+
+  \begin{theorem}
+    For any symplectic manifold $(M, \omega)$, there exists a compatible almost complex structure $J$ on $M$.
+  \end{theorem}
+  \begin{proof}
+    The theorem follows from \cref{thm:compatible_almost_complex_structures_and_riemannian_metrics}.
+  \end{proof}
+
+  \begin{theorem}\label{thm:compatible_almost_complex_structures_and_riemannian_metrics}
+    Let $\calJ_\omega$ be the set of all compatible almost complex structures on $(M, \omega)$ and 
+    $\calG$ be the set of all Riemannian metrics on $M$.
+    There is a canonical map: 
+    \[ \Phi: \calG \to \calJ_\omega \]
+    such that $\calJ_\omega \to \calG \xrightarrow{\Phi} \calJ_\omega$ is the identity map.
+  \end{theorem}
+  \begin{proof}
+    Given a Riemannian metric $g$ on $M$, since both $g$ and $\omega$ define non-degenerate bilinear forms on each tangent space, there exists a unique bundle map $A: TM \to TM$ such that $\omega(X, Y) = g(AX, Y)$ for all vector fields $X, Y$ on $M$.
+
+    Fix $p \in M$ and consider $A|_p: T_p M \to T_p M$ for each $p \in M$.
+    Let $A^*|_p$ be the adjoint of $A|_p$ with respect to $g$, i.e., $g(A^*|_p X, Y) = g(X, A|_p Y)$ for all $X, Y \in T_p M$.
+    We have $A^*|_p = -A|_p$ since 
+    \begin{align*}
+      g(A^*|_p X, Y) & = g(X, A|_p Y) \\
+        & = g(AY, X) = \omega(Y, X) \\
+        & = -\omega(X, Y) = -g(AX, Y).
+    \end{align*}
+    Let $Q = A A^* = -A^2$, then $Q$ is a positive definite self-adjoint operator on $T_p M$.
+    Then $Q$ has a unique positive definite self-adjoint operator $P$ such that $P^2 = Q$.
+  \end{proof}
+
