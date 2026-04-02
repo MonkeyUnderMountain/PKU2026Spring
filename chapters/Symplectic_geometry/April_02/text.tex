@@ -1,0 +1,153 @@
+\section{April 2}
+
+
+\subsection{Compatible almost complex structures}
+
+  \begin{proof}[Proof of \cref{thm:compatible_almost_complex_structures_and_riemannian_metrics} (continued)]
+    Given a Riemannian metric $g$ on $M$, since both $g$ and $\omega$ define non-degenerate bilinear forms on each tangent space, there exists a unique bundle map $A: TM \to TM$ such that $\omega(X, Y) = g(AX, Y)$ for all vector fields $X, Y$ on $M$.
+
+    Fix $p \in M$ and consider $A|_p: T_p M \to T_p M$ for each $p \in M$.
+    Let $A^*|_p$ be the adjoint of $A|_p$ with respect to $g$, i.e., $g(A^*|_p X, Y) = g(X, A|_p Y)$ for all $X, Y \in T_p M$.
+    We have $A^*|_p = -A|_p$ since 
+    \begin{align*}
+      g(A^*|_p X, Y) & = g(X, A|_p Y) \\
+        & = g(AY, X) = \omega(Y, X) \\
+        & = -\omega(X, Y) = -g(AX, Y).
+    \end{align*}
+    Let $Q = A A^* = -A^2$, then $Q$ is a positive definite self-adjoint operator on $T_p M$.
+    Then $Q$ has a unique positive definite self-adjoint square root $P$ such that $P^2 = Q$.
+
+    \begin{claim}\label{claim:AP_PA_in_the_proof_of_compatible_almost_complex_structures_and_riemannian_metrics}
+      $AP = PA$.
+    \end{claim}
+
+    Define $\Phi(g) := J|_p = A|_pP^{-1} $.
+    Then $J|_p^2 = A|_p P^{-1} A|_p P^{-1} = A|_p A|_p P^{-2} = -\id$.
+    Let $g_J(u,v) := \omega(u, J|_p v)$ for $u, v \in T_p M$.
+    We have 
+    \begin{align*}
+      g_J(u, v) & = \omega(u, J|_p v) = g(u, A|_p P^{-1} v) = g(A|_p u, AP^{-1} v) \\
+        & = g(u, A^* A P^{-1} v) = g(u, P^2 P^{-1} v) = g(u, Pv).
+    \end{align*}
+    Since $P$ is self-adjoint and positive definite, $g_J$ is a Riemannian metric on $T_p M$.
+    Hence $J|_p$ is compatible with $\omega$.
+    In particular, we get a map $\Phi: \calG \to \calJ_\omega$.
+
+    Consider the composition $\calJ_\omega \to \calG \xrightarrow{\Phi} \calJ_\omega$.
+    Given $J \in \calJ_\omega$, define $g_J(X, Y) = \omega(X, JY)$ for all $X, Y \in T_p M$.
+    Note that $g_J(J(u),v) = g_J(v, J(u)) = \omega(v, J^2 u) = \omega(u, v)$ for all $u, v \in T_p M$.
+    Hence we can take $A = J$ and $P = \id$ in the construction of $\Phi(g_J)$, which implies $\Phi(g_J) = J$.
+  \end{proof}
+
+  \begin{proof}[Proof of \cref{claim:AP_PA_in_the_proof_of_compatible_almost_complex_structures_and_riemannian_metrics}]
+    Since $A^* = -A$, there exists an orthonormal basis such that $A$ has the block diagonal form
+    \[ A = \begin{pmatrix}
+        0 & a_1 & & & \\
+        -a_1 & 0 & & & \\
+        & & \ddots & & \\
+        & & & 0 & a_n \\
+        & & & -a_n & 0
+      \end{pmatrix} \]
+    where $a_i > 0$ for $i = 1, \dots, n$.
+    Then $Q = A A^* = -A^2$ has the block diagonal form
+    \[ Q = \begin{pmatrix}
+        a_1^2 & & & & \\
+        & a_1^2 & & & \\
+        & & \ddots & & \\
+        & & & a_n^2 & \\
+        & & & & a_n^2
+      \end{pmatrix} \]
+    and $P = Q^{1/2}$ has the block diagonal form
+    \[ P = \begin{pmatrix}
+        a_1 & & & & \\
+        & a_1 & & & \\
+        & & \ddots & & \\
+        & & & a_n & \\
+        & & & & a_n
+      \end{pmatrix}. \]
+    It is easy to see that $AP = PA$.
+  \end{proof}
+
+  \begin{remark}
+    Endow $\calJ_\omega$ with suitable topology.
+    Then it is a $\infty$-dimensional Fréchet manifold. 
+  \end{remark}
+
+  \begin{theorem}
+    The space $\calJ_\omega$ of all compatible almost complex structures on $(M, \omega)$ is contractible.
+  \end{theorem}
+  \begin{proof}
+    Denote by $\Psi: \calJ_\omega \to \calG$ the map defined by $J \mapsto g_J$ where $g_J(X, Y) = \omega(X, JY)$ for all $X, Y \in T_p M$.
+    Consider the map
+    \[ F: [0,1] \times \calJ_\omega \to \calJ_\omega, \quad F(t, J) = \Phi((1-t) \Psi(J) + t \Psi(J_0)) \]
+    where $J_0$ is a fixed compatible almost complex structure on $(M, \omega)$.
+    Then $F(0, J) = \Phi(\Psi(J)) = J$ and $F(1, J) = \Phi(\Psi(J_0)) = J_0$ for all $J \in \calJ_\omega$.
+  \end{proof}
+
+  \begin{corollary}
+    Any two compatible almost complex structures on $(M, \omega)$ can be connected by a smooth path in $\calJ_\omega$.
+  \end{corollary}
+
+
+\subsection{Symplectic group actions}
+  
+  \begin{definition}
+    Let $G$ be a Lie group acting on a symplectic manifold $(M, \omega)$.
+    We say the action is \textit{symplectic} if $g^* \omega = \omega$ for all $g \in G$.
+  \end{definition}
+
+  Fix a Lie group $G$ acting symplectically on $(M, \omega)$.
+  Let $\frakg$ be the Lie algebra of $G$.
+  For $X \in \frakg$, it induces a vector field $\tilde{X}$ on $M$ defined by
+  \[ \tilde{X}_p = \frac{d}{dt}\Big|_{t=0} \exp(tX) \cdot p, \quad p \in M. \]
+  One can show that $\tilde{X}$ is a symplectic vector field, i.e., $i_{\tilde{X}} \omega $ is closed.
+
+  Recall that we have 
+  \[ [\tilde{X}, \tilde{Y}] = -\widetilde{[X, Y]} \]
+  for all $X, Y \in \frakg$.
+  In other words, the map $\frakg \to SV(M, \omega), X \mapsto \tilde{X}$ is a Lie algebra anti-homomorphism.
+
+  Let $SV(M, \omega)$ (resp. $HV(M, \omega)$) be the space of all symplectic vector fields (resp. Hamiltonian vector fields) on $(M, \omega)$.
+  We have 
+  \begin{equation}\label{eq:commutative_diagram_for_symplectic_group_actions}
+    \begin{tikzcd}
+      \frakg \ar[d] \ar[r, gray, "\tilde{\mu}"] & C^\infty(M) \ar[d] \\
+      SV(M, \omega) & HV(M, \omega). \ar[l, "\supseteq"']
+    \end{tikzcd}
+  \end{equation}
+  We will ask: is there a Lie algebra anti-homomorphism $\tilde{\mu}: \frakg \to C^\infty(M)$ such that the above diagram commutes?
+
+  \begin{definition}
+    If such a Lie algebra anti-homomorphism $\tilde{\mu}: \frakg \to C^\infty(M)$ exists, we call the action of $G$ on $(M, \omega)$ \textit{Hamiltonian} and call $\tilde{\mu}$ a \textit{comoment map}.
+
+    Given a comoment map $\tilde{\mu}: \frakg \to C^\infty(M)$, we can define a moment map $\mu: M \to \frakg^*$ by $\langle \mu(p), X \rangle = \tilde{\mu}(X)(p)$ for all $p \in M$ and $X \in \frakg$.
+    % Then $\mu$ is $G$-equivariant with respect to the given action of $G$ on $M$ and the coadjoint action of $G$ on $\frakg^*$.
+  \end{definition}
+
+  \begin{lemma}
+    Assume $G$ is commutative and $M$ is compact.
+    If there exists a linear map $\tilde{\mu}: \frakg \to C^\infty(M)$ such that \eqref{eq:commutative_diagram_for_symplectic_group_actions} commutes, then $\tilde{\mu}$ is a comoment map.
+  \end{lemma}
+  \begin{proof}
+    Since $G$ is commutative, we have $[X, Y] = 0$ for all $X, Y \in \frakg$.
+    Hence $\tilde{\mu}([X, Y]) = 0$ for all $X, Y \in \frakg$.
+
+    We have 
+    \[ \text{Hamiltonian vector field of } {\{\tilde{\mu}(X), \tilde{\mu}(Y)\}} = [\tilde{X}, \tilde{Y}] = -\widetilde{[X, Y]} = 0. \]
+    Then $d \{\tilde{\mu}(X), \tilde{\mu}(Y)\} = 0$ for all $X, Y \in \frakg$.
+    Hence $\{\tilde{\mu}(X), \tilde{\mu}(Y)\}$ is a constant function on $M$ for all $X, Y \in \frakg$.
+    Note that $\{\tilde{\mu}(X), \tilde{\mu}(Y)\} = \tilde{X}(\tilde{\mu}(Y)) = 0$ at any critical point of $\tilde{\mu}(Y)$.
+    Since $M$ is compact, $\tilde{\mu}(Y)$ has a critical point.
+    Hence $\{\tilde{\mu}(X), \tilde{\mu}(Y)\} = 0$ for all $X, Y \in \frakg$.
+  \end{proof}
+
+  \begin{lemma}
+    Let $G$ acts on $(M, \omega)$ Hamiltonianly with a moment map $\mu: M \to \frakg^*$.
+    Consider the Poisson structure on $\frakg^*$ and $M$.
+    Then $\mu$ is a anti-Poisson map, i.e., 
+    \[ \{f \circ \mu, g \circ \mu\} = -\{f, g\} \circ \mu \]
+    for all $f, g \in C^\infty(\frakg^*)$.
+  \end{lemma}
+  \begin{proof}
+    Exercise.
+  \end{proof}

@@ -1,0 +1,137 @@
+\section{April 02}
+
+
+\subsection{Refined Gysin map}
+
+  \begin{theorem}[Excess intersection formula]
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X'' \ar[r,"f''"] \ar[d, "q"] & Y'' \ar[d, "p"] \\
+      X' \ar[r, "f'"] \ar[d, "h"] & Y' \ar[d, "g"] \\
+      X \ar[r, "f"] & Y
+    \end{tikzcd} \]
+    where $f$ is a regular closed immersion of codimension $r$ and $f'$ is a regular closed immersion of codimension $r'$.
+    Let $N' \coloneqq N_{X'/Y'} \injmap N \coloneqq h^* N_{X/Y}$.
+    Then for $\alpha \in \CH_i(Y'')$, we have
+    \[ f^! \alpha = c_{r-r'}(q^*(N/N')) \cap f'^! \alpha. \]
+  \end{theorem}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  \begin{corollary}
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X' \ar[r, "="] \ar[d, "h"] & Y' \ar[d, "g"] \\
+      X \ar[r, "f"] & Y
+    \end{tikzcd} \]
+    where $f$ is a regular closed immersion of codimension $r$.
+    Then for $\alpha \in \CH_i(X')$, we have
+    \[ f^! \alpha = c_r(N_{X/Y}) \cap \alpha \in \CH_{i-r}(X'). \]
+  \end{corollary}
+
+  Applying the \Yang{} to 
+  \[ \begin{tikzcd}
+    X \ar[r, "="] \ar[d, "="] & X \ar[d, "f"] \\
+    X \ar[r, "f"] & Y
+  \end{tikzcd} \]
+  and $\alpha = f_* \beta$ for $\beta \in \CH_i(X)$, we get
+  \[ f^* f_* \beta = f^! \beta = c_r(N_{X/Y}) \cap \beta. \]
+  This is the self-intersection formula.
+
+  \begin{proposition}
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X' \ar[r, "f'"] \ar[d] & Y' \ar[d, "g"] \\
+      X \ar[r, "f"] & Y
+    \end{tikzcd} \]
+    where $f$ is a regular closed immersion of codimension $r$.
+    Let $E$ be a vector bundle on $Y'$.
+    Then for $\alpha \in \CH_i(Y')$, we have
+    \[  f^! (c_r(E) \cap \alpha) = c_r(f'^* E) \cap f^! \alpha \in \CH_{i-r}(X'). \]
+  \end{proposition}
+  \begin{proof}
+    \hspace{1em}
+    \begin{claim}\label{claim:Gysin_commute_with_chern}
+      Assume there exists a proper morphism $h: \tilde{Y}' \to Y'$ and $\tilde{\alpha} \in \CH_i(\tilde{Y}')$ such that $h_* \tilde{\alpha} = \alpha$ such that for the fiber diagram
+      \[ \begin{tikzcd}
+        \tilde{X}' \ar[r, "\tilde{f}'"] \ar[d] & \tilde{Y}' \ar[d, "g \circ h"] \\
+        % X' \ar[r, "f'"] \ar[d] & Y' \ar[d, "g"] \\
+        X \ar[r, "f"] & Y,
+    \end{tikzcd} \]
+    we have
+    \[  f^! (c_r(h^* E) \cap \tilde{\alpha}) = c_r(\tilde{f}'^* h^* E) \cap f^! \tilde{\alpha} \in \CH_{i-r}(\tilde{X}'). \]
+    Then the proposition holds.
+  \end{claim}
+  \Yang{}
+  \end{proof}
+
+  \begin{proof}[Proof of \cref{claim:Gysin_commute_with_chern}]
+    We have
+    \begin{align*}
+      f^! (c_r(E) \cap \alpha) & = f^! (c_r(E) \cap h_* \tilde{\alpha}) \\
+      & = f^! h_* (c_r(h^* E) \cap \tilde{\alpha}) \\
+      & = h'_* f^! (c_r(h^* E) \cap \tilde{\alpha}) \\
+      & = h'_* (c_r(\tilde{f}'^* h^* E) \cap f^! \tilde{\alpha}) \\
+      & = c_r(f'^* E) \cap h'_* f^! \tilde{\alpha} \\
+      & = c_r(f'^* E) \cap f^! h_* \tilde{\alpha} = c_r(f'^* E) \cap f^! \alpha,
+    \end{align*}
+    where $h': \tilde{X}' \to X'$ is the induced morphism.
+    \Yang{}
+  \end{proof}
+
+
+  \begin{theorem}[Commutativity ]
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X'' \ar[r] \ar[d] & Y'' \ar[d] \ar[r] & S \ar[d,"g"] \\
+      X' \ar[r] \ar[d] & Y' \ar[d] \ar[r] & T \\
+      X \ar[r, "f"] & Y, &
+    \end{tikzcd} \]
+    where $f,g$ are regular closed immersions of codimension $r,r'$ respectively.
+    Then for $\alpha \in \CH_i(Y')$, we have
+    \[ g^! f^! \alpha = f^! g^! \alpha \in \CH_{i-r-r'}(X''). \]
+  \end{theorem}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  \begin{theorem}[Functoriality]
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X' \ar[r, "f'"] \ar[d, "\lambda"]  & Y' \ar[r, "g'"] \ar[d, "\mu"] & Z' \ar[d, "\nu"] \\ 
+      X \ar[r, "f"] & Y \ar[r, "g"] & Z
+    \end{tikzcd} \]
+    where $f,g$ are regular closed immersions of codimension $r,r'$ respectively.
+    Then for $\alpha \in \CH_i(Z')$, we have
+    \[ (g \circ f)^! \alpha = f^! g^! \alpha \in \CH_{i-r-r'}(X'). \]
+  \end{theorem}
+  \begin{proof}
+    \hspace{1em}
+    \begin{step}
+      Assume $Z = E$ is a vector bundle over $Y$ and $g$ is the zero section.
+      And $Z' = E' \coloneqq \mu^* E$ is the pullback of $E$ to $Y'$ and $g'$ is the zero section.
+    \end{step}
+    Let $\pi: E \to Y$ be the projection.
+    \Yang{}
+  \end{proof}
+
+  \begin{proposition}
+    Consider a fiber diagram
+    \[ \begin{tikzcd}
+      X' \ar[r, "f'"] \ar[d] & Y' \ar[r, "g'"]  \ar[d] & Z'  \ar[d] \\
+      X \ar[r, "f"] & Y \ar[r, "g"] & Z.
+    \end{tikzcd} \]
+    % where $f$ is a regular closed immersion of codimension $r$.
+    \begin{enumerate}
+      \item If $f$ is a regular closed immersion of codimension $r$ and $g,g \circ f$ are flat morphisms of relative dimension $n,n-r$ respectively, 
+        then $f'$ is a regular closed immersion of codimension $r$ and $g', g' \circ f'$ are flat morphisms of relative dimension $n,n-r$ respectively.
+        And 
+        \[ (g' \circ f')^* = f'^* \circ g'^* = f'^! \circ g'^* . \]
+      \item If $f$ and $g \circ f$ are regular morphism and $g$ is a flat morphism of constant relative dimension, then 
+        \[ (g' \circ f')^! = f'^! \circ g'^* . \]
+    \end{enumerate}
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
