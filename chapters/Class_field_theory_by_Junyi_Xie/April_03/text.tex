@@ -1,0 +1,156 @@
+\section{April 03}
+
+
+\subsection{}
+
+  \begin{proposition}
+    Let $\varpi = u \pi$ with $\pi$ a uniformizer and $u \in A^\times$.
+    Let $f \in \calF_\pi$ and $g \in \calF_\varpi$.
+    Then there exists $\varepsilon \in B^\times$ such that $\sigma(\varepsilon) = \varepsilon u$ and a power series $\theta(T) \in T B[[T]]$ such that
+    \begin{enumerate}
+      \item $\theta(T) \equiv \varepsilon T \mod T^2$;
+      \item $\sigma(\theta) = \theta \circ [u]_f$;
+      \item $\theta(F_f(X,Y)) = F_g(\theta(X), \theta(Y))$;
+      \item $\theta \circ [a]_f = [a]_g \circ \theta$ for all $a \in A$.
+    \end{enumerate}
+  \end{proposition}
+  \begin{proof}
+    \hspace{1em}
+    \begin{step}
+      Show that there exists $\theta(T) \in T B[[T]]$ satisfying (a) and (b).
+    \end{step}
+    By \cref{lem:surjective_of_sigma_minus_id}, there exists $\varepsilon \in B^\times$ such that $\sigma(\varepsilon) = \varepsilon u$.
+    We construct $\theta_r(T) \in T B[T]$ inductively such that $\theta_r(T) = \theta_{r-1}(T) + b T^r$ and $\sigma(\theta_r) \equiv \theta_r \circ [u]_f \mod T^{r+1}$ for all $r$.
+    Set $\theta_1(T) = \varepsilon T$.
+    The second condition becomes $\sigma(\varepsilon) T = \varepsilon (u T + \text{higher order terms})$, which holds.
+    Suppose $\theta_{r}$ has been constructed.
+    Write $\theta_{r+1}(T) = \theta_r(T) + b T^{r+1}$ with $b = a \varepsilon^{r+1}$.
+    The second condition for $\theta_{r+1}$ becomes
+    \[ \sigma(\theta_r)(T) + \sigma(a) (\sigma(\varepsilon))^{r+1} T^{r+1} \equiv \theta_r([u]_f(T)) + a \varepsilon^{r+1} [u]_f(T)^{r+1} + R_{r+2}, \]
+    where $R_{r+2}$ is a power series in $T$ with order at least $r+2$.
+    That is,
+    \[ (\sigma(a) - a) (\varepsilon u)^{r+1} = \frac{\theta_r([u]_f(T)) - \sigma(\theta_r)(T)}{T^{r+1}}. \]
+    Take 
+    \Yang{}
+
+
+    \begin{step}
+      Show that $\theta$ in Step 1 can be chosen to satisfy $g = \sigma(\theta) \circ f \circ \theta^{-1}$.
+    \end{step}
+    Define $h := \sigma(\theta) \circ f \circ \theta^{-1} = \theta \circ [u]_f \circ f \circ \theta^{-1} = \theta \circ f \circ [u]_f \circ \theta^{-1}$.
+    Then 
+    \[ \sigma(h) = \sigma(\theta) \circ f \circ [u]_f \circ \sigma(\theta)^{-1} = \theta \circ [u]_f \circ f \circ [u]_f \circ [u]_f^{-1} \circ \theta^{-1} = h. \]
+    Hence $h \in A[[T]]$.
+    And we have 
+    \[ h(T) \equiv \sigma(\varepsilon) \pi \varepsilon^{-1} T \equiv \varpi T \mod T^2. \]
+    
+
+    \begin{step}
+      Show $\theta(F_f(\theta^{-1}(X), \theta^{-1}(Y))) = F_g(X,Y)$.
+    \end{step}
+
+    \begin{step}
+      Show $\theta \circ [a]_f \circ \theta^{-1} = [a]_g$ for all $a \in A$.
+    \end{step}
+
+
+    \Yang{}
+  \end{proof}
+
+  \begin{lemma}\label{lem:surjective_of_sigma_minus_id}
+    The homomorphisms $B \to B, b \mapsto \sigma(b) - b$ and $B^\times \to B^\times, b \mapsto \sigma(b)/b$ are surjective with kernels $A$ and $A^\times$ respectively.
+  \end{lemma}
+  \begin{proof}
+    Let $R$ be the valuation ring of $K^\unr$ and $\frakn$ its maximal ideal.
+    Then $R$ is a DVR and $B = \invlim_n R/\frakn^n$.
+    
+    Show by induction that 
+    \[ 0 \to A/\frakm^n \to R/\frakn^n \xrightarrow{\sigma - \id} R/\frakn^n \to 0 \]
+    is exact for all $n$.
+    For $n = 1$, 
+    \[ 0 \to k \to \overline{k} \xrightarrow{\sigma - \id} \overline{k} \to 0 \]
+    is exact since $\overline{k}$ is algebraically closed.
+    Assume the exactness for $n-1$.
+    Consider
+    \[ \begin{tikzcd}
+      0 \arrow[r] & R/\frakn \arrow[r] \arrow[d, "\sigma - \id"] & R/\frakn^{n} \arrow[r] \arrow[d, "\sigma - \id"] & R/\frakn^{n-1} \arrow[r] \arrow[d, "\sigma - \id"] & 0 \\
+      0 \arrow[r] & R/\frakn \arrow[r] & R/\frakn^n \arrow[r] & R/\frakn^{n-1} \arrow[r] & 0
+    \end{tikzcd} \]
+    By the snake lemma, we have an exact sequence
+    \[ 0 \to A/\frakm \to \ker(\sigma - \id)  \to A/\frakm^{n-1} \to 0 \to \coker(\sigma - \id) \to 0. \]
+    Hence $\sigma - \id$ is surjective and $\# \ker(\sigma - \id) = q \times q^{n-1} = q^n$.
+    Note that $A/\frakm^n \subset \ker(\sigma - \id)$ and $\# A/\frakm^n = q^n$.
+    Hence $\ker(\sigma - \id) = A/\frakm^n$.
+    This proves the exactness for $n$.
+    Take the inverse limit, we get the exactness of $0 \to A \to B \xrightarrow{\sigma - \id} B \to 0$.
+    This proves the surjectivity of $B \to B, b \mapsto \sigma(b) - b$ with kernel $A$.
+
+    The other exact sequence can be proved similarly.
+    % \Yang{}
+  \end{proof}
+
+  \begin{proof}[Proof of \Yang{}]
+    Let $\pi$ and $\varpi$ be two uniformizers of $A$ with $\varpi = u \pi$ for some $u \in A^\times$.
+    By \Yang{Prop}, we find that $\sigma(\theta) \circ [\pi]_f = \theta \circ [u]_f \circ [\pi]_f = \theta \circ [\varpi]_f = [\varpi]_g \circ \theta$.
+    Hence $\sigma(\theta) \circ f = g \circ \theta$.
+
+
+    $\theta^n$ induces a bijection 
+    \[ \Lambda_{f,n} \to \Lambda_{g,n}, \]
+
+    \Yang{}
+  \end{proof}
+
+  \begin{lemma}
+    Any subfield of $K^\al$ containing $K$ is closed.
+  \end{lemma}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  \begin{proof}
+    
+  \end{proof}
+
+  \begin{example}
+    We describe the local Artin map $\phi_p: \bbQ_p^\times \to \Gal(L/\bbQ_p)$ when $L = \bbQ_p[\xi]$ with $\xi$ a primitive $n$-th root of unity.
+    
+    When $p \not| n$, $L/\bbQ_p$ is unramified with residue field $\bbF_{p^f}$, where $f$ is the order of $p$ in $(\bbZ/n\bbZ)^\times$.
+    We have $\phi_p: \bbQ_p^\times \to \Gal(L/\bbQ_p), u p^m \mapsto \Frob_p^m$ for $u \in \bbZ_p^\times$ and $m \in \bbZ$.
+    And $\Ker \phi_p = \bbZ_p^\times \cdot p^{f\bbZ}$.
+
+    When $n = p^r$, $L/\bbQ_p$ is totally ramified of degree $p^{r-1}(p-1)$.
+    We have $\phi_p: \bbQ_p^\times \to \Gal(L/\bbQ_p), u p^m \mapsto (\xi \mapsto \xi^{u^{-1}})$ for $u \in \bbZ_p^\times \to (\bbZ_p/p^r\bbZ_p)^\times$ and $m \in \bbZ$.
+    And $\Ker \phi_p = \{ u \cdot p^m : u \equiv 1 \mod p^r \}$.
+
+    When $n = p^r m$ with $p \not| m$, $L/\bbQ_p$ is the composite of the unramified extension $\bbQ_p[\xi_m]$ and the totally ramified extension $\bbQ_p[\xi_{p^r}]$.
+    We have 
+    \[\begin{tikzcd}
+       & L \arrow[dr] \ar[dl] & \\
+      \bbQ_p[\xi_m] \arrow[dr] & & \bbQ_p[\xi_{p^r}] \arrow[dl] \\
+       & \bbQ_p &
+    \end{tikzcd}\]
+    Then the map $\bbQ_p^\times \to \Gal(L/\bbQ_p)$ is given as follows:
+    $a = u p^t, u \in \bbZ_p^\times, t \in \bbZ$ is sent to the element in $\Gal(L/\bbQ_p)$ which acts on $\xi_m$ by $\xi_m \mapsto \xi_m^{u^{-1}}$ and on $\xi_{p^r}$ by $\xi_{p^r} \mapsto \xi_{p^r}^{u^{-1}}$.
+  \end{example}
+
+
+\subsection{Local Kronecker-Weber theorem}
+
+  \begin{theorem}[Local Kronecker-Weber]
+    We have $K^\ab = K^\ur K_\pi$ for any uniformizer $\pi$ of $A$.
+  \end{theorem}
+
+  The ramification groups of $K_{\pi,n}/K$.
+  Let $L/K$ be a finite Galois extension and $G = \Gal(L/K)$.
+  Recall the $i$-th ramification group $G_i$ of $L/K$ is defined as follows:
+  \[ G_i = \{ \tau \in G : \ord_L(\tau(a) - a) \ge i + 1 \text{ for all } a \in \calO_L \}. \]
+  Then $G_0$ is the inertia subgroup of $G$.
+  Moreover, $G_i = \{ \tau \in G : \ord_L(\tau(\pi_L) - \pi_L) \ge i + 1 \}$ for any uniformizer $\pi_L$ of $L$.
+  Note that $G/G_0$ is isomorphic to the Galois group of the residue field extension of $L/K$.
+  There exists inclusion 
+  \[ G_0/G_1 \hookrightarrow \call^\times, \pi \mapsto \tau(\pi)/\pi \mod \frakm_L. \]
+  \[ G_i/G_{i+1} \hookrightarrow \call, \tau \mapsto \tau(\pi) - \pi \mod \frakm_L^{i+1}. \]
+  Hence we have 
+  \[ [G_0 : G_1] \mid q - 1, \quad [G_i : G_{i+1}] \mid q \text{ for } i \ge 1. \]
+  Moreover, $G_i = \{ 1 \}$ for $i$ sufficiently large.
