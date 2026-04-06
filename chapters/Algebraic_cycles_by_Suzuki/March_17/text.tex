@@ -100,17 +100,18 @@ For a line bundle $L$ on a scheme $X$, we have defined:
     Let $Z = X \setminus U$.
     By the localization sequence, we have a commutative diagram with exact rows:
     \[\begin{tikzcd}
-        \CH_{i}(Z) \arrow[r]\arrow[d, "\cong"] & \CH_{i}(X) \arrow[r]\arrow[d, "\cong"] & \CH_{i}(U) \arrow[r]\arrow[d, "\cong"] & 0 \\
+        \CH_{i}(Z) \arrow[r]\arrow[d] & \CH_{i}(X) \arrow[r]\arrow[d] & \CH_{i}(U) \arrow[r]\arrow[d] & 0 \\
         \CH_{i+r}(E|_Z) \arrow[r] & \CH_{i+r}(E) \arrow[r]  & \CH_{i+r}(E|_U) \arrow[r]  & 0.
     \end{tikzcd}\]
     By diagram chasing, it's enough to show the assertion for $U$ and $Z$.
     By induction on the dimension of $X$, we can assume the assertion holds for $Z$.
     By induction on $r$, we can assume $r = 1$.
+    By induction on the number of irreducible components, we can assume $X$ is irreducible.
     In this case, WTS: $\pi^*: \CH_i(X) \to \CH_{i+1}(X \times \bbA^1)$ is surjective.
     Let $V \subseteq X \times \bbA^1$ be a subvariety of dimension $i+1$.
     WTS, $[V] \in \Image(\pi^*)$.
 
-    \Yang{dimension of $V$}
+    % \Yang{dimension of $V$}
 
     By replacing $X$ by $\overline{\pi(V)}$, we can assume $V$ dominates $X$.
     Hence $V$ defines a closed point on $\Spec \fkk(X) \times_\kk \bbA^1_\kk = \Spec \fkk(X)[t]$.
@@ -125,70 +126,85 @@ For a line bundle $L$ on a scheme $X$, we have defined:
     This proves the surjectivity of $\pi^*$.
 
     \begin{step}
-      Surjectivity of the map $\theta_E: \bigoplus_{j=0}^{r-1} \CH_{i-j}(X) \to \CH_i(\bbP(E))$.
+      Surjectivity of the map $\theta_E: \bigoplus_{j=0}^{r-1} \CH_{i-(r-1)+j}(X) \to \CH_i(\bbP(E))$.
     \end{step}
     By localization and noetherian induction, we can assume $E$ is trivial, i.e. $E = X \times \bbA^r$ and $\bbP(E) = X \times \bbP^{r-1}$.
     ETS: letting $F = X \times \bbA^{r+1}$, if $\theta_E$ is surjective, then $\theta_F$ is also surjective.
     We have a diagram:
-    \[ \bbP(E) = X \times \bbP^{r-1} \injmap^f X \times \bbP \hookleftarrow^g E = X \times \bbA^r. \]
-    This diagram induces
+    \[ \begin{tikzcd}
+      \bbP(E) = X \times \bbP^{r-1} \arrow[r, "f", hook] \arrow[dr, "p"'] &  \bbP(F) = X \times \bbP^r \arrow[d, "q"] & \arrow[l, "g"', hook'] E = X \times \bbA^r \arrow[dl, "\pi"] \\
+      & X & 
+    \end{tikzcd}. \]
+    This diagram induces localization sequences:
     \[\begin{tikzcd}
-        \CH_{i}(\bbP(E)) \arrow[r, "\theta_E"]\arrow[d, "\id"] & \CH_i(\bbP(E)) \arrow[r, "f_*"]\arrow[d, "f^*"] & \CH_i(X \times \bbP) \arrow[d, "g^*"] \\
-        \bigoplus_{j=0}^{r-1} \CH_{i-j}(X) \arrow[r, "\theta_E"] & \CH_i(\bbP(E)) \arrow[r, "f_*"] & \CH_i(X \times \bbP).
+        \CH_i(\bbP(E)) \arrow[r, "f_*"] & \CH_i(\bbP(F)) \arrow[r, "g^*"] & \CH_i(E) \arrow[r] & 0. \\
+        & \CH_{i-r}(X) \arrow[u, "q^*"] \arrow[ur, "\pi^*"'] & 
     \end{tikzcd}\]
-    \Yang{}
 
-    Let $\beta \in \CH_i(X \times \bbP)$.
-    Since $\pi^*$ is surjective, there exists $\alpha \in \CH_{i-(r-1)}(X)$ such that $g^*\beta = p^*\alpha$.
+    Let $\beta \in \CH_i(\bbP(F))$.
+    Since $\pi^*$ is surjective, there exists $\alpha \in \CH_{i-r}(X)$ such that $g^*\beta = \pi^*\alpha$.
     By the commutativity of the diagram, $\beta - q^*\alpha \in \Image(f_*)$.
     By induction hypothesis, there exists $(\alpha_j) \in \bigoplus_{j=0}^{r-1} \CH_{i+j-(r-1)}(X)$ such that 
-    \[ f_*\theta_E((\alpha_j)) = \beta - q^*\alpha. \]
-
-    Note that $\calO_{\bbP(E)}(1) = f^*\calO_{X \times \bbP}(1)$, we have
+    \[ f_*\theta_E((\alpha_j)) = f_*\left( \sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha_j \right) = \beta - q^*\alpha. \]
+    Note that $\calO_{\bbP(E)}(1) = f^*\calO_{\bbP(F)}(1)$ and $f_*(p^*\alpha_j) = q^*\alpha_j \cap c_1(\calO_{\bbP(F)}(1))$, we have
     \[ f_*\theta_E((\alpha_j)) = \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^j \cap f_*(p^*\alpha_j) = \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^{j+1} \cap q^*\alpha_j. \]
+    We are done.
 
-
-    \begin{step}
+    \begin{step}\label{step:injectivity_of_theta_E_in_the_proof_of_chow_group_of_projective_bundle}
       Injectivity of $\theta_E$.
     \end{step}
     WTS: if $\sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha_j = 0$, then $\alpha_j = 0$ for all $j$.
-    This follows from :
-    \begin{claim}
-      Let $\alpha \in \CH_i(X)$. 
-      Then 
-      \[ p_*(c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha) = \begin{cases}
-          0 & j < r-1, \\
-          \alpha & j = r-1.
-      \end{cases} \]
-    \end{claim}
+    I claim that for any $\alpha \in \CH_i(X)$, we have
+    \[ p_*(c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha) = \begin{cases}
+        0 & j < r-1, \\
+        \alpha & j = r-1.
+    \end{cases} \]
+    Assuming this claim, we have 
+    \[ \alpha_j = p_*\left( c_1(\calO_{\bbP(E)}(1))^{r-1-j} \cap \theta_E((\alpha_j)) \right) = 0 \]
+    for all $j$.
+
+    For the proof of the claim, we can assume $\alpha = [V]$ and $X = V$ is a variety.
+    If $j< r-1$, then $p_*(c_1(\calO_{\bbP(E)}(1))^j \cap p^*[X]) \in \CH_{dim X + j - (r-1)}(X) = 0$.
+    If $j = r-1$, then $p_*(c_1(\calO_{\bbP(E)}(1))^{r-1} \cap p^*[X]) = m [X]$. 
+    ETS $m = 1$.
+    By replacing $X$ by an open subset, we can assume $E$ is trivial.
+    Then $c_1(\calO_{\bbP(E)}(1))^{r-1} \cap p^*[X] = \{*\} \times X$ and $p_*(\{*\} \times X) = [X]$.
+    Since flat pullback and proper pushforward are commutative in fiber squares, we have $p_*(c_1(\calO_{\bbP(E)}(1))^{r-1} \cap p^*[X]) = [X]$ in general as well.
+    % \Yang{}
 
     \begin{step}
       Injectivity of $\pi^*$.
     \end{step}
 
-    \Yang{}
-
+    Assuming $\pi^*\alpha = 0 \in \CH_{i+r}(E)$ for some $\alpha \in \CH_i(X)$, we want to show $\alpha = 0$.
+    Let $F = E \oplus (\bbA^1 \times X)$.
+    We have the following diagram:
+    \[\begin{tikzcd}
+      \CH_i(\bbP(E)) \arrow[r, "f_*"] & \CH_i(\bbP(F)) \arrow[r, "g^*"] & \CH_i(E) \arrow[r] & 0. \\
+      & \CH_{i-r}(X) \arrow[u, "q^*"] \arrow[ur, "\pi^*"'] & 
+    \end{tikzcd}\]
+    Hence we have $q^*\alpha = f_*\theta_E((\alpha_j))$ for some $(\alpha_j) \in \bigoplus_{j=0}^{r-1} \CH_{i+j-(r-1)}(X)$.
+    Expanding $f_*\theta_E((\alpha_j))$, we have
+    \begin{align*}
+      q^*\alpha & = f_*\left( \sum_{j=0}^{r-1} c_1(\calO_{\bbP(E)}(1))^j \cap p^*\alpha_j \right) \\
+      & = \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^j \cap f_*(p^*\alpha_j) \\
+      & = \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^{j+1} \cap q^*\alpha_j.
+    \end{align*}
+    Here $f_*(p^*\alpha_j) = q^*\alpha_j \cap c_1(\calO_{\bbP(F)}(1))$ can be verified by restricting to open dense subset of components of $\alpha_j$ and using the case of trivial bundles.
+    Then we have 
+    \[ \theta_F((-\alpha, \alpha_0, \ldots, \alpha_{r-1})) = -q^*\alpha + \sum_{j=0}^{r-1} c_1(\calO_{\bbP(F)}(1))^{j+1} \cap q^*\alpha_j = 0. \]
+    By the injectivity of $\theta_F$, we have $\alpha = 0$.
   \end{proof}
 
 
-  \begin{proof}[Proof of the claim]
-    May assume $\alpha = [V]$ and $X = V$ is a variety.
-    Then $p_*(c_1(\calO_{\bbP(E)}(1))^j \cap p^*[X]) \in \CH $.
-    For $j < r-1$, 
-
-    \Yang{}
-  \end{proof}
-
-
-
-\subsection{Chern classes of vector bundles}
+\subsection{Segre classes of vector bundles}
 
   We'll first define the ``inverse Chern classes'', called the Segre classes.
 
   \begin{definition}
     Let $X$ be a scheme, $E$ be a vector bundle of rank $r$ on $X$, $p: \bbP(E) \to X$ be the projective bundle of $E$.
     Define the \emph{$j$-th Segre class homomorphism}  of $E$ by
-    \[ s_j(E) \cap : \CH_i(X) \to \CH_{i-j}(X), \quad \alpha \mapsto c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap p^*\alpha. \]
+    \[ s_j(E) \cap : \CH_i(X) \to \CH_{i-j}(X), \quad \alpha \mapsto p_*\left(c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap p^*\alpha\right). \]
   \end{definition}
 
   \begin{proposition}
@@ -199,10 +215,10 @@ For a line bundle $L$ on a scheme $X$, we have defined:
           0 & j < 0, \\
           \alpha & j = 0.
       \end{cases} \]
-      \item Let $E,E'$ be vector bundles of rank $r,r'$ on $X$ respectively.
-      Then 
-      \[ s_j(E) \cap ( s_{j'}(E') \cap \alpha ) = s_{j'}( E') \cap ( s_j(E) \cap \alpha ) \]
-      for all $j,j' \in \bbZ$ and $\alpha \in \CH_i(X)$.
+      % \item Let $E,E'$ be vector bundles of rank $r,r'$ on $X$ respectively.
+      % Then 
+      % \[ s_j(E) \cap ( s_{j'}(E') \cap \alpha ) = s_{j'}( E') \cap ( s_j(E) \cap \alpha ) \]
+      % for all $j,j' \in \bbZ$ and $\alpha \in \CH_i(X)$.
 
       \item Let $f: X \to Y$ be a proper morphism, $E$ be a vector bundle of rank $r$ on $Y$ and $\alpha \in \CH_i(X)$.
       Then
@@ -221,17 +237,24 @@ For a line bundle $L$ on a scheme $X$, we have defined:
     \end{enumerate}
   \end{proposition}
   \begin{proof}
-    (a) - (d) follow from the corresponding statements for $c_1(L) \cap$ for line bundles $L$ on $X$.
-    For instance, as for (c), we have a commutative diagram:
+    (a) is the claim in \cref{step:injectivity_of_theta_E_in_the_proof_of_chow_group_of_projective_bundle} in the proof of \cref{thm:Chow_group_of_vector_and_projective_bundle}.
+    % \Yang{}
+    
+    (c) - (d) follow from the corresponding statements for $c_1(L) \cap$ for line bundles $L$ on $X$.
+    For instance, as for (b), we have a commutative diagram:
     \[\begin{tikzcd}
       \bbP(f^*E) \arrow[r, "f'"] \arrow[d, "p'"] & X \arrow[d, "f"] \\
       \bbP(E) \arrow[r, "f''"] & Y
     \end{tikzcd}\]
     Then 
-    \[ f_*( s_j(f^*E) \cap \alpha ) = f_*( c_1(\calO_{\bbP(f^*E)}(1))^{r-1+j} \cap p'^*\alpha ) = c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap f''_*p'^*\alpha = s_j(E) \cap f_*\alpha. \]
-
-    \Yang{}
-
+    \begin{align*}
+      f_*( s_j(f^*E) \cap \alpha ) & = f_*( c_1(\calO_{\bbP(f^*E)}(1))^{r-1+j} \cap p'^*\alpha ) \\
+      & = c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap f''_*p'^*\alpha \\
+      & = c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap q^*f_*\alpha \\
+      & = s_j(E) \cap f_*\alpha.
+    \end{align*}
+    % \[ f_*( s_j(f^*E) \cap \alpha ) = f_*( c_1(\calO_{\bbP(f^*E)}(1))^{r-1+j} \cap p'^*\alpha ) = c_1(\calO_{\bbP(E)}(1))^{r-1+j} \cap f''_*p'^*\alpha = s_j(E) \cap f_*\alpha. \]
+    % \Yang{}
     For (e), we have $\bbP(L) = X$ and $\calO_{\bbP(L)}(-1) = L$.
     Hence $s_1(L) \cap \alpha = c_1(\calO_{\bbP(L)}(1)) \cap p^*\alpha = -c_1(L) \cap \alpha$.
   \end{proof}
