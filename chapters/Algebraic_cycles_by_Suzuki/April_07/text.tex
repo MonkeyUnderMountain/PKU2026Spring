@@ -1,0 +1,156 @@
+\section{April 07}
+
+  In the last class, in Prop, we show the functoriality for $X \xrightarrow{f} Y \xrightarrow{g} Z$, 
+  where
+  \begin{enumerate}
+    \item $f$ is regular embedding, $g$ and $g \circ f$ are flat, or
+    \item $f, g\circ f$ are regular embedding, $g$ is smooth.
+  \end{enumerate}
+
+
+\subsection{local complete intersection morphisms}
+
+  \begin{definition}
+    Let $f: X \to Y$ be a morphism of schemes. 
+    We say $f$ is a \emph{local complete intersection morphism} (or \emph{l.c.i. morphism} for short) of codimension $r$ if there exists a factorization
+    \[
+      f: X \xrightarrow{i} P \xrightarrow{p} Y
+    \]
+    such that $i$ is a regular embedding of codimension $s$ and $p$ is smooth of relative dimension $s-r$.\Yang{}
+  \end{definition}
+
+  The definition is independent of the choice of factorization.
+  That is, if there is another factorization $f: X \xrightarrow{\psi} Q \xrightarrow{q} Y$ with $\psi$ a closed embedding and $q$ smooth, then $\psi$ is also a regular embedding.\Yang{make a prop}
+
+  \Yang{prop: composition of l.c.i. is still l.c.i.}
+
+  \begin{example}
+    Let $X,Y$ be smooth varieties.
+    Any morphism $f: X \to Y$ is a l.c.i. morphism of codimension $\dim Y - \dim X$ since it factors as
+    \[
+      X \xrightarrow{\gamma_f} X \times Y \xrightarrow{p_2} Y
+    \]
+    where $\gamma_f$ is the graph of $f$ and $p_2$ is the projection to the second factor.
+    Then $\gamma_f$ is a regular embedding since $X$ and $X \times Y$ are smooth, and $p_2$ is smooth since $X$ is smooth.
+  \end{example}
+
+  \begin{construction}
+    For simplicity, we work in the category of schemes that admit closed embeddings into smooth schemes.
+
+    Consider a fiber square
+    \[
+      \begin{tikzcd}
+        X' \arrow[r, "f'"] \arrow[d, "h"] & Y' \arrow[d, "g"] \\
+        X \arrow[r, "f"] & Y
+      \end{tikzcd}
+    \]
+    where $f$ is a l.c.i. morphism of codimension $r$.
+    We want to define 
+    \[ f^! : \CH_i(Y') \to \CH_{i-r}(X'). \]
+    We can factor $f$ as $X \xrightarrow{\phi} P \xrightarrow{p} Y$ with $\phi$ a regular embedding and $p$ smooth.
+    Then we have the following commutative diagram
+    \[
+      \begin{tikzcd}
+        X' \arrow[r, "\phi'"] \arrow[d, "h"] & P' \arrow[r, "p'"] \arrow[d] & Y' \arrow[d, "g"] \\
+        X \arrow[r, "\phi"] & P \arrow[r, "p"] & Y
+      \end{tikzcd}
+    \]
+    where $P' = P \times_Y Y'$ and $\phi', p'$ are the base changes of $\phi, p$ respectively.
+    Then we can define $f^! = \phi'^! \circ p'^*$, where $\phi'^!$ is the Gysin homomorphism and $p'^*$ is the flat pullback.
+  \end{construction}
+
+  \begin{proposition}
+    \begin{enumerate}
+      \item The above construction is independent of the choice of factorization.
+      \item If $f$ is also flat, then $f^! = f'^*$.
+      \item The Gysin map cummutativity, and the functoriality for $X \xrightarrow{f} Y \xrightarrow{g} Z$ still hold if $f, g\circ f$ are l.c.i. morphisms and $g$ is smooth.\Yang{}
+      \item The excess intersection formula still holds after replacing the excess normal bundle by the excess virtual normal bundle.\Yang{}
+    \end{enumerate}
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+    
+\subsection{Intersection multiplicity}
+
+  Consider a fiber square
+  \[
+    \begin{tikzcd}
+      W \arrow[r, "f'"] \arrow[d, "h"] & V \arrow[d, "g"] \\
+      X \arrow[r, "f"] & Y
+    \end{tikzcd}
+  \]
+  where $f$ is a regular embedding of codimension $r$ and $V$ is an $i$-dimensional variety (or a pure $i$-dimensional scheme).
+  
+  Recall: $X \cdot V = f^! [V] = s^*[C_{W/V}] = (\pi^*)^{-1} [C_{W/V}]$ where $s: W \to C_{W/V}$ is the zero section and $\pi: C_{W/V} \to W$ is the projection.
+
+  Let $C_1, \dots, C_t$ be the irreducible components of $C_{W/V}$ with geometric multiplicity $m_1, \dots, m_t$ respectively.
+  Note $C_{W/V}$ is  pure of dimension $i$.
+  Hence $\dim C_j = i$ for each $j$.
+  Set $Z_j = \pi(C_j)$, which is a subset of $W$.
+  Set $N_j = N_{X/Y}|_{Z_j}$ and $\pi_J = \pi|_{N_j}: N_j \to Z_j$.
+  \Yang{}
+  Then 
+  \[ X \cdot V = \sum_{j=1}^t m_j s_j^* [C_j] = \sum_{j=1}^t m_j \alpha_j \]
+  where $s_j[C_j] \in \CH_{i-r}(Z_j)$ is called the canonical decomposition of $X \cdot V$.
+  $Z_j$ are called the \emph{distinguished varieties} of the intersection.
+
+  \begin{example}
+    In $Y = \bbP^2$, consider
+    \[ X = \{x(x+y+z) = 0\}, \quad V = \{y(x+y+z) = 0\}. \]
+    Then $W = X \cap V = \{x(x+y+z) = y(x+y+z) = 0\}$.
+    To compute the canonical decomposition of $X \cdot V$, restrict to the affine chart $z \neq 0$ and set $x' = x/z, y' = y/z$.
+    Then $I_W = (x(x+y+1), y(x+y+1)) \subset \calO_V = k[x', y']/(y(x+y+1))$.
+    \Yang{}
+  \end{example}
+
+  \begin{lemma}
+    In the setting of section, the following hold:
+    \begin{enumerate}
+      \item every irreducible component of $W$ is distinguished;
+      \item for each distinguished variety $Z_j$, 
+        \[ i-r \leq \dim Z_j \leq i. \]
+    \end{enumerate}
+  \end{lemma}
+  \begin{proof}
+    (a) follows 
+
+    \Yang{}
+  \end{proof}
+
+  \begin{definition}
+    In the same setting, let $Z$ be an irreducible component of $W$ such that $\dim Z = i-r$.
+    Define the \emph{intersection multiplicity} $i(Z; X \cdot V;Y) \coloneqq $ the coefficient of $[Z]$ in $X \cdot V$.
+    \Yang{}
+  \end{definition}
+
+  For such $Z$, by the proof of the above lemma, \Yang{}
+
+  \begin{proposition}
+    In the setting of section, the following hold.
+    \begin{enumerate}
+      \item $1 \leq i(Z; X \cdot V;Y) \leq \call(\calO_{W,Z})$;
+      \item If $I_W \subset \calO_{V,Z}$ is generated by a regular sequence, then $i(Z; X \cdot V;Y) = \call(\calO_{W,Z})$.
+    \end{enumerate}
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  \begin{lemma}
+    Let $(A, \frakm)$ be a local CM ring.
+    Then $a_1, \dots, a_r$ is a regular sequence if and only if $\dim A/(a_1, \dots, a_r) = \dim A - r$.
+    In this case, $A/(a_1, \dots, a_r)$ is also CM.
+  \end{lemma}
+
+  \begin{example}
+    In the setting of the section, assume $V$ is CM and $\dim W = i-r$.
+    Then $X \cdot V = [W] = [X \cap V]$.
+    Without the CM assumption, the equality may fail.
+    \Yang{}
+  \end{example}
+
+  \begin{example}
+    \Yang{}
+  \end{example}
