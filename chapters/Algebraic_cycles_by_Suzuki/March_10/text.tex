@@ -72,6 +72,8 @@ The simplest case is $j = 1$, corresponding to line bundles or Cartier divisors.
     \end{itemize}
   \end{definition}
 
+  For example, if you take $Z$ to be the total space $X$, then $s$ is vacuous and a pseudo-divisor is just a line bundle.
+  \Yang{}
   A pseudo-divisor is either
   \begin{itemize}
     \item $(L,X,1)$ for some line bundle $L$ on $X$, or
@@ -151,6 +153,16 @@ The simplest case is $j = 1$, corresponding to line bundles or Cartier divisors.
     (e) May assume $X$ is a variety, $\alpha = [X]$, $D = \divisor(r)$ for some $r \in \fkk(X)^\times$, then $\divisor(r) \cdot [X] = \divisor(r) = 0 \in \CH_{i-1}(X)$.
   \end{proof}
 
+  \begin{proposition}
+    Let $D,D'$ be pseudo-divisors on a scheme $X$ such that $L_D \cong L_{D'}$, $|D| \subset |D'|$, and $s_D = s_{D'}$ on $X - |D'|$.
+    Denote by $j: |D| \to |D'|$ the inclusion.
+    Then for all $i$-cycles $\alpha$ on $X$, 
+    \[ j_*(D \cdot \alpha) = D' \cdot \alpha \in \CH_{i-1}(|D'| \cap |\alpha|). \]
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
   \begin{theorem}\label{thm:commutativity_of_intersection_with_cartier_divisors}
     Let $D,D'$ be Cartier divisors on an $n$-dimensional variety $X$.
     Then 
@@ -211,9 +223,10 @@ The simplest case is $j = 1$, corresponding to line bundles or Cartier divisors.
     Let $X$ be a scheme, $\alpha$ be an $i$-cycle on $X$.
     If $\alpha \sim 0$ on $X$, then for all pseudo-divisor $D$ on X, $D \cdot \alpha = 0 \in \CH_{i-1}(|D| \cap |\alpha|)$.
     In particular, we have well defined 
-    \[ \CH_i (X) \to \CH_{i-1} (|D|),\quad \alpha \mapsto D \cdot \alpha. \]
+    \[ \CH_i (X) \to \CH_{i-1} (|D|),\quad \alpha (j_\alpha)_* \mapsto D \cdot \alpha. \]
   \end{corollary}
   \begin{proof}
+    \Yang{}
     May assume: $X$ is a variety, $\alpha = \divisor(f)$ for some $f \in \fkk(X)^*$. 
     Then 
     $ D \cdot \divisor(f) = \divisor(f) \cdot [D] = 0 \in \CH_{n-2}(|D| \cap |\alpha|). $

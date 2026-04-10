@@ -1,0 +1,141 @@
+\section{April 10}
+
+  Let $U^(0) = U = A^\times$ and $U^{(i)} = 1 + \frakm^i$ for $i \geq 1$. Then we have a filtration
+  \[ U/U^{(n)} \supseteq U^{(1)}/U^{(n)} \supseteq \cdots \supseteq U^{(n-1)}/U^{(n)} \supseteq 0 \]
+  on $A^\times/1+\frakm^n$.
+  
+  \begin{proposition}
+    Let $L = K_{\pi,n}$.
+    \Yang{} We have $U/U^{(n)} \cong \Gal(L/K)$.
+    Under this isomorphism, $U^{(i)}/U^{(n)}$ maps onto $G_{q^i-1}$.
+  \end{proposition}
+  \begin{proof}
+    Take $f = \pi T + T^q$.
+    Since $L/K$ is totally ramified, we have $G = G_0$ and $U/U^{(n)}$ maps onto $G_0$.
+    Now take $i \geq 1$ and let $u \in U^{(i)} \setminus U^{(i+1)}$.
+    Then $u = 1 + v \pi^i$ for some $v \in A^\times$.
+    We have 
+    \[ [u]_f (\pi_n) = [1]_f (\pi_n) + [v]_f ([\pi^i]_f (\pi_n)) = \pi_n + [v]_f (\pi_{n-i}). \]
+    For all $i \geq 1$, we have 
+    \[ \pi_i = \pi \pi_{i+1} + \pi_{i+1}^q = \pi_{i+1}^q \left( \frac{\pi \pi_{i+1}}{\pi_{i+1}^q} + 1 \right). \]
+    Hence $\pi_{n-i} = \pi_n^{q^i} \cdot \text{unit}$ and $[u]_f(\pi_n) - \pi_n = \pi_n^{q^i} \cdot \text{unit}$.
+    This implies that $[u]_f \in G_{q^i-1} \setminus G_{q^i}$.
+  \end{proof}
+
+  Hence $G_0 = G$, $G_1 = G_2 = \cdots = G_{q-1}$, $G_q = G_{q+1} = \cdots = G_{q^2-1}$, and so on.
+
+  \paragraph{Upper numbering on ramification groups.}
+  Let $L/K$ be a finite Galois extension with Galois group $G$.
+  For real numbers $u \geq -1$, define
+  \[ G_u = G_i \text{ with } i = \lceil u \rceil. \]
+  In other words, 
+  \[ G_u = \{ \tau \in G_0 : v_L(\tau(x) - x) \geq u + 1 \text{ for all } x \in \calO_L \}. \]
+
+  \begin{definition}
+    Let $\phi: \bbR_{\geq 0} \to \bbR_{\geq 0}$ be the unique continuous piecewise linear function such that 
+    \[\begin{cases}
+      \phi(0) = 0; \\
+      \phi' (u) = \frac{1}{[G_0 : G_u]} \text{ for } u \notin \bbZ_{\geq 0}.
+    \end{cases} \]
+    %  We call $\phi$ the \emph{Herbrand function}.
+  \end{definition}
+
+  One can see that $\phi$ is strictly increasing and piecewise linear with break points at integers.
+  Moreover, $\phi$ concave and $\phi'(u) \leq 1$ for all $u$.
+
+  \begin{definition}
+    Define $G^v = G_u$ with $v = \phi(u)$.
+    That is, $G^v = G_{\psi(v)}$ where $\psi = \phi^{-1}$ is the inverse function of $\phi$.
+    We call $G^v$ the \emph{ramification group in upper numbering}.
+  \end{definition}
+
+  \begin{example}
+    Let $L = K_{\pi,n}$.
+    We have $[G_0: G_1] = q-1$, $G_1 = G_2 = \cdots = G_{q-1}$.
+    Hence
+    \Yang{}
+  \end{example}
+
+  \begin{proposition}
+    Let $L/K'/K$ be a tower of finite Galois extensions.
+    Then 
+    \[ \varphi_{L/K} = \varphi_{K'/K} \circ \varphi_{L/K'}, \quad \psi_{L/K} = \psi_{L/K'} \circ \psi_{K'/K}. \]
+    %  In particular, $G^v(L/K) \cap \Gal(L/K') = G^v(L/K')$ for all $v$.
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  % \begin{remark}
+    For $H < G$ a subgroup, we have $H_u = H \cap G_u$.
+  % \end{remark}
+
+  \begin{theorem}[Hevbrand's theorem]
+    Let $H \triangleleft G$ be a normal subgroup.
+    Then $(G/H)^v = G^v H / H$ for all $v \geq -1$.
+  \end{theorem}
+
+  \begin{remark}
+    For $\sigma \in G$, define $i_{L/K}(\sigma) = \ord_L(\sigma(\pi_L) - \pi_L)$, where $\pi_L$ is a uniformizer of $L$.
+    This defines a distance on $G$ by $d(\sigma, \tau) = e^{-i_{L/K}(\sigma \tau^{-1})}$.
+
+    Define
+    \[ E_{L/K}(n) := \phi(n-1) + 1. \]
+    View $G$,
+    \Yang{}
+  \end{remark}
+
+  % \begin{remark}[Fact]
+    
+  % \end{remark}
+
+  \begin{definition}
+    Let $L/K$ be a finite Galois extension with Galois group $G$.
+    A real number $v \geq -1$ is called a \emph{jump} if $G^v \neq G^{v+\varepsilon}$ for all $\varepsilon > 0$.
+  \end{definition}
+
+  \begin{theorem}[Hasse-Arf theorem]
+    If $L/K$ is a finite abelian extension, then all jumps are integers.
+  \end{theorem}
+  \begin{proof}
+    \Yang{ref: [Serre, Local Fields]}.
+  \end{proof}
+
+  Let $\Omega / K$ be an infinite Galois extension with Galois group $G$.
+  For $v \geq 0$, define
+  \[ G^v = \{ \sigma \in G : \sigma|_{L} \in \Gal(L/K)^v \text{ for all finite Galois } L/K \text{ with } L \subseteq \Omega \}. \]
+  Then $G^v$ is a closed normal subgroup of $G$ and we have $G^0 = G$ and $G^v = 1$ for sufficiently large $v$.
+
+  For $L/K$ a finite Galois extension, we have a filtration
+  \[ G^0 \supseteq G^{i_1} \supseteq G^{i_2} \supseteq \cdots \supseteq 1. \]
+  Moreover, $G^n = 1$ for sufficiently large $n$.
+  And 
+  \[ [G^{i_j} : G^{i_{j+1}}] \mid q-1 \text{ or } [G^{i_j} : G^{i_{j+1}}] \mid q. \]
+
+  \begin{example}
+    Let $L = K_{\pi,n}$.
+    If $G_i \neq G_{i+1}$, then $i = q^j - 1$ for some $j$.
+    And at these points, $\pi(i) = j$.
+    This verifies the Hasse-Arf theorem in this case.
+    So the local Kronecker-Weber theorem implies the Hasse-Arf theorem for abelian extensions of $K$.
+  \end{example}
+
+  \begin{lemma}
+    Let $L/K$ be a totally ramified abelian extension with Galois group $G$.
+    If $K_\pi \subseteq L$, then $L = K_{\pi}$.
+  \end{lemma}
+  \begin{proof}
+    Let $E/K$ be any finite extension in $L$.
+    We only need to show that $E \subset K_\pi$.
+
+    There exists $n$ such that $\Gal(E/K)^n = 1$.
+    Note that $\Gal(K_{\pi,n}/K)^n = 1$.
+    Let $M = E \times K_{\pi,n}$.
+    \begin{claim}
+      We have $\Gal(M/K)^n = 1$.
+    \end{claim}
+  \end{proof}
+
+  \begin{proof}[Proof of Claim]
+    
+  \end{proof}

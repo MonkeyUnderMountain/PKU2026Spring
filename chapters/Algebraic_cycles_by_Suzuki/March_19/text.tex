@@ -9,7 +9,7 @@
     Define the \emph{Segre polynomial} by 
     \[ s_t(E) \coloneqq \sum_{j \geq 0} s_i(E) t^j \in R_X [[t]]. \]
     Define the \emph{Chern polynomial} by
-    \[ c_t(E) \coloneqq s_t(E)^{-1} \in R_X [[t]] \]
+    \[ c_t(E) \coloneqq \frac{1}{s_t(E)} \in R_X [[t]] \]
     and the \emph{$j$-th Chern class} in $R_X$ by
     \[ c_j(E) \coloneqq \text{the coefficient of } t^j \text{ in } c_t(E). \]
   \end{definition}
@@ -21,9 +21,8 @@
     c_2(E) & = s_1(E)^2 - s_2(E), \\
     c_3(E) & = -s_1(E)^3 + 2 s_1(E) s_2(E) - s_3(E).
   \end{align*}
-  \Yang{check}
-
-  Thus the homomorphisms $s_j(E), c_j(E): \CH_\bullet(X) \to \CH_{\bullet - j}(X)$ shift the degree by $j$.
+  % \Yang{check}
+  The homomorphisms $s_j(E), c_j(E): \CH_\bullet(X) \to \CH_{\bullet - j}(X)$ shift the degree by $j$.
   Hence for any $j > \dim X$, we have $s_j(E) = c_j(E) = 0$.
   This implies that $s_t(E), c_t(E) \in R_X [t]$ are polynomials of degree at most $\dim X$.
 
@@ -91,6 +90,18 @@
     Let $s_1$ be the image of $s$ in $L_1$.
     If $s_1$ is nonzero, then $L_1$ admits a nowhere vanishing section and we are done.
     Assume $s_1$ has zero locus $Y$.
+    Denote by $j: Y \hookrightarrow X$ the closed embedding.
+    Restricting the above short exact sequence to $Y$, we see that $s|_Y$ is contained in $E^1|_Y$ and is nowhere vanishing.
+    By induction on the rank of $E$, we have $\prod_{u=2}^r c_1(L_u|_Y) = 0$ in $R_Y$.
+    Consider the pseudo-divisor $D = (L_1, Y, s_1)$ on $X$.
+    Then for any $\alpha \in \CH_\bullet(X)$, we have \Yang{}
+    \[ c_1(L_1) \prod_{u=2}^r c_1(L_u) \cdot \alpha = j_* \left( D \cdot \prod_{u=2}^r c_1(L_u) \cdot \alpha \right) = j_* \left(\prod_{u=2}^r c_1(L_u|_Y) \cdot D \cdot \alpha \right) = 0. \]
+    Here the first is by \Yang{} and the second is by \Yang{}.
+    Hence
+
+    \[ \prod_{u=1}^r c_1(L_u) = j_* \left( c_1(L_1|_Y) \prod_{u=2}^r c_1(L_u|_Y) \right) = 0. \]
+
+
     Then $E^1|_Y$  has an induced nowhere vanishing section.
     Replace $E$ by $E^1|_Y$ and repeat the above argument.
     The we are done
@@ -114,7 +125,7 @@
       \prod_{u=1}^r c_1(p^*L_u \otimes \calO_{\bbP(E)}(1)) = 0.
     \end{equation}
     Let $\eta \coloneqq c_1(\calO_{\bbP(E)}(1))$, $\sigma_u$ (resp. $\overline{\sigma_u}$) be the $u$-th elementary symmetric polynomial in $c_1(L_1), \ldots, c_1(L_r)$ (resp. $c_1(p^*L_1), \dots, c_1(p^*L_r)$).
-    Then by \eqref{eq:product_of_twisted_chern_classes_vanishes}, we have
+    Then by \cref{eq:product_of_twisted_chern_classes_vanishes}, we have
     \[ \prod_{u=1}^r (c_1(p^*L_u) + \eta) = \sum_{j=0}^r \overline{\sigma_j} \eta^{r-j} = 0. \]
     Hence $\forall j \geq 0$, we have
     \[ \eta^{r-1+j} + \overline{\sigma_1} \eta^{r-1+j-1} + \cdots + \overline{\sigma_r} \eta^{r-1+j-r} = 0. \]
