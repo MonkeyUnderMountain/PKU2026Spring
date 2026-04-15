@@ -1,0 +1,213 @@
+\section{Recurrence, ergodic and entropy}
+
+  Recall that for two measure spaces $(X, \calF, \mu)$ and $(Y, \calG, \nu)$, a measurable map $f: X \to Y$ is called \emph{measure-preserving} if for every $A \in \calG$, we have $\mu(f^{-1}(A)) = \nu(A)$.
+
+  \begin{example}
+    The power map $S^1 \to S^1, z \mapsto z^n$ is measure-preserving with respect to the Lebesgue measure on the unit circle.
+  \end{example}
+
+  We fix a probability space $(X, \calF, \mu)$.
+
+
+\subsection{Recurrence}
+
+  \begin{theorem}[Poincar\'e Recurrence Theorem]
+    Let $T: X \to X$ be a measure-preserving transformation. 
+    For every measurable set $A$, we have 
+    \[
+    \mu\left(\{x \in A : T^n x \in A \text{ for infinitely many } n \in \mathbb{N}\}\right) = \mu(A).
+    \]
+    In other words, for almost every point in $A$, its orbit under $T$ returns to $A$ infinitely often.
+    % \Yang{}
+  \end{theorem}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  \begin{example}
+    \Yang{}
+  \end{example}
+
+
+
+
+\subsection{Ergodic}
+
+  \begin{definition}
+    A measurable transformation $T: X \to X$ is called \emph{ergodic} if for every $A \in \calF$ such that $T^{-1}(A) \aeeq A$, we have $\mu(A) = 0$ or $\mu(A) = 1$. 
+  \end{definition}
+
+  Recall that our $X$ is a probability space.
+  In other words, the only $T$-invariant sets are trivial (i.e., empty set and the whole space up to measure zero).
+
+  \begin{theorem}[Birkhoff's Ergodic Theorem]
+    Let $T: X \to X$ be a measure-preserving transformation and $f \in L^1(X, \calF, \mu)$. 
+    \begin{enumerate}
+      \item Then for $\mu$-almost every $x \in X$, the limit
+        \[
+        \lim_{N \to \infty} \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x)
+        \]
+        exists.
+      \item Denote this limit by $\tilde{f}(x)$, then $\tilde{f}$ is integrable and $T$-invariant.
+      \item If $T$ is ergodic, then $\tilde{f} = \int_X f \, d\mu$ is constant almost everywhere.
+    \end{enumerate}
+  \end{theorem}
+  \begin{proof}
+    
+    \Yang{}
+  \end{proof}
+
+
+  Let $M(\calF, T)$ be the set of all $T$-invariant probability measures on $(X, \calF)$.
+  Note that $M(\calF, T)$ is a convex set, that is, if $\mu_1, \mu_2 \in M(\calF, T)$ and $0 < t < 1$, then $t \mu_1 + (1-t) \mu_2 \in M(\calF, T)$.
+
+  \begin{theorem}
+    The ergodic measure in $M(\calF,T)$ are exactly the extreme points of $M(\calF,T)$.
+    % \Yang{}
+  \end{theorem}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+
+
+\subsection{Entropy}
+
+  A \emph{partition} of $X$ is a collection $\calA = \{A_i\}_{i \in I}$ of disjoint measurable subsets of $X$ such that $\bigcup_{i \in I} A_i = X$. 
+  For two partitions $\calA$ and $\calB$, the \emph{join} of $\calA$ and $\calB$ is defined as
+  \[
+  \calA \vee \calB = \{A \cap B : A \in \calA, B \in \calB\}.
+  \]
+  We say that $\calA$ is \emph{finer} than $\calB$ if for every $A \in \calA$, there exists $B \in \calB$ such that $A \subseteq B$, denoted by $\calA \leq \calB$.
+  This is equivalent to saying that $\calA \vee \calB = \calA$.
+  For every $x \in X$, we denote by $\calA(x)=A_x$ the unique element of $\calA$ containing $x$.
+
+
+  \begin{definition}[Information function]
+    Let $\calA = \{A_i\}_{i \in I}$ be a countable partition of $X$. The \emph{information function} of $\calA$ is defined as
+    \[
+    I_\calA(x) = -\log \mu(A_x),
+    \]
+    where $A_x$ is the unique element of $\calA$ containing $x$.
+    % \Yang{}
+  \end{definition}
+
+
+  \begin{definition}[Entropy of a partition]
+    Let $\calA = \{A_i\}_{i \in I}$ be a countable partition of $X$. The \emph{entropy} of $\calA$ is defined as
+    \[
+    H(\calA) = -\sum_{i \in I} \mu(A_i) \log \mu(A_i),
+    \]
+    where we adopt the convention that $0 \log 0 = 0$.
+  \end{definition}
+
+  The information function and the entropy of a partition are related by the following formula:
+  \[ H(\calA) = \int_X I_\calA(x) \, d\mu(x). \]
+
+  \begin{definition}[Conditional entropy]
+    Let $\calA$ and $\calB$ be two countable partitions of $X$. 
+    The \emph{conditional entropy} of $\calA$ given $\calB$ is defined as
+    \[
+      H(\calA | \calB) = \sum_{B \in \calB} \mu(B) H(\calA | B),
+    \]
+    where
+    \[
+      H(\calA | B) = -\sum_{A \in \calA} \frac{\mu(A \cap B)}{\mu(B)} \log \frac{\mu(A \cap B)}{\mu(B)}.
+    \]
+    %  \Yang{}
+  \end{definition}
+
+  We have 
+  \[ H(\calA | \{X\}) = H(\calA). \]
+
+  \begin{example}
+    \Yang{}
+  \end{example}
+
+  Here we list some properties of the entropy and the conditional entropy.
+
+  \begin{proposition}
+    Let $\calA, \calB, \calC$ be three countable partitions of $X$. 
+    \begin{enumerate}
+      \item $H(\calA \vee \calB | \calC) = H(\calA | \calC) + H(\calB | \calA \vee \calC)$. 
+        % In particular, $H(\calA \vee \calB) = H(\calA) + H(\calB | \calA)$.
+      \item $ \calA \leq \calB \implies H(\calA | \calC) \leq H(\calB | \calC)$.
+      \item $ \calB \leq \calC \implies H(\calA | \calB) \geq H(\calA | \calC)$.
+      \item $H(\calA \vee \calB | \calC) \leq H(\calA | \calC) + H(\calB | \calC)$.
+      \item $H(\calA | \calC) \leq H(\calA | \calB) + H(\calB | \calC)$.
+    \end{enumerate}
+  \end{proposition}
+  \begin{proof}
+    
+    \Yang{May I omit them?}
+  \end{proof}
+
+
+
+  Let $T: X \to X$ be a measure-preserving transformation. 
+  For a partition $\calA$ of $X$, we can define the partition $T^{-1} \calA$ as
+  \[ T^{-1} \calA = \{T^{-1} A : A \in \calA\} \]
+  and the partition $\calA^n$ as
+  \[ \calA^n = \bigvee_{i=0}^{n-1} T^{-i} \calA. \]
+
+
+  \begin{definition}[Entropy of an endomorphism]
+    The \emph{entropy of $T: X \to X$ with respect to a partition $\calA$} is defined as
+    \[ h_\mu(T, \calA) = \lim_{n \to \infty} \frac{1}{n} H(\calA^n). \]
+    % where $\calA^n = \bigvee_{i=0}^{n-1} T^{-i} \calA$.
+    The \emph{entropy of $T$} is defined as
+    \[ h_\mu(T) = \sup_{\calA} h_\mu(T, \calA), \]
+    where the supremum is taken over all finite measurable partitions $\calA$ of $X$.    
+  \end{definition}
+
+  \begin{example}
+      \Yang{}
+  \end{example}
+
+  \begin{proposition}
+    Let $T: X \to X$ be a measure-preserving transformation and $\calA, \calB$ be two countable measurable partitions of $X$ or finite entropy. 
+    \begin{enumerate}
+      \item $h_\mu(T, \calA) \leq H(\calA)$.
+      \item $h_\mu(T, \calA \vee \calB) \leq h_\mu(T, \calA) + H(\calB)$.
+      \item $ \calA \leq \calB \implies h_\mu(T, \calA) \leq h_\mu(T, \calB)$.
+      \item $h_\mu(T, \calA \vee \calB) = h_\mu(T, \calA) + h_\mu(T, \calB | \calA)$.
+      \item $h_\mu(T, \calA) \leq h_\mu(T, \calB) + h_\mu(T, \calA | \calB)$.
+    \end{enumerate}
+    % \Yang{}
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+  \begin{proposition}
+    Let $T: X \to X$ be a measure-preserving transformation.
+    Then 
+    \[ h(T^k) = k h(T) \]
+    for every positive integer $k$.
+    Furthermore, if $T$ is invertible, then 
+    \[ h(T^{-1}) = h(T). \]
+      % \Yang{}
+  \end{proposition}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+
+  \begin{theorem}[Shannon-McMillan-Breiman Theorem]
+    Let $T: X \to X$ be an ergodic measure-preserving transformation and $\calA$ be a countable measurable partition of $X$ with finite entropy. 
+    Then for $\mu$-almost every $x \in X$, we have
+    \[
+      \lim_{n \to \infty} \frac{1}{n} I_{\calA^n}(x) = h_\mu(T, \calA).
+    \]
+  \end{theorem}
+  \begin{slogan}
+    The ``local entropy'' $\lim_{n \to \infty} \frac{1}{n} I_{\calA^n}(x)$ equals the ``global entropy'' $h_\mu(T, \calA)$ for a.e. point $x$.
+  \end{slogan}
+  \begin{proof}
+    \Yang{}
+  \end{proof}
+
+
+\subsection{On Lebesgue space}
+
+  
