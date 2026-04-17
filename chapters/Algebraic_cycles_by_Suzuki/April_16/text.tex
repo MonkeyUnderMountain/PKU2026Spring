@@ -1,0 +1,93 @@
+\section{April 16}
+
+
+\subsection{}
+
+  \begin{lemma}
+    Consider a fiber square
+    \[
+      \begin{tikzcd}
+        X' \ar[r, "f'"] \ar[d, "g'"] & Y' \ar[d, "g"] \\
+        X \ar[r, "f"] & Y,
+      \end{tikzcd} 
+    \]
+    where $f,g,f',g'$ are all regular embeddings. 
+    Then $(g')^* N_{X/Y} / N_{X'/Y'} \cong (f')^*N_{Y'/Y} / N_{X'/X}$,
+    i.e. the excess normal bundle is independent of choice of orientation in the fiber square.
+  \end{lemma}
+  \begin{proof}
+    Follows from the following diagram of the tangent-normal sequence:
+    \[
+      \begin{tikzcd}
+        0 \ar[r] & T_{X'} \ar[r] \ar[d] & (f')^* T_{Y'} \ar[r] \ar[d] & (f')^* N_{Y'/Y} \ar[r] \ar[d] & 0 \\
+        0 \ar[r] & (g')^* T_X \ar[r] & (g')^* f^* T_Y \ar[r] & (g')^* N_{X/Y} \ar[r] & 0
+      \end{tikzcd}
+    \]
+
+    \Yang{}
+  \end{proof}
+
+
+
+  Let $X$ be a smooth variety, and $Z \subset X$ a smooth subvariety of codimension $r$.
+  Let $\pi: \tilde{X} \to X$ be the blowup of $X$ along $Z$, and $E = \pi^{-1}(Z)$ the exceptional divisor. 
+  Then $E \cong \bbP(N_{Z/X})$, and we have the following fiber square:
+  \[
+    \begin{tikzcd}
+      E \ar[r, "f'", hook] \ar[d, "h"] & \tilde{X} \ar[d, "g"] \\
+      Z \ar[r, "f", hook] & X.
+    \end{tikzcd}
+  \]
+  The excess normal bundle for the square is equal to $h^* N_{Z/X} / N_{E/\tilde{X}} = h^* N_{Z/X} / \calO_E(-1)$.
+  This is the universal quotient bundle on $E = \bbP(N_{Z/X})$ of rank $r-1$, which we denote by $\xi$.
+
+  \begin{proposition}
+    For all $\alpha \in \CH^*(Z)$, we have $g^* f_* \alpha = f'_* (c_{r-1}(\xi) \cap h^* \alpha)$, where $\xi$ is the excess normal bundle.
+  \end{proposition}
+  \begin{proof}
+    
+
+    \Yang{}
+  \end{proof}
+
+  \begin{theorem}
+    There is a ring isomorphism 
+    \begin{align*}
+      \Phi: & \CH^i(X) \oplus \bigoplus_{k=0}^{r-2} \CH^{i-k-1}(Z) \to \CH^i(\tilde{X}) \\
+      & (\alpha, \beta_0, \ldots, \beta_{r-2}) \mapsto f^* \alpha + \sum_{k=0}^{r-2} c_1(\calO(1))^k \cap h^* \beta_k. 
+    \end{align*}
+  \end{theorem}
+  \begin{proof}
+    
+
+    \Yang{}
+  \end{proof}
+
+  \begin{example}
+    In the same setting as above.
+    We have 
+    \[ \CH^1(\tilde{X}) \cong \CH^1(X) \oplus \bbZ \cdot [E]. \]
+    Let $D \subset X$ be a prime divisor containing $Z$, and $\tilde{D}$ its strict transform in $\tilde{X}$.
+    Then $g^* [D] = [\tilde{D}] + m [E]$ for some $m \in \bbZ$.
+    We show that 
+    \[ m = e_Z D, \]
+    where $e_Z D$ is the multiplicity of $D$ along $Z$.
+
+    Apply $g_*(E^{r-1} \cap -)$ to both sides, we get
+    
+
+    \Yang{}
+  \end{example}
+
+
+  \Yang{}
+
+
+  Let $X$ be a quasi-projective variety, on which a finite group $G$ acts.
+  Then $X/G$ is a variety, and the quotient map $\pi: X \to X/G$ is finite and surjective.
+  Define $\pi^*: \CH_*(X/G)_\bbQ \to \CH_*(X)_\bbQ$ by 
+  \[ \pi^* [V] = \sum_{W \subset \pi^{-1}(V)} \frac{|I_W|}{\deg (W/V)} [W], \]
+  where $I_W = \{ g \in G : g(W) = W \}$ is the inertia group of $W$.
+  Then $\pi_* \pi^* = |G| \cdot \id$, and $\pi^*: \CH_*(X/G)_\bbQ \xrightarrow{\sim} \CH_*(X)_\bbQ^G$ is an isomorphism onto the $G$-invariant part of $\CH_*(X)_\bbQ$.
+
+  \Yang{}

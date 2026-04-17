@@ -1,0 +1,101 @@
+\section{April 17}
+
+
+
+
+  \begin{remark}
+    Let $G$ be a finite group.
+    \begin{enumerate}
+      \item A $G$-module $M$ is induced iff there exists a subgroup $M_0 \subseteq M$ such that $M = \bigoplus_{g \in G} g M_0$.
+      In which case, there exists an isomorphism $\Ind^G M_0 \cong \bbZ[G] \otimes_{\bbZ} M_0 \cong M$.
+      \item Let $H < G$. An induced $G$-module $M$ is also induced when considered as an $H$-module.
+        Indeed if $M = \oplus_{g \in G} g M_0$, then $M = \oplus_{h \in H} h \left( \oplus_{s \in H\backslash G} s M_0 \right)$.
+      \item Let $M$ be a $G$-module. 
+        \Yang{}
+    \end{enumerate}
+  \end{remark}
+
+  \begin{remark}
+    We have 
+    \[ \Ind^G_H M = \bbZ[G] \otimes_{\bbZ[H]} M = \bigoplus_{s \in H\backslash G} s \otimes M. \]
+  \end{remark}
+
+
+\subsection{Group cohomology}
+
+
+  \begin{definition}
+    For a $G$-module $M$, define
+    \[ M^G := \{ m \in M : g m = m, \forall g \in G \}. \]
+  \end{definition}
+  The functor $M \mapsto M^G$ is left exact.
+  And 
+  \[ (\cdot)^G \cong \Hom_G(\bbZ, \cdot). \]
+
+  The right derived functors of $(\cdot)^G$ are called the \emph{group cohomology} functors, denoted by $H^i(G, \cdot)$.
+
+
+  % \theorem{Shapiro's lemma}
+  \begin{theorem}[Shapiro's lemma]
+    Let $H < G$ be a subgroup and $N$ be an $H$-module. 
+    Then there is a canonical isomorphism
+    \[ H^r(G, \Ind^G_H N) \cong H^r(H, N). \]
+  \end{theorem}
+  \begin{proof}
+    For $r = 0$, we have
+    \[ N^H \cong \Hom_H(\bbZ, N) \cong \Hom_G(\bbZ, \Ind^G_H N) \cong (\Ind^G_H N)^G. \]
+
+    Pick $N \to I^\bullet$ an injective resolution of $N$ as an $H$-module.
+    Apply the exact functor $\Ind^G_H$ to get an injective resolution $\Ind^G_H N \to \Ind^G_H I^\bullet$ of $\Ind^G_H N$ as a $G$-module.
+    Then we have
+    \[ 0 \to (\Ind^G_H N)^G \to (\Ind^G_H I^0)^G \to (\Ind^G_H I^1)^G \to \cdots \]
+    is isomorphic to
+    \[ 0 \to N^H \to (I^0)^H \to (I^1)^H \to \cdots. \]
+    Hence $H^r(G, \Ind^G_H N) \cong H^r(H, N)$ for all $r$.
+  \end{proof}
+
+  \begin{corollary}
+    If $M$ is an induced $G$-module, then $H^r(G, M) = 0$ for all $r > 0$.
+  \end{corollary}
+
+  \begin{remark}
+    Consider exact sequence $0 \to M \to J \to N \to 0$ of $G$-modules.
+    Assume $H^r(G, J) = 0$ for all $r > 0$.
+    Then we have an isomorphism $H^r(G, N) \cong H^{r+1}(G, M)$ for all $r > 0$.
+
+    More generally, if $0 \to M \to J^1 \to J^2 \to \cdots \to J^s \to N \to 0$ is an exact sequence of $G$-modules such that $H^r(G, J^i) = 0$ for all $r > 0$ and $1 \leq i \leq s$.
+    Then we have an isomorphism $H^r(G, N) \cong H^{r+s}(G, M)$ for all $r > 0$.
+  \end{remark}
+
+  \begin{remark}
+    Let $ 0 \to M \to J^0 \to J^1 \to \cdots$ be an exact sequence of $G$-modules such that $H^r(G, J^i) = 0$ for all $r > 0$ and $i \geq 0$.
+    Then we have an isomorphism $H^r(G, M) \cong H^{r}((J^\bullet)^G)$ for all $r > 0$.
+  \end{remark}
+
+
+
+\subsection{}
+
+  Let $P_r$ be free $\bbZ$-module with basis $\{ [g_0, g_1, \cdots, g_r] : g_i \in G \}$.
+  Endow $P_r$ with a $G$-action by $g [g_0, g_1, \cdots, g_r] = [g g_0, g g_1, \cdots, g g_r]$.
+  Then 
+  \[ P_r \cong \bigoplus_{(g_1, \cdots, g_r) \in G^r} \bbZ[G] \cdot [1, g_1, \cdots, g_r]. \]
+  One can imagine the ``homogeneous'' element.
+
+  Define a homomorphism $d_r : P_r \to P_{r-1}$ by
+  \[ d_r [g_0, g_1, \cdots, g_r] = \sum_{i=0}^r (-1)^i [g_0, \cdots, \hat{g_i}, \cdots, g_r]. \]
+  Then $d_{r-1} \circ d_r = 0$ for all $r$.
+  Consequently, we have a complex $P_\bullet : \cdots \to P_2 \to P_1 \to P_0 \to 0$ of $G$-modules.
+  Let $\epsilon : P_0 \to \bbZ$ be the homomorphism defined by $\epsilon([g]) = 1$ for all $g \in G$.
+  Then $\epsilon \circ d_1 = 0$.
+  We get a resolution $P_\bullet \to \bbZ$ of $\bbZ$ by $G$-modules.
+
+
+  \begin{proposition}
+    Let $M$ be a $G$-module.
+    Then $H^r(G, M) \cong H^r((P_\bullet \otimes_{\bbZ} M)^G)$ for all $r \geq 0$.
+  \end{proposition}
+
+  An element of $\Hom_G(P_r, M)$ can be identified with a function $\phi : G^{r+1} \to M$ and $\phi$ is $G$-invariant in the sense that $\phi(g g_0, \cdots, g g_r) = g \phi(g_0, \cdots, g_r)$ for all $g, g_i \in G$.
+  Thus $\Hom_G(P_r, M)$ can be identified with the set of functions $f : G^r \to M$ by $f(g_1, \cdots, g_r) = \phi(1, g_1, \cdots, g_r)$.
+  \Yang{}
