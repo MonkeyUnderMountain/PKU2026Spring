@@ -1,21 +1,35 @@
 \section{Recurrence, ergodic and entropy}
 
-  Recall that for two measure spaces $(X, \calF, \mu)$ and $(Y, \calG, \nu)$, a measurable map $f: X \to Y$ is called \emph{measure-preserving} if for every $A \in \calG$, we have $\mu(f^{-1}(A)) = \nu(A)$.
-
-  \begin{example}
-    The power map $S^1 \to S^1, z \mapsto z^n$ is measure-preserving with respect to the Lebesgue measure on the unit circle.
-  \end{example}
 
   We fix a probability space $(X, \calF, \mu)$.
 
 
 \subsection{Recurrence}
 
+  % Recall that for two measure spaces $(X, \calF, \mu)$ and $(Y, \calG, \nu)$, a measurable map $f: X \to Y$ is called \emph{measure-preserving} if for every $A \in \calG$, we have $\mu(f^{-1}(A)) = \nu(A)$.
+
+  \begin{definition}
+    A measurable transformation $T: X \to X$ is called \emph{measure-preserving} if for every $A \in \calF$, we have $\mu(T^{-1}(A)) = \mu(A)$.
+  \end{definition}
+
+  \begin{example}
+    Consider the unit circle $S^1$ with the Lebesgue measure $\mu$. 
+    Then the rotation $R_s: S^1 \to S^1, \exp(2\pi i t) \mapsto \exp(2\pi i (t + s))$ is measure-preserving for every $s \in \bbR$.
+  \end{example}
+
+  \begin{example}
+    The power map $S^1 \to S^1, z \mapsto z^n$ is measure-preserving with respect to the Lebesgue measure on the unit circle.
+
+    More generally, consider $\bbP^1(\bbC) \to \bbP^1(\bbC), z \mapsto z^n$ and $\mu$ is given by $i_* \frac{1}{2\pi} d\theta$ where $i: S^1 \to \bbP^1(\bbC)$ is the inclusion map. 
+    Then this map is also measure-preserving.
+  \end{example}
+
+
   \begin{theorem}[Poincar\'e Recurrence Theorem]
     Let $T: X \to X$ be a measure-preserving transformation. 
     For every measurable set $A$, we have 
     \[
-    \mu\left(\{x \in A : T^n x \in A \text{ for infinitely many } n \in \mathbb{N}\}\right) = \mu(A).
+      \mu\left(\{x \in A : T^n x \in A \text{ for infinitely many } n \in \mathbb{N}\}\right) = \mu(A).
     \]
     In other words, for almost every point in $A$, its orbit under $T$ returns to $A$ infinitely often.
     % \Yang{}
@@ -25,8 +39,18 @@
   \end{proof}
 
   \begin{example}
+    Consider the square map $T: S^1 \to S^1, z \mapsto z^2$ with the Lebesgue measure on $S^1$. 
+    Consider a small arc $A$ containing $-1 = \exp\left(\frac{1}{2} \cdot 2\pi i\right)$.
+
+    Some points in $A$ will never return to $A$ under the iteration of $T$, like $-1$ itself.
+    However, for almost every point in $A$, it will return to $A$ infinitely many times under the iteration of $T$.
+    % For example, if $t$ is a irrational number, then $\exp(2\pi i 2^n t)$ will return to $A$ infinitely often as $n \to \infty$.
+
+
     \Yang{}
   \end{example}
+
+
 
 
 
@@ -37,8 +61,24 @@
     A measurable transformation $T: X \to X$ is called \emph{ergodic} if for every $A \in \calF$ such that $T^{-1}(A) \aeeq A$, we have $\mu(A) = 0$ or $\mu(A) = 1$. 
   \end{definition}
 
+  In the definition, we do not require $\mu$ is $T$-invariant.
+
   Recall that our $X$ is a probability space.
   In other words, the only $T$-invariant sets are trivial (i.e., empty set and the whole space up to measure zero).
+
+  \begin{example}
+    Let $s$ be an irrational number. 
+    Consider the rotation $R_s: S^1 \to S^1, \exp(2\pi i t) \mapsto \exp(2\pi i (t + s))$.
+    Then $R_s$ is ergodic with respect to the Lebesgue measure on $S^1$.
+    \begin{proof}
+      \Yang{}
+    \end{proof}
+  \end{example}
+
+  \begin{example}
+    Let $f: S^1 \to S^1, z \mapsto z^n$ be the power map. 
+    Then $f$ is not ergodic with respect to the Lebesgue measure on $S^1$.
+  \end{example}
 
   \begin{theorem}[Birkhoff's Ergodic Theorem]
     Let $T: X \to X$ be a measure-preserving transformation and $f \in L^1(X, \calF, \mu)$. 
@@ -56,6 +96,17 @@
     
     \Yang{}
   \end{proof}
+
+
+  \begin{corollary}[Weyl's Equidistribution Theorem]
+    Let $\alpha$ be an irrational number. 
+    Then the sequence $(n \alpha \mod 1)_{n \in \mathbb{N}}$ is equi-distributed in $[0,1)$.
+    More precisely, denote by $\alpha_n = n \alpha \mod 1$, we have 
+    \[ \lim_{N \to \infty} \frac{1}{N} \sum_{n=0}^{N-1} \delta_{\alpha_n} = \mu, \]
+    where $\delta_x$ is the Dirac measure at $x$ and $\mu$ is the Lebesgue measure on $[0,1)$.
+    That is, for every function $f \in C([0,1])$, we have
+    \[ \lim_{N \to \infty} \frac{1}{N} \sum_{n=0}^{N-1} f(\alpha_n) = \int_0^1 f(x) \, dx. \]
+  \end{corollary}
 
 
   Let $M(\calF, T)$ be the set of all $T$-invariant probability measures on $(X, \calF)$.
@@ -104,7 +155,19 @@
   The information function and the entropy of a partition are related by the following formula:
   \[ H(\calA) = \int_X I_\calA(x) \, d\mu(x). \]
 
-  \begin{definition}[Conditional entropy]
+  \begin{example}
+    Consider the partition $\calA$ of $[0,1)$ into $n$ equal subintervals, i.e., 
+    \[ \calA = \{[0, \frac{1}{n}), [\frac{1}{n}, \frac{2}{n}), \ldots, [\frac{n-1}{n}, 1)\}. \]
+    Then the information function $I_{\calA}(x) = \log n$ for every $x \in [0,1)$, and hence the entropy $H(\calA) = \log n$.
+    % Then $H(\calA) = \log n$.
+
+    More generally, for $r_1+\cdots + r_k = 1$ with $r_i \geq 0$, consider the partition $\calA = \{A_1, \ldots, A_k\}$ of $[0,1)$ with $A_i = [r_1 + \cdots + r_{i-1}, r_1 + \cdots + r_i)$ for $i=1, \ldots, k$. 
+    Then the information function $I_{\calA}(x) = -\log r_i$ for every $x \in A_i$, and hence the entropy $H(\calA) = -\sum_{i=1}^k r_i \log r_i$.
+     % \Yang{}
+    % \Yang{}
+  \end{example}
+
+  \begin{definition}[Conditional entropy and conditional information function]
     Let $\calA$ and $\calB$ be two countable partitions of $X$. 
     The \emph{conditional entropy} of $\calA$ given $\calB$ is defined as
     \[
@@ -114,7 +177,12 @@
     \[
       H(\calA | B) = -\sum_{A \in \calA} \frac{\mu(A \cap B)}{\mu(B)} \log \frac{\mu(A \cap B)}{\mu(B)}.
     \]
-    %  \Yang{}
+    The \emph{conditional information function} of $\calA$ given $\calB$ is defined as
+    \[
+      I_{\calA | \calB}(x) = -\log \frac{\mu(A_x \cap B_x)}{\mu(B_x)},
+    \]
+    where $A_x$ and $B_x$ are the unique elements of $\calA$ and $\calB$ containing $x$, respectively.
+    \Yang{}
   \end{definition}
 
   We have 
@@ -161,6 +229,11 @@
   \end{definition}
 
   \begin{example}
+    Let $T: S^1 \to S^1, z \mapsto z^2$ be the square map and $\calA = \{[0, \frac{1}{2}), [\frac{1}{2}, 1)\}$ be the partition of $S^1$ into two equal arcs.
+    Then we have 
+    \[ \calA^n = T^{-n+1} \calA = \{[0, \frac{1}{2^n}), [\frac{1}{2^n}, \frac{2}{2^n}), \ldots, [\frac{2^n-1}{2^n}, 1)\}. \]
+    Hence $H(\calA^n) = n \log 2$ and $h_\mu(T, \calA) = \log 2$.
+
       \Yang{}
   \end{example}
 
@@ -170,10 +243,8 @@
       \item $h_\mu(T, \calA) \leq H(\calA)$.
       \item $h_\mu(T, \calA \vee \calB) \leq h_\mu(T, \calA) + H(\calB)$.
       \item $ \calA \leq \calB \implies h_\mu(T, \calA) \leq h_\mu(T, \calB)$.
-      \item $h_\mu(T, \calA \vee \calB) = h_\mu(T, \calA) + h_\mu(T, \calB | \calA)$.
-      \item $h_\mu(T, \calA) \leq h_\mu(T, \calB) + h_\mu(T, \calA | \calB)$.
     \end{enumerate}
-    % \Yang{}
+    \Yang{}
   \end{proposition}
   \begin{proof}
     \Yang{}
@@ -197,17 +268,46 @@
     Let $T: X \to X$ be an ergodic measure-preserving transformation and $\calA$ be a countable measurable partition of $X$ with finite entropy. 
     Then for $\mu$-almost every $x \in X$, we have
     \[
-      \lim_{n \to \infty} \frac{1}{n} I_{\calA^n}(x) = h_\mu(T, \calA).
+      \lim_{n \to \infty} \frac{1}{n+1} I_{\calA^n}(x) = h_\mu(T, \calA).
     \]
   \end{theorem}
   \begin{slogan}
-    The ``local entropy'' $\lim_{n \to \infty} \frac{1}{n} I_{\calA^n}(x)$ equals the ``global entropy'' $h_\mu(T, \calA)$ for a.e. point $x$.
+    The ``local entropy'' $\lim_{n \to \infty} \frac{1}{n+1} I_{\calA^n}(x)$ equals the ``global entropy'' $h(T, \calA)$ for a.e. $x$.
   \end{slogan}
   \begin{proof}
+    \hspace{1em}
+
+    \begin{step}
+      Set $f_n = I_{\calA | \calA^n}$ for $n \geq 0$. 
+      We have 
+      \[ I_{\calA^n} = f_n + f_{n-1} \circ T + \cdots + f_1 \circ T^{n-1} + f_0 \circ T^n. \]
+    \end{step}
+
+    \begin{step}
+      The sequence $(f_n)_{n \geq 0}$ converges a.e. and in $L^1(X, \calF, \mu)$.
+    \end{step}
+
+    \begin{step}
+      $\tilde{f} = \lim_{n \to \infty} \frac{1}{n+1} I_{\calA^n}$ a.e. and in $L^1(X, \calF, \mu)$.
+    \end{step}
+
+    \begin{step}
+      Finish the proof.
+    \end{step}
+
+
+
     \Yang{}
   \end{proof}
 
+  % \begin{lemma}
+  %   Let $T: X \to X$ be a measure-preserving transformation and $\calA$ be a countable measurable partition of $X$ with finite entropy. 
+  %   Let $f_n := I_{\calA | \calA^n}$ for $n \geq 0$.
+  %   Then $f_n$ converges in $L^1(X, \calF, \mu)$ as $n \to \infty$.
+  %   \Yang{}
+  % \end{lemma}
 
-\subsection{On Lebesgue space}
+
+% \subsection{On Lebesgue space}
 
   
