@@ -159,6 +159,9 @@
     In particular, if $T$ is ergodic, then for $\mu$-almost every $x \in X$, we have
     \[ \lim_{N \to \infty} \frac{1}{N} \sum_{n=0}^{N-1} f(T^n x) = \int_X f \, d\mu. \]
   \end{theorem}
+  \begin{slogan}
+    The time average equals the space average.
+  \end{slogan}
   \begin{proof}
     Let $g = f - f_\calI - \varepsilon$ for some $\varepsilon > 0$.
     Note that $g_\calI = f_\calI - f_\calI - \varepsilon = -\varepsilon < 0$ a.e. .
@@ -193,6 +196,20 @@
     We are done.
       % \Yang{}
   \end{proof}
+
+  \begin{remark}
+    Birkhoff's Ergodic Theorem will imply the convergence of in $L^1(X, \calF, \mu)$ as well. 
+
+    If $f$ is bounded, then the assertion is clear by the dominated convergence theorem.
+    For general $f \in L^1(X, \calF, \mu)$, we can choose $g \in L^\infty(X, \calF, \mu)$ such that $\|f-g\|_1 < \varepsilon$ for some $\varepsilon > 0$.
+    Set $S_n f = \frac{1}{n} \sum_{i=0}^{n-1} f \circ T^i$ for every $n \geq 1$.
+    Note that $\|S_n f\|_1 \leq \|f\|_1$ for every $n \geq 1$.
+    Then we have 
+    \[ \|S_n f - S_m f\|_1 \leq \|S_n g - S_m g\|_1 + \|S_n (f-g)\|_1 + \|S_m (f-g)\|_1 \leq \|S_n g - S_m g\|_1 + 2\varepsilon. \]
+    Since $S_n g$ converges in $L^1(X, \calF, \mu)$, we have $\|S_n g - S_m g\|_1 \leq \varepsilon$ for every sufficiently large $n, m$.
+    Hence $\{S_n f\}_{n=1}^\infty$ is a Cauchy sequence in $L^1(X, \calF, \mu)$ and hence converges in $L^1(X, \calF, \mu)$.
+    % \Yang{}
+  \end{remark}
 
 
   Applying Birkhoff's Ergodic Theorem to $T: [0,1) \to [0,1), z \mapsto z + \alpha \mod 1$, we obtain the following result.
@@ -517,9 +534,8 @@
     If $T$ is invertible, note that
     \[ H(\calA^n(T^{-1})) = H\left(\bigvee_{i=0}^{n-1} T^{i} \calA\right) \leq H\left(T^{n-1} \left(\bigvee_{i=0}^{n-1} T^{-i} \calA\right) = H\left(\bigvee_{i=0}^{n-1} T^{-i} \calA\right) = H(\calA^n(T))\right). \]
     Hence we have $h(T^{-1}, \calA) = h(T, \calA)$ for every finite measurable partition $\calA$ of $X$.
-    \Yang{}
+    % \Yang{}
   \end{proof}
-
 
   \begin{theorem}[Shannon-McMillan-Breiman Theorem]
     Let $T: X \to X$ be an ergodic measure-preserving transformation and $\calA$ be a countable measurable partition of $X$ with finite entropy. 
@@ -567,17 +583,54 @@
     \[ A' = \{x \in A : f^*(x) > \lambda\} \]
     for $\lambda > 0$.
     Then I claim that $\mu(A') \leq e^{-\lambda}$.
-    Set $f_n^A = -\log \bbE(\bbone_A | \sigma(\calA^n_1))$ for $n \geq 0$.
-    \Yang{}
-
-    Set $B_n = \{x \in A : f_n(x) > \lambda, f_j(x) \leq \lambda \text{ for every } j < n\}$ for $n \geq 0$.
-    Then we have $A' = \bigcup_{n=0}^{\infty} B_n$ and $B_n \in \sigma(\calA^n_1)$ for every $n \geq 0$.
+    Set $f_n^A = -\log \bbE(\bbone_A | \sigma(\calA^n_1))$ for $n \geq 0$ and 
+    \[ B_n^A = \{x \in A : f_n^A(x) > \lambda, f_j^A(x) \leq \lambda \text{ for every } j < n\} \]
+    for $n \geq 0$.
+    Then we have $A' = \bigsqcup_{n=0}^{\infty} (B_n^A \cap A)$ and $B_n^A \in \sigma(\calA^n_1)$ for every $n \geq 0$.
     Hence we have
-    \[ \mu(B_n) \]
+    \[ \mu(B_n^A \cap A) = \int_{B_n^A} \bbE(\bbone_A | \sigma(\calA^n_1)) \, d\mu = \int_{B_n^A} e^{-f_n^A} \, d\mu \leq e^{-\lambda} \mu(B_n^A). \]
+    Then 
+    \[ \mu(A') = \sum_{n=0}^{\infty} \mu(B_n^A \cap A) \leq e^{-\lambda} \sum_{n=0}^{\infty} \mu(B_n^A) \leq e^{-\lambda}. \]
+    Hence we have
+    \begin{align*}
+      \int_X f^* \, d\mu & = \sum_{A \in \calA} \int_A f^* \, d\mu = \sum_{A \in \calA} \int_0^{\infty} \mu(\{x \in A : f^*(x) > \lambda\}) \, d\lambda \\
+      & \leq \sum_{A \in \calA} \int_0^{-\log \mu(A)} \mu(A) \, d\lambda + \sum_{A \in \calA} \int_{-\log \mu(A)}^{\infty} e^{-\lambda} \, d\lambda \\
+      & = \sum_{A \in \calA} \mu(A) (-\log \mu(A)) + \sum_{A \in \calA} e^{-\lambda} \bigg|_{-\log \mu(A)}^{\infty} \\
+      &= H(\calA) + \sum_{A \in \calA} \mu(A) = H(\calA) + 1 < \infty.
+    \end{align*}
+
 
     \begin{step}
       $f_\calI = \lim_{n \to \infty} \frac{1}{n+1} I_{\calA^n}$ a.e. and in $L^1(X, \calF, \mu)$.
     \end{step}
+
+    We have
+    \[ \left| \frac{1}{n+1} I_{\calA^n} - f_\calI\right| \leq \frac{1}{n+1} \sum_{i=0}^{n} \left|f_{n-i} \circ T^i - f \circ T^i\right| + \left|\frac{1}{n+1} \sum_{i=0}^{n} f \circ T^i - f_\calI\right|. \]
+    By Birkhoff's ergodic theorem, the last term converges to $0$ a.e. and in $L^1(X, \calF, \mu)$.
+    Set $g_n = |f-f_n|$ for $n \geq 0$ and $G_N = \sup_{n \geq N} g_n$ for $N \geq 0$.
+    Then we have $g_n \to 0$ a.e. and in $L^1(X, \calF, \mu)$ as $n \to \infty$.
+    And $G_0 \leq f^* + f \in L^1(X, \calF, \mu)$ and $G_N$ is non-increasing in $N$.
+    Hence we have $G_N \to 0$ a.e. monotonically as $N \to \infty$.
+    We have 
+    \begin{align*}
+      \frac{1}{n+1} \sum_{i=0}^{n} g_{n-i} \circ T^i & = \frac{1}{n+1} \sum_{i=0}^{n - N-1} g_{n-i} \circ T^i + \frac{1}{n+1} \sum_{i=n-N}^{n} g_{n-i} \circ T^i \\
+      & \leq \frac{1}{n+1} \sum_{i=0}^{n - N-1} G_N \circ T^i + \frac{1}{n+1} \sum_{i=n-N}^{n} G_0 \circ T^i.
+    \end{align*}
+    Take limit as $n \to \infty$, we have
+    \[ \lim_{n \to \infty} \frac{1}{n+1} \sum_{i=0}^{n} g_{n-i} \circ T^i \leq (G_N)_\calI \]
+    a.e. by Birkhoff's ergodic theorem.
+    Note that $(G_N)_\calI$ is non-increasing in $N$, $(G_N)_\calI \geq 0$ and 
+    \[ \int_X (G_N)_\calI \, d\mu = \int_X G_N \, d\mu \to 0 \]
+    as $N \to \infty$.
+    Hence $(G_N)_\calI \to 0$ a.e. as $N \to \infty$.
+    Then we have 
+    \[ \lim_{n \to \infty} \frac{1}{n+1} \sum_{i=0}^{n} g_{n-i} \circ T^i = 0 \text{ a.e.} \]
+    The convergence in $L^1(X, \calF, \mu)$ is easy since 
+    \[ \int \frac{1}{n+1} \sum_{i=0}^{n} g_{n-i} \circ T^i \, d\mu = \frac{1}{n+1} \sum_{i=0}^{n} \int g_{n-i} \, d\mu, \]
+    and the right-hand side converges to $0$ in $L^1(X, \calF, \mu)$ as $n \to \infty$ since $g_n \to 0$ in $L^1(X, \calF, \mu)$ as $n \to \infty$.
+
+
+    % \Yang{}
 
     \begin{step}
       Finish the proof.
@@ -590,15 +643,12 @@
     \end{align*}
     % \[ h(T, \calA) = \lim_{n \to \infty} \frac{1}{n+1} H(\calA^n) = \lim_{n \to \infty} \frac{1}{n+1} \int_X I_{\calA^n}(x) \, d\mu(x) = \lim_{n \to \infty} \frac{1}{n+1} \sum_{i=0}^{n} \int_X f_i \circ T^i \, d\mu(x) = \lim_{n \to \infty} \frac{1}{n+1} \sum_{i=0}^{n} \int_X f_i \, d\mu(x) = \int_X f \, d\mu(x). \]
     Since $T$ is ergodic, we have $f_\calI = \int_X f \, d\mu$ a.e.
-
-
-
-    \Yang{}
+    % \Yang{}
   \end{proof}
 
-  \begin{remark}
-    One can show the convergence in the Shannon-McMillan-Breiman Theorem also holds in the sense of a.e.
-  \end{remark}
+  % \begin{remark}
+  %   One can show the convergence in the Shannon-McMillan-Breiman Theorem also holds in the sense of a.e.
+  % \end{remark}
 
   % \begin{lemma}
   %   Let $T: X \to X$ be a measure-preserving transformation and $\calA$ be a countable measurable partition of $X$ with finite entropy. 
