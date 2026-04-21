@@ -394,11 +394,10 @@
     (e) follows from (a) and (d).
 
     For (f).
-    Note that 
-    \[ I_{\calA | \calB}(x) + I_{\calB | \calC}(x) = -\log \frac{\mu(A_x \cap B_x)}{\mu(B_x)} - \log \frac{\mu(B_x \cap C_x)}{\mu(C_x)} = I_{\calA | \calC}(x) + \log \mu(B_x) - \log \mu(B_x \cap C_x) \geq I_{\calA | \calC}(x). \]
-    Take integral, we get $H(\calA | \calB) + H(\calB | \calC) \geq H(\calA | \calC)$.
-    % For every $C \in \calC$, write $C = \bigsqcup_{i} B_i$ with $B_i \in \calB$. 
-    % Then we have
+    We have 
+    \[ H(\calA | \calC) \leq H(\calA \vee \calB | \calC) = H(\calA | \calC \vee \calB) + H(\calB | \calC) \leq H(\calA | \calB) + H(\calB | \calC) \]
+    by (c), (a) and (d).
+    % \Yang{}
     % \Yang{May I omit them?}
   \end{proof}
 
@@ -532,7 +531,7 @@
     Hence $h(T^k) = k h(T)$.
 
     If $T$ is invertible, note that
-    \[ H(\calA^n(T^{-1})) = H\left(\bigvee_{i=0}^{n-1} T^{i} \calA\right) \leq H\left(T^{n-1} \left(\bigvee_{i=0}^{n-1} T^{-i} \calA\right) = H\left(\bigvee_{i=0}^{n-1} T^{-i} \calA\right) = H(\calA^n(T))\right). \]
+    \[ H(\calA^n(T^{-1})) = H\left(\bigvee_{i=0}^{n-1} T^{i} \calA\right) \leq H\left(T^{n-1} \left(\bigvee_{i=0}^{n-1} T^{-i} \calA\right) \right)= H\left(\bigvee_{i=0}^{n-1} T^{-i} \calA\right) = H(\calA^n(T)). \]
     Hence we have $h(T^{-1}, \calA) = h(T, \calA)$ for every finite measurable partition $\calA$ of $X$.
     % \Yang{}
   \end{proof}
