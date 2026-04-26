@@ -1,0 +1,42 @@
+\section{Introduction}
+
+
+
+\subsection{Setup}
+
+  Let $\kkk$ be an algebraically closed field of arbitrary characteristic.
+  Let $X$ be a projective variety of dimension $d$ over $\kkk$, and $f: X \dashrightarrow X$ be a dominant rational map.
+
+
+
+
+  
+  % All birational models of $X$ form a directed system, we denote by $\frakX$.
+  % We define the inductive limit of the numerical groups $\upN^1(X')$ by 
+  % \[ \upN^1(\frakX) \coloneqq \upN^1(\frakX,\pi^*) \coloneqq \varinjlim_{\pi:X'' \to X' \in \frakX} \left( \pi^* \upN^1(X') \to \upN^1(X'') \right). \]
+  % One can view $\upN^1(\frakX)$ as the group of numerical classes of $\bfb$-Cartier divisors with $\bbR$-coefficients on $X$.
+  % For every $D \in \upN^1(\frakX)$, there exists a birational model $X' \in \frakX$ and $D' \in \upN^1(X')$ such that $D_{X''} = \pi^* D'$ for every $\pi: X'' \to X'$ in $\frakX$.
+  
+  
+  % picard groups $\Pic(X')$ for $X' \in \frakX$ by
+  % \[ \Pic(\frakX) := \varinjlim_{\pi:X'' \to X' \in \frakX} \left( \pi^* \Pic(X') \to \Pic(X'') \right). \]
+
+\subsection{Results}
+
+  Fix a projective variety $X$ of dimension $d$ and a dominant rational map $f: X \dashrightarrow X$. 
+
+  \begin{mainthm}\label{thm:recursive_inequality}
+    For $i = 0, 1, \ldots, d$ and $\varepsilon \in (0, 1)$, there exists $m_\varepsilon > 0$ such that for all $m \geq m_\varepsilon$,
+    \[  L_{2m} - \varepsilon^m \mu_i^m L_m + \mu_i^m \mu_{i+1}^m L \]
+    is big.
+  \end{mainthm}
+
+  \begin{mainthm}\label{mainthm:semi-continuity}
+    Let $S$ be an integral noetherian scheme, and $\pi: \calX \to S$ be a flat projective morphism. 
+    Let $f: \calX \dashrightarrow \calX$ be a dominant rational map over $S$.
+    Then for every $i$, the function $s \mapsto \lambda_i(f_s)$ is lower semi-continuous.
+  \end{mainthm}
+
+  \begin{mainthm}
+    If $f$ is cohomologically hyperbolic, then the set of periodic points of $f$ is Zariski dense in $X$.
+  \end{mainthm}

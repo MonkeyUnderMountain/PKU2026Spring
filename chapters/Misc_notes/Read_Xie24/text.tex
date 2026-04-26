@@ -1,0 +1,116 @@
+\section{Reading Xie24}
+
+
+\subsection{Setup}
+
+  Let $\kkk$ be an algebraically closed field of arbitrary characteristic.
+  Let $X$ be a projective variety of dimension $d$ over $\kkk$, and $f: X \dashrightarrow X$ be a dominant rational map.
+  All birational models of $X$ form a directed system, we denote by $\frakX$.
+  We define the inductive limit of the numerical groups $\upN^1(X')$ by 
+  \[ \upN^1(\frakX) \coloneqq \upN^1(\frakX,\pi^*) \coloneqq \varinjlim_{\pi:X'' \to X' \in \frakX} \left( \pi^* \upN^1(X') \to \upN^1(X'') \right). \]
+  One can view $\upN^1(\frakX)$ as the group of numerical classes of $\bfb$-Cartier divisors with $\bbR$-coefficients on $X$.
+  For every $D \in \upN^1(\frakX)$, there exists a birational model $X' \in \frakX$ and $D' \in \upN^1(X')$ such that $D_{X''} = \pi^* D'$ for every $\pi: X'' \to X'$ in $\frakX$.
+  
+  
+  % picard groups $\Pic(X')$ for $X' \in \frakX$ by
+  % \[ \Pic(\frakX) := \varinjlim_{\pi:X'' \to X' \in \frakX} \left( \pi^* \Pic(X') \to \Pic(X'') \right). \]
+
+  \begin{theorem}[Siu's inequality]
+    Let $X$ be a projective variety of dimension $d$, and let $L,M$ be nef $\bbR$-divisors on $X$ with $M$ big. 
+    Then 
+    \[ (M^d) L \leq d (M^{d-1} \cdot L) M. \]
+    In particular, for every $\varepsilon \in (0, 1)$, we have
+    \[ d (M^{d-1} \cdot L) M - \varepsilon (M^d) L \]
+    is big.
+  \end{theorem}
+
+\subsection{Results}
+
+  Fix a projective variety $X$ of dimension $d$ and a dominant rational map $f: X \dashrightarrow X$. 
+
+  \begin{mainthm}\label{thm:recursive_inequality}
+    For $i = 0, 1, \ldots, d$ and $\varepsilon \in (0, 1)$, there exists $m_\varepsilon > 0$ such that for all $m \geq m_\varepsilon$,
+    \[  L_{2m} - \varepsilon^m \mu_i^m L_m + \mu_i^m \mu_{i+1}^m L \]
+    is big.
+  \end{mainthm}
+
+  \begin{mainthm}\label{mainthm:semi-continuity}
+    Let $S$ be an integral noetherian scheme, and $\pi: \calX \to S$ be a flat projective morphism. 
+    Let $f: \calX \dashrightarrow \calX$ be a dominant rational map over $S$.
+    Then for every $i$, the function $s \mapsto \lambda_i(f_s)$ is lower semi-continuous.
+  \end{mainthm}
+
+  \begin{mainthm}
+    If $f$ is cohomologically hyperbolic, then the set of periodic points of $f$ is Zariski dense in $X$.
+  \end{mainthm}
+
+
+\subsection{Inequalities}
+
+
+  The main goal is to find some lower bound $\beta_m \leq \lambda_i$ of $\lambda_i$ such that $\beta_m \to \lambda_i$ as $m \to \infty$ and $\beta_m$ depends only on the intersection numbers of $L_{2m}, L_m, L$.
+
+
+  Fix number $\alpha_i$, $\varepsilon, \delta \in (0, 1)$, and $m \in \bbZ_{>0}$. \Yang{here $m$ is to iterate $f$, hence if we allow iteration, we can drop the $m$ in the statement of \cref{thm:recursive_inequality}.}
+  We have the following conditions:
+  \begin{enumerate}
+    \item condition $I_i$:
+      \[ \frac{\bigl((f^*)^2L+\alpha_{j+1}\alpha_{i}\delta L\bigr)^{d-i+j+1} \cdot \bigl(f^*L\bigr)^{i-j-1}}{\alpha_{j+1}\bigl((f^*)^2L+\alpha_{j+1}\alpha_{i}\delta L\bigr)^{d-i+j} \cdot \bigl(f^*L\bigr)^{i-j}} > (d-i-j+1) \varepsilon; \]
+      or the following is enough:
+      \[ L_2 + \alpha_{j+1}\alpha_{i}\delta L >_{\text{big}} \varepsilon \alpha_{j+1} L_1. \]
+    \item condition $J_i$:
+  \end{enumerate}
+
+
+  The logic chain is as follows:
+  \[ I,J,K \implies \lambda_i \geq \beta_i \]
+  and 
+  \[ \mu_i > \mu_{i+1} \implies I,J,K \text{ hold for some } \mu_i. \]
+
+  $\approx$ $\asymp$
+
+
+  \begin{proposition}
+    \Yang{}
+    Let $m_i \geq 0$, $r_i > r_{i-1}$ with $i = 0, 1, \ldots, d$.
+    Then there exists some constant $C > 0$ depending only on $(X,f,L)$ and $r_i$'s such that for every $m_i$'s, we have
+    \[ C^{-1} \deg_d(f^{\sum m_i}) \prod_i \frac{\deg_{r_i}(f^{m_i})}{\deg_{r_{i-1}}(f^{m_i})} \leq (L_{M_1}^{r_1} \cdot L_{M_2}^{r_2 - r_1} \cdots L_{M_d}^{r_d - r_{d-1}}) \leq C \prod_i \deg_{r_i}(f^{m_i}). \]
+  \end{proposition}
+
+  Set 
+  \[ L_m := (f^m)^* L, \quad M_m(t) := L_{2m} + t^m L. \]
+  We will try to estimate the ratio
+  \[ \gamma_{L,t}(m) = \frac{M_m(t)^{d}}{M_m(t)^{d-1} \cdot L_m}. \]
+
+
+
+
+
+
+% \subsection{Semi-continuity}
+
+%   Here we test \cref{mainthm:semi-continuity} by considering the family of 
+
+
+% \subsection{Density of periodic points}
+
+
+
+
+% \subsection{Other results}
+
+%   \begin{theorem}
+%     We have 
+%     \[ \lambda_1(f) \geq \frac{\deg_{1,L} f^2}{4 \deg_{1,L} f}. \]
+%   \end{theorem}
+
+%   \begin{theorem}
+%     \Yang{There is an algorithm to compute $\lambda_i$'s.}
+%   \end{theorem}
+
+%   \begin{theorem}
+%     Let $X$ be a projective variety of dimension $d$, and $f: X \dashrightarrow X$ be a dominant rational map. 
+%     Then for every $i = 0, 1, \ldots, d-1$, we have $\lambda_i(f) \leq \lambda_1(f)^i$.
+
+%     Suppose that $\mu_2 < 1$ or $\mu_1 = \mu_2$.
+%   \end{theorem}
